@@ -4,4 +4,7 @@ This template should help get you started developing with Vue 3 in Vite. The tem
 
 Learn more about IDE Support for Vue in the [Vue Docs Scaling up Guide](https://vuejs.org/guide/scaling-up/tooling.html#ide-support).
 
-To start the project need to execute this command: npm run dev
+For testing the app should to use this Rest-api https://github.com/4ukNoris/Spring-Project-REST-API.git 
+After start movies backend need to start Spring-CinemaTicketsApp https://github.com/BlagoyVelinov/Spring-Project/tree/master
+
+To start the frontend project need to execute this command: npm run dev
