@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title>Cinema Tickets</title>
+    <script>
+        fetch('/partials/head.html')
+          .then(res => res.text())
+          .then(data => {
+            document.head.insertAdjacentHTML('beforeend', data);
+          });
+      </script>
+    <link rel="stylesheet" href="/css/style-add-offer.css"/>
+</head>
+<body id="page10">
+<!-- START PAGE SOURCE -->
+<div class="tail-top">
+    <div class="tail-bottom">
+        <div id="main">
+
+            <header id="nav"></header>
+
+            <div id="content">
+                <div class="line-hor"></div>
+                <div class="content">
+
+                    <h1 class="text-center mt-2"><span class="badge badge-pill badge-dark">Add Offer</span></h1>
+                    <form class="welcome add-offer-form" method="post" action="/offers/add-offer">
+
+                        <div class="form-group">
+                            <div class="label-holder text-white textCol d-flex justify-content-center">
+                                <label for="name" class="h4 mb-2">Title</label>
+                            </div>
+                            <input type="text" class="form-control" id="name" name="title" />
+                            <small class="text-danger" id="error-title"></small>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="label-holder text-white textCol d-flex justify-content-center">
+                                <label for="description" class="h4 mb-2">Description</label>
+                            </div>
+                            <textarea class="form-control" id="description" name="description" minlength="5" maxlength="2000"></textarea>
+                            <small class="text-danger" id="error-description"></small>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="label-holder text-white textCol d-flex justify-content-center">
+                                <label for="imageUrl" class="h4 mb-2">Image URL</label>
+                            </div>
+                            <textarea class="form-control" id="imageUrl" name="imageUrl" minlength="5"></textarea>
+                            <small class="text-danger" id="error-imageUrl"></small>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="text-white label-holder d-flex justify-content-center">
+                                <label for="offerCategory" class="h4 mb-2">Offer Type</label>
+                            </div>
+                            <select class="browser-default custom-select" id="offerCategory" name="offerCategory" required>
+                                <option value="">Select Type Offer</option>
+                                <option value="CINEMA_OFFERS">Cinema Offers</option>
+                                <option value="FOR_THE_SCHOOLS">For the Schools</option>
+                                <option value="FOR_THE_BUSINESS">For the Business</option>
+                            </select>
+                            <small class="text-danger" id="error-offerCategory"></small>
+                        </div>
+
+                        <div class="button-holder d-flex justify-content-center">
+                            <button type="submit" class="btn btn-info mb-3">Add offer</button>
+                        </div>
+
+                    </form>
+                </div>
+            </div>
+
+            <footer id="footer"></footer>
+        </div>
+    </div>
+</div>
+<script type="module" src="/js/main.js"></script>
+<script type="text/javascript"> Cufon.now(); </script>
+<!-- END PAGE SOURCE -->
+</body>
+</html>

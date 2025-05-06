@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Offer Details</title>
+    <link rel="stylesheet" href="/css/style-add-offer.css"/>
+    <script>
+        fetch('/partials/head.html')
+          .then(res => res.text())
+          .then(data => {
+            document.head.insertAdjacentHTML('beforeend', data);
+          });
+    </script>
+</head>
+<body id="page9">
+<!-- START PAGE SOURCE -->
+<div class="tail-top">
+    <div class="tail-bottom">
+        <div id="main">
+
+            <header id="nav"></header>
+
+            <div id="content">
+                <div class="line-hor"></div>
+                <div class="box">
+                    <div class="border-right">
+                        <div class="border-left">
+                            <div class="inner">
+                                <h3>Summer Cinema Discount</h3>
+                                <li>
+                                    <img src="/images/sample-offer.jpg" width="780" height="425" alt="Offer-image" />
+                                    <br>
+                                </li>
+                                <p>Enjoy 50% off all movies during the summer season in selected cinemas. Book your tickets now!</p>
+                            </div>
+
+                            <!-- Изтриване на оферта – статичен бутон -->
+                            <form method="post" action="/offers/delete-offer/123" onsubmit="return confirm('Are you sure you want to delete this offer?');">
+                                <div class="button-holder d-flex justify-content-center">
+                                    <button type="submit" class="btn btn-info mb-3">Delete offer</button>
+                                </div>
+                            </form>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <footer id="footer"></footer>
+
+        </div>
+    </div>
+</div>
+<script type="module" src="/js/main.js"></script>
+<script type="text/javascript"> Cufon.now(); </script>
+<!-- END PAGE SOURCE -->
+</body>
+</html>

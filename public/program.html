@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <title>Program Page</title>
+    <script>
+        fetch('/partials/head.html')
+          .then(res => res.text())
+          .then(data => {
+            document.head.insertAdjacentHTML('beforeend', data);
+          });
+    </script>
+    <link rel="stylesheet" href="/css/style-program.css" />
+</head>
+<body id="page2">
+<div class="tail-top">
+    <div class="tail-bottom">
+        <div id="main">
+
+            <header id="nav"></header>
+
+            <div id="content">
+                <div class="line-hor"></div>
+                <div class="box">
+                    <div class="border-right">
+                        <div class="border-left">
+                            <div class="inner">
+                                <h3 class="title">Projections <span>Today</span></h3>
+                                <div class="form-row m-5">
+                                    <form method="post" action="/program">
+                                        <div class="col">
+                                            <label for="dateInput">Date</label>
+                                            <input type="date" name="projectionDate" id="dateInput" class="form-control" />
+                                            <small class="text-danger">Reserved date cannot be in the past</small>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label for="cityName">Select City</label>
+                                            <select class="browser-default custom-select" id="cityName" name="location">
+                                                <option value="">Select City</option>
+                                                <option value="SOFIA">Sofia</option>
+                                                <option value="PLOVDIV">Plovdiv</option>
+                                                <option value="STARA_ZAGORA">Stara Zagora</option>
+                                                <option value="RUSE">Ruse</option>
+                                                <option value="BURGAS">Burgas</option>
+                                                <option value="VARNA">Varna</option>
+                                            </select>
+                                            <small class="text-danger">City Name error message</small>
+                                        </div>
+
+                                        <div class="button-holder d-flex justify-content-center">
+                                            <button type="submit" class="btn btn-primary btn-lg">Continue</button>
+                                        </div>
+                                    </form>
+
+                                    <!-- Покажи бутона само ако потребителят е администратор -->
+                                    <div class="button-holder d-flex justify-content-center admin-only">
+                                        <a href="/movies/add-movie">
+                                            <button type="button">Add Movie</button>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- MOVIES -->
+                <div class="content">
+                    <h4 id="displayDate">Choose a date and city for reserve ticket</h4>
+                    <h4 id="displayName"></h4>
+                    <ul class="list" id="movieList">
+                        <!-- Примерен филм, ще се повтаря динамично с JavaScript/Vue -->
+                        <li class="movieList">
+                            <img src="/path/to/movie.jpg" alt="Movie Pic" width="204px" height="219px" />
+                            <a href="/trailer/123" class="title-movie">Movie Title</a><br />
+                            <span class="qb-movie-rating-info">
+                                <img src="/path/to/icon.png" alt="Rating" height="30" class="rating-icon mr-sm" />
+                                <div class="qb-movie-info-wrapper">
+                                    <div class="pt-xs">
+                                        <span class="mr-sm">Adventure, Comedy</span>
+                                        <span class="ml-xs">|</span>
+                                        <span class="mr-xs">101 min.</span>
+                                        <div class="screening-type">2D</div>
+
+                                        <!-- Покажи "Coming soon", ако няма часове -->
+                                        <a class="h4">Coming soon</a>
+
+                                        <!-- Покажи бутоните с часове -->
+                                        <a href="/program" class="btn btn-primary btn-lg">12:20</a>
+
+                                        <!-- Администраторски бутони -->
+                                        <a href="/program/update-projection-time/123" class="btn btn-primary btn-lg">Update projection time</a>
+                                        <form method="post" action="/movies/delete-movie/123">
+                                            <div class="button-holder d-flex justify-content-center">
+                                                <button type="submit" class="btn btn-info mb-3">Delete Movie</button>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <footer id="footer"></footer>
+        </div>
+    </div>
+</div>
+<script type="module" src="/js/main.js"></script>
+</body>
+</html>

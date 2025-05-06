@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 19.2.1, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" id="Warstwa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="35" height="35"
+	 viewBox="0 0 120 120" style="enable-background:new 0 0 120 120;" xml:space="preserve">
+<style type="text/css">
+	.st0{fill:#39AB49;}
+	.st1{fill:#FFFFFF;stroke:#39AB49;stroke-miterlimit:10;}
+	.st2{fill:none;stroke:#FFFFFF;stroke-width:15;stroke-miterlimit:10;}
+</style>
+<path class="st0" d="M115,120H5c-2.8,0-5-2.2-5-5V5c0-2.8,2.2-5,5-5h110c2.8,0,5,2.2,5,5v110C120,117.8,117.8,120,115,120z"/>
+<path class="st1" d="M115,5v110H5V5H115 M115,0H5C2.2,0,0,2.2,0,5v110c0,2.8,2.2,5,5,5h110c2.8,0,5-2.2,5-5V5C120,2.2,117.8,0,115,0
+	L115,0z"/>
+<polyline class="st2" points="30.6,52.9 57,79.9 92.6,29 "/>
+</svg>

@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Order Completion - Cinema Tickets</title>
+    <script>
+        fetch('/partials/head-order-tickets.html')
+          .then(res => res.text())
+          .then(data => {
+            document.head.insertAdjacentHTML('beforeend', data);
+          });
+    </script>
+</head>
+<body id="ctl00_pageBody" class="ltr">
+<label class="logo"><a href="/">Cinema <span class="logo-name">Tickets</span></a></label>
+
+<!-- Тук можеш да включиш езиков избор или други елементи от фрагмента -->
+<header>
+    <!-- Language selector placeholder -->
+</header>
+
+<div id="pagecontainer" class="pagecontainer orderformpageres">
+    <div class="wrap">
+        <div id="header">
+            <div id="logo"></div>
+        </div>
+        <div style="clear: both;"></div>
+
+        <div class="steps">
+            <div class="step"><span>1</span><label>Ticket selection</label></div>
+            <div class="step"><span>2</span><label>Seats selection</label></div>
+            <div class="step"><span>3</span><label>Confirmation</label></div>
+            <div class="step onstep"><span>4</span><label>Order completion</label></div>
+            <div class="clear"></div>
+        </div>
+
+        <div class="main fullwidth">
+            <div class="orderForm">
+                <div class="orderformcontainer">
+                    <h2>Your ticket(s)</h2>
+
+                    <div class="eventInfoContainer">
+                        <table class="seatSelection" cellpadding="0" cellspacing="0">
+                            <thead>
+                                <tr class="header">
+                                    <th>Ticket Type</th>
+                                    <th>Movie name</th>
+                                    <th>Movie Class</th>
+                                    <th>Hall</th>
+                                    <th>Projection Date</th>
+                                    <th>Time</th>
+                                    <th>Unit price</th>
+                                    <th>Adm. Tax</th>
+                                    <th>City</th>
+                                    <th>Seat Info</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <!-- Примерен билет -->
+                                <tr class="sums">
+                                    <td>Adult</td>
+                                    <td>Avengers: Endgame</td>
+                                    <td>3D</td>
+                                    <td>5</td>
+                                    <td>2025-05-04</td>
+                                    <td>19:30</td>
+                                    <td>10.50 BGN</td>
+                                    <td>0.80 BGN</td>
+                                    <td>Sofia</td>
+                                    <td>
+                                        Row: 7<br>
+                                        Seat: 7
+                                    </td>
+                                </tr>
+                                <!-- Може да клонираш този <tr> за повече билети -->
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <div class="actionHolder">
+                        <a class="backBtn back-link" href="/">Home</a>
+                    </div>
+                </div>
+            </div>
+            <div class="clear"></div>
+        </div>
+    </div>
+</div>
+
+<!-- <div id="footer" class="footer orderformpageres">
+     Footer content
+</div> -->
+<footer id="footer"></footer>
+<script type="module" src="/js/main.js"></script>
+</body>
+</html>

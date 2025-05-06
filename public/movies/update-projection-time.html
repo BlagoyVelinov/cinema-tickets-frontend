@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <title>Projections Today</title>
+    <link rel="stylesheet" href="/css/style-program.css"/>
+    <script>
+        fetch('/partials/head.html')
+          .then(res => res.text())
+          .then(data => {
+            document.head.insertAdjacentHTML('beforeend', data);
+          });
+    </script>
+</head>
+<body id="page2">
+<!-- START PAGE SOURCE -->
+<div class="tail-top">
+    <div class="tail-bottom">
+        <div id="main">
+
+            <header id="nav"></header>
+
+            <div id="content">
+                <div class="line-hor"></div>
+                <div class="box">
+                    <div class="border-right">
+                        <div class="border-left">
+                            <div class="inner">
+                                <h3 class="title">Projections <span>Today</span></h3>
+                                <div class="form-row m-5">
+                                    <div class="col">
+                                        <label for="dateInput">Select a date</label>
+                                        <input type="date" name="dateInput" id="dateInput"
+                                               class="form-control"
+                                               placeholder="Select a date" />
+                                        <small id="dateInputError" class="form-text bg-danger rounded">
+                                            Reserved date cannot be in the past
+                                        </small>
+                                    </div>
+
+                                    <!-- Администраторски бутон -->
+                                    <div class="button-holder d-flex justify-content-center">
+                                        <a href="/movies/add-movie">
+                                            <button type="button">Add Movie</button>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Съдържание -->
+                <div class="content">
+                    <h3 id="displayDate">dd/MM<span>/yyyy</span></h3>
+                    <ul class="list">
+                        <li>
+                            <form method="post" action="/program/update-projection-time/123">
+                                <img src="/images/sample-movie.jpg" alt="Movie" width="204px" height="219px" />
+                                <a href="/trailer/123" class="title-movie">Example Movie Name</a><br />
+
+                                <span class="qb-movie-rating-info">
+                                    <img src="/images/icon-g.png" alt="General Audience" height="30" class="rating-icon mr-sm" />
+                                    <div class="qb-movie-info-wrapper">
+                                        <div class="pt-xs">
+                                            <span class="mr-sm">Adventure, Animation, Comedy, Family</span>
+                                            <span class="ml-xs">|</span>
+                                            <span class="mr-xs">101 мин.</span>
+                                            <div class="screening-type" tabindex="0" aria-label="Screening type: 2D">2D</div>
+
+                                            <div class="npm-quickbook">
+                                                <!-- Часове за резервация -->
+                                                <a href="/tickets/buy-tickets" class="btn btn-primary btn-lg">12:20</a>
+                                                <a href="/tickets/buy-tickets" class="btn btn-primary btn-lg">14:00</a>
+
+                                                <!-- Избор на нов час -->
+                                                <div class="form-group">
+                                                    <div class="text-white label-holder d-flex justify-content-center">
+                                                        <label for="startMovie" class="h4 mb-2">Choose new projection time</label>
+                                                    </div>
+                                                    <select class="browser-default custom-select" name="startMovie[]" id="startMovie" multiple>
+                                                        <option value="">Select booking time</option>
+                                                        <option value="_10_20">10:20</option>
+                                                        <option value="_11_50">11:50</option>
+                                                        <option value="_12_20">12:20</option>
+                                                        <option value="_13_50">13:50</option>
+                                                        <option value="_14_20">14:20</option>
+                                                        <option value="_15_50">15:50</option>
+                                                        <option value="_16_20">16:20</option>
+                                                        <option value="_17_50">17:50</option>
+                                                        <option value="_18_20">18:20</option>
+                                                        <option value="_19_50">19:50</option>
+                                                        <option value="_20_20">20:20</option>
+                                                        <option value="_20_50">20:50</option>
+                                                    </select>
+
+                                                    <small class="text-danger">Start Movie error message</small>
+
+                                                    <!-- Администраторски бутон -->
+                                                    <div class="button-holder d-flex justify-content-center">
+                                                        <button type="submit" class="btn btn-info mb-2">Update projection time</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </span>
+                            </form>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <footer id="footer"></footer>
+        </div>
+    </div>
+</div>
+
+<script type="module" src="/js/main.js"></script>
+<script type="text/javascript"> Cufon.now(); </script>
+<!-- END PAGE SOURCE -->
+</body>
+</html>

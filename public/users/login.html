@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Login | Cinema Tickets</title>
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="/css/reset-css.css" />
+  <link rel="stylesheet" href="/css/bootstrap.min.css" />
+  <link rel="stylesheet" href="/css/main.css" />
+  <link rel="stylesheet" href="/css/style-login-register.css" />
+
+  <!-- External Fonts & Icons -->
+  <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet" />
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet" />
+  <link href="https://fonts.cdnfonts.com/css/tt-octas-trial" rel="stylesheet" />
+  <link href="https://fonts.cdnfonts.com/css/poppins" rel="stylesheet" />
+  
+  <!-- Auth Service - Само за навигацията и съобщенията за грешка -->
+  <script type="module" src="/services/user-service.js"></script>
+</head>
+
+<body id="page7">
+  <header class="navigation" id="nav">
+    <label class="logo">
+      <a href="/">Cinema <span class="logo-name">Tickets</span></a>
+    </label>
+    <ul>
+      <li>
+        <a href="/users/register">
+          <img src="/images/signup-green3.gif" alt="register" />
+        </a>
+      </li>
+    </ul>
+  </header>
+
+  <div class="container">
+    <h2 class="text-center text-white">Login</h2>
+
+    <!-- Връщаме се към JavaScript обработката на формата -->
+    <form id="login-form" action="#" 
+      class="main-form mx-auto col-md-8 d-flex flex-column justify-content-center">
+
+      <!-- Съобщение за грешка -->
+      <small class="text-danger" style="display: none;">Incorrect username or password!</small>
+
+      <div class="form-group">
+        <label for="username" class="text-white font-weight-bold">Username</label>
+        <input id="username" name="username" type="text" min="2" max="50"
+          class="form-control" placeholder="Username" required />
+      </div>
+
+      <div class="form-group">
+        <label for="password" class="text-white font-weight-bold">Password</label>
+        <input id="password" name="password" type="password" min="2" max="20"
+          class="form-control" placeholder="Password" required />
+      </div>
+
+      <div class="remember-me">
+        <label><input type="checkbox" name="rememberMe" /></label>
+        <span>Remember Me</span>
+      </div>
+
+      <div class="row">
+        <div class="col col-md-4">
+          <div class="button-holder d-flex">
+            <input type="submit" class="btn btn-info btn-lg" value="Login" />
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+
+  <footer></footer>
+
+  <!-- JavaScript обработка на формата -->
+  <script type="module">
+    document.addEventListener('DOMContentLoaded', function() {
+      // Проверка за параметри в URL-а, които показват грешка
+      const urlParams = new URLSearchParams(window.location.search);
+      if (urlParams.has('error') || urlParams.has('login-error')) {
+        const errorMessage = document.querySelector('.text-danger');
+        if (errorMessage) {
+          errorMessage.textContent = 'Грешно потребителско име или парола!';
+          errorMessage.style.display = 'block';
+        }
+      }
+      
+      // Обработка на формата
+      const loginForm = document.getElementById('login-form');
+      if (loginForm) {
+        loginForm.addEventListener('submit', async function(e) {
+          e.preventDefault();
+          
+          const username = document.getElementById('username').value;
+          const password = document.getElementById('password').value;
+          const rememberMe = document.querySelector('input[name="rememberMe"]').checked;
+          
+          try {
+            const response = await fetch('/api/users/login', {
+              method: 'POST',
+              headers: {
+                'Content-Type': 'application/x-www-form-urlencoded',
+                'X-Requested-With': 'XMLHttpRequest'
+              },
+              credentials: 'include',
+              body: new URLSearchParams({
+                'username': username,
+                'password': password,
+                'remember-me': rememberMe ? 'on' : '',
+                'spring-security-redirect': window.location.origin
+              })
+            });
+            
+            if (response.ok) {
+              // Ако успешно сме се логнали, пренасочваме към главната страница
+              window.location.href = '/';
+            } else {
+              // Ако има грешка, показваме съобщение
+              const errorMessage = document.querySelector('.text-danger');
+              if (errorMessage) {
+                errorMessage.textContent = 'Грешно потребителско име или парола!';
+                errorMessage.style.display = 'block';
+              }
+            }
+          } catch (error) {
+            console.error('Грешка при логване:', error);
+            const errorMessage = document.querySelector('.text-danger');
+            if (errorMessage) {
+              errorMessage.textContent = 'Възникна грешка при логване!';
+              errorMessage.style.display = 'block';
+            }
+          }
+        });
+      }
+    });
+  </script>
+</body>
+</html>

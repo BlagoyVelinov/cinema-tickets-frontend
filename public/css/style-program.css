@@ -1,0 +1,372 @@
+
+h3 .title {
+    font-size: 40px;
+    line-height: 1.2em;
+    color: #bfbfbf;
+    margin-bottom: 20px;
+    width: 173px;
+    height: 35px;
+    top: -112px;
+    left: -2px;
+}
+
+.m-5 {
+    margin: 3rem !important;
+    box-sizing: border-box;
+    padding: 0 90px 0 0;
+}
+
+.text-center {
+    text-align: center !important;
+}
+
+
+.form-control {
+    display: ruby-text;
+    width: 81%;
+    padding: .375rem .75rem;
+    font-size: 1rem;
+    line-height: 1.5;
+    color: #495057;
+    background-color: #b0afaf;
+    background-clip: padding-box;
+    border: 1px solid #ced4da;
+    border-radius: .25rem;
+    transition: border-color .15s ease-in-out, box-shadow .15s cubic-bezier(0, 0.7, 0.58, 1);
+}
+
+.list li img {
+    float: left;
+     margin: 1px 14px 0 0;
+}
+
+ul .list{
+    padding-top: 30px;
+}
+
+.movieList{
+    border-top: solid 1px #807d7d;
+    margin-top: 50px;
+    margin-bottom: -30px;
+    margin-inline-start: -22px;
+}
+.h4{
+    padding-right: 10px;
+    color: red;
+}
+
+.pt-xs {
+    padding-top: 3px !important;
+}
+
+.pt-xs {
+    padding-top: 17px !important;
+}
+
+
+.qb-movie-rating-info .rating-icon {
+    height: 26px;
+    vertical-align: text-bottom;
+    display: inline;
+    margin: 14px 0 0 0;
+}
+.mr-sm {
+    margin-right: 10px !important;
+
+}
+/*===================*/
+.title-movie {
+    font-size: 20px;
+}
+
+
+/*==================*/
+
+.screening-type {
+    display: table;
+    font-size: 20px;
+    font-weight: 700;
+    text-transform: uppercase;
+    padding-top: 10px;
+    padding-bottom: 24px;
+    list-style: none;
+    padding-left: 0;
+    padding-right: 0;
+    margin-bottom: 0;
+}
+/*==================*/
+
+
+.npm-quickbook{
+ padding: 19px;
+}
+
+
+.npm-quickbook .btn-primary {
+    padding: 12px 10px;
+    min-width: 64px;
+    text-align: center;
+    margin-bottom: 8px;
+    margin-right: 4px;
+    border-radius: 0.5rem;
+    background-color: #f5821e;
+    color: black;
+}
+
+.btn:hover, .btn:focus, button:hover, button:focus {
+    color: #191919;
+}
+
+.btn:hover, .btn:focus {
+    color: #191919;
+}
+.btn-primary:hover, .btn-primary:focus {
+    /*background-color: #c26717;*/
+    color: #000;
+    border: 0;
+}
+.btn-primary:visited, .btn-primary:active {
+    background-color: #f5821e;
+    /*color: #000;*/
+    border: 0;
+}
+
+
+/*================================*/
+.qb-movie-attributes {
+    display: table;
+    list-style: none;
+    padding-left: 0;
+    padding-right: 0;
+}
+
+
+.qb-movie-attributes {
+    display: table;
+    list-style: none;
+    padding-left: 0;
+    padding-right: 0;
+}
+
+
+/*===================================*/
+button {
+    background-color: rgb(224, 100, 27);
+    color: #1b0202;
+    border: none;
+    border-radius: 6px;
+    padding: 12px 62px;
+    /*margin: 0px 9px 14px -414px;*/
+    font-weight: 600;
+}
+
+button:hover {
+    background-color: rgb(201, 16, 16);
+    cursor: pointer;
+}
+.d-flex {
+    display: -webkit-box !important;
+    display: -ms-flexbox !important;
+    display: flex !important
+}
+.justify-content-center {
+    -webkit-box-pack: center !important;
+    -ms-flex-pack: center !important;
+    justify-content: center !important
+}
+
+/*========================= Delete button*/
+.npm-quickbook .btn-primary-delete{
+    padding: 12px 30px;
+    min-width: 64px;
+    text-align: center;
+    margin-bottom: 8px;
+    margin-right: 4px;
+    margin-left: 462px;
+    border-radius: 0.5rem;
+    background-color: #f5821e;
+    color: black;
+}
+
+/*========================= Add projection time*/
+
+.form-group {
+    margin-bottom: 1rem
+}
+
+.text-white {
+    color: #fff !important
+}
+
+.d-flex {
+    display: -webkit-box !important;
+    display: -ms-flexbox !important;
+    display: flex !important
+}
+
+.justify-content-center {
+    -webkit-box-pack: center !important;
+    -ms-flex-pack: center !important;
+    justify-content: center !important
+}
+.h1, .h2, .h3, .h4, .h5, .h6, h1, h2, h3, h4, h5, h6 {
+    margin-bottom: .5rem;
+    font-family: inherit;
+    font-weight: 500;
+    line-height: 1.2;
+    color: inherit
+}
+.h4, h4 {
+    font-size: 1.5rem
+}
+.mb-2, .my-2 {
+    margin-bottom: .5rem !important
+}
+.custom-select {
+    display: inline-block;
+    width: 18%;
+    height: calc(2.25rem + 2px);
+    padding: .375rem 1.75rem .375rem .75rem;
+    line-height: 1.5;
+    color: #495057;
+    vertical-align: middle;
+    background: #c9c6c6 url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 4 5'%3E%3Cpath fill='%23343a40' d='M2 0L0 2h4zm0 5L0 3h4z'/%3E%3C/svg%3E") no-repeat right .75rem center;
+    background-size: 8px 10px;
+    border: 1px solid #ced4da;
+    border-radius: .25rem;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none
+}
+
+.custom-select:focus {
+    border-color: #80bdff;
+    outline: 0;
+    box-shadow: inset 0 1px 2px rgba(0, 0, 0, .075), 0 0 5px rgba(128, 189, 255, .5)
+}
+
+.custom-select:focus::-ms-value {
+    color: #495057;
+    background-color: #ffffff
+}
+
+.custom-select[multiple], .custom-select[size]:not([size="1"]) {
+    height: 60px;
+    padding-right: .75rem;
+    background-image: none;
+    width: 19%;
+}
+
+.custom-select:disabled {
+    color: #6c757d;
+    background-color: #ffffff
+}
+
+.custom-select::-ms-expand {
+    opacity: 0
+}
+.text-danger {
+    color: #dc3545 !important;
+    font-size: medium;
+}
+
+
+/*=========================== Delete button*/
+.mb-3 {
+    margin: -32px 0 0 361px;
+}
+
+
+/*=========================== Update Projection button*/
+.mb-2 {
+    margin: 0 0 0 300px;
+    padding-inline: 21px;
+}
+
+/*=========================== City label*/
+.d-flex {
+    display: -webkit-box !important;
+    display: -ms-flexbox !important;
+    display: flex !important
+}
+
+.justify-content-center {
+    -webkit-box-pack: center !important;
+    -ms-flex-pack: center !important;
+    justify-content: center !important
+}
+
+.h1, .h2, .h3, .h4, .h5, .h6, h1, h2, h3, h4, h5, h6 {
+    margin-bottom: .5rem;
+    font-family: inherit;
+    font-weight: 500;
+    line-height: 1.2;
+    color: inherit
+}
+.h4, h4 {
+    font-size: 1.5rem
+}
+
+.mb-2, .my-2 {
+    margin-bottom: .5rem !important
+}
+
+.custom-select {
+    display: inline-block;
+    width: 90%;
+    height: calc(2.25rem + 2px);
+    padding: .375rem 1.75rem .375rem .75rem;
+    line-height: 1.5;
+    color: #495057;
+    vertical-align: middle;
+    background: #b6b2b2 url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 4 5'%3E%3Cpath fill='%23343a40' d='M2 0L0 2h4zm0 5L0 3h4z'/%3E%3C/svg%3E") no-repeat right .75rem center;
+    background-size: 8px 10px;
+    border: 1px solid #ced4da;
+    border-radius: .25rem;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none
+}
+
+.custom-select:focus {
+    border-color: #80bdff;
+    outline: 0;
+    box-shadow: inset 0 1px 2px rgba(0, 0, 0, .075), 0 0 5px rgba(128, 189, 255, .5)
+}
+
+.custom-select:focus::-ms-value {
+    color: #495057;
+    background-color: #fff
+}
+
+.custom-select[multiple], .custom-select[size]:not([size="1"]) {
+    height: auto;
+    padding-right: .75rem;
+    background-image: none
+}
+
+.custom-select:disabled {
+    color: #6c757d;
+    background-color: #e9ecef
+}
+
+.custom-select::-ms-expand {
+    opacity: 0
+}
+
+.alert-danger {
+    color: #721c24;
+    /*background-color: #f8d7da;*/
+    /*border-color: #f5c6cb*/
+}
+.text-danger {
+    color: #dc3545 !important;
+    font-size: medium;
+}
+.invalid-feedback {
+    display: none;
+    width: 100%;
+    margin-top: .25rem;
+    font-size: 80%;
+    color: #dc3545
+}

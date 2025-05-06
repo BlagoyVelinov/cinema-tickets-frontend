@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <link rel="icon" type="image/x-icon" href="/images/favicon.ico" />
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Cinema Tickets</title>
+  <link rel="stylesheet" href="/css/style.css" />
+  <link rel="stylesheet" href="/css/style-program.css" />
+  
+  <!-- Auth Service -->
+  <script type="module" src="/services/init-auth.js"></script>
+</head>
+<body id="page1">
+
+  <div class="tail-top">
+    <div class="tail-bottom">
+      <div id="main">
+        
+        <header id="nav"></header>
+
+        <!-- HOME PAGE CONTENT -->
+        <div id="content-home" class="content-section">
+          <div id="slogan">
+            <div class="image png"></div>
+            <div class="inside">
+              <h2>We are breaking <span>All Limitations</span></h2>
+              <p id="intro-text">
+                Bulgaria manages 7 multiplexes in 6 different cities in the country – Sofia, Plovdiv, Stara Zagora, Ruse, Burgas and Varna
+              </p>
+              <div class="wrapper">
+                <a href="/about-us" class="link1 tab-link" data-tab="about-us"><span><span>Learn More</span></span></a>
+              </div>
+            </div>
+          </div>
+
+          <div class="box">
+            <div class="border-right">
+              <div class="border-left">
+                <div class="inner">
+                  <h3>Welcome to <b>Cinema</b> <span>Tickets</span></h3>
+                  <img class="start-img" src="/images/insideout.png" alt="Inside Out" />
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="content">
+            <h3>Upcoming <span>Premieres</span></h3>
+            <div id="movie-app">
+              <div v-if="isLoading" class="loading-message">
+                <p>Loading movies...</p>
+                <p class="debug">{{ debugInfo }}</p>
+              </div>
+              <div v-else-if="hasError" class="error-message">
+                <p>There was an error loading the movies. Showing sample data instead.</p>
+                <p class="debug">{{ debugInfo }}</p>
+              </div>
+              <div v-else-if="movies.length === 0" class="empty-message">
+                <p>No movies available at the moment.</p>
+                <p class="debug">{{ debugInfo }}</p>
+              </div>
+              <ul class="movies" v-else>
+                <p class="debug-count">Showing {{ movies.length }} movies. {{ debugInfo }}</p>
+                <movie-list :movies="movies"></movie-list>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <!-- PROGRAM PAGE CONTENT -->
+        <div id="content-program" class="content-section" style="display: none;">
+          <div class="line-hor"></div>
+          <div class="box">
+            <div class="border-right">
+              <div class="border-left">
+                <div class="inner">
+                  <h3 class="title">Projections <span>Today</span></h3>
+                  <div class="form-row m-5">
+                    <form method="post" action="/program">
+                      <div class="col">
+                        <label for="dateInput">Date</label>
+                        <input type="date" name="projectionDate" id="dateInput" class="form-control" />
+                        <small class="text-danger">Reserved date cannot be in the past</small>
+                      </div>
+
+                      <div class="form-group">
+                        <label for="cityName">Select City</label>
+                        <select class="browser-default custom-select" id="cityName" name="location">
+                          <option value="">Select City</option>
+                          <option value="SOFIA">Sofia</option>
+                          <option value="PLOVDIV">Plovdiv</option>
+                          <option value="STARA_ZAGORA">Stara Zagora</option>
+                          <option value="RUSE">Ruse</option>
+                          <option value="BURGAS">Burgas</option>
+                          <option value="VARNA">Varna</option>
+                        </select>
+                        <small class="text-danger">City Name error message</small>
+                      </div>
+
+                      <div class="button-holder d-flex justify-content-center">
+                        <button type="submit" class="btn btn-primary btn-lg">Continue</button>
+                      </div>
+                    </form>
+
+                    <!-- Покажи бутона само ако потребителят е администратор -->
+                    <div class="button-holder d-flex justify-content-center admin-only">
+                      <a href="/movies/add-movie">
+                        <button type="button">Add Movie</button>
+                      </a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- MOVIES -->
+          <div class="content">
+            <h4 id="displayDate">Choose a date and city for reserve ticket</h4>
+            <h4 id="displayName"></h4>
+            <ul class="list" id="movieList">
+              <!-- Примерен филм, ще се повтаря динамично с JavaScript/Vue -->
+              <li class="movieList">
+                <img src="/path/to/movie.jpg" alt="Movie Pic" width="204px" height="219px" />
+                <a href="/trailer/123" class="title-movie">Movie Title</a><br />
+                <span class="qb-movie-rating-info">
+                  <img src="/path/to/icon.png" alt="Rating" height="30" class="rating-icon mr-sm" />
+                  <div class="qb-movie-info-wrapper">
+                    <div class="pt-xs">
+                      <span class="mr-sm">Adventure, Comedy</span>
+                      <span class="ml-xs">|</span>
+                      <span class="mr-xs">101 min.</span>
+                      <div class="screening-type">2D</div>
+
+                      <!-- Покажи "Coming soon", ако няма часове -->
+                      <a class="h4">Coming soon</a>
+
+                      <!-- Покажи бутоните с часове -->
+                      <a href="/program" class="btn btn-primary btn-lg">12:20</a>
+
+                      <!-- Администраторски бутони -->
+                      <a href="/program/update-projection-time/123" class="btn btn-primary btn-lg">Update projection time</a>
+                      <form method="post" action="/movies/delete-movie/123">
+                        <div class="button-holder d-flex justify-content-center">
+                          <button type="submit" class="btn btn-info mb-3">Delete Movie</button>
+                        </div>
+                      </form>
+                    </div>
+                  </div>
+                </span>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- 4DX CONTENT -->
+        <div id="content-4dx" class="content-section" style="display: none;">
+          <div class="line-hor"></div>
+          <div class="box">
+            <div class="border-right">
+              <div class="border-left">
+                <div class="inner">
+                  <h3>CINEMA <span>EXPERIENCE</span></h3>
+                  <p>
+                    <img class="_4-dx-pic" src="/images/_4DX_new.jpg" alt="4-DX-Picture" />
+                  </p>
+
+                  <div class="content">
+                    <div>
+                      <iframe width="323" height="321"
+                        src="https://www.youtube.com/embed/nkpP024OUeM"
+                        title="4DX Showreal" frameborder="0"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                        referrerpolicy="strict-origin-when-cross-origin"
+                        allowfullscreen>
+                      </iframe>
+
+                      <div class="col-xs-12 col-sm-4">
+                        <h4>CINEMA EXPERIENCE</h4>
+                        <p><strong>4DX - ENTER THE MOVIE</strong></p>
+                        <p>
+                          4DX® is the movie industry's biggest and newest superhero
+                          for a fully immersive cinematic experience.
+                        </p>
+                        <p>
+                          The four-dimensional technology was created in South Korea in 2009,
+                          and entered Europe in 2013. With it, the effects stimulate the viewers'
+                          senses far beyond the limits of the audiovisual experience in standard
+                          movie theaters. Each film title comes to the screen with a unique choreography
+                          and mixture of air, water, aroma, movement, vibrations, that happen in sync
+                          with the action on the screen. The experienced team of 4DX® experts will
+                          make you a part of every movie, without violating the natural boundaries of
+                          your comfort zone. Break free from limitations and enjoy the ultimate 4DX® experience.
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- IMAX CONTENT -->
+        <div id="content-imax" class="content-section" style="display: none;">
+          <div class="line-hor"></div>
+          <div class="box">
+            <div class="border-right">
+              <div class="border-left">
+                <div class="inner">
+                  <h3>CINEMA <span>EXPERIENCE</span></h3>
+                  <p><img class="imax-pic" src="/images/imax-cinema.jpeg" alt="IMAX" /></p>
+                  <div class="content">
+                    <div>
+                      <iframe width="323" height="321" src="https://www.youtube.com/embed/B_UvdLYSk7Q"
+                          title="What Is IMAX?" frameborder="0"
+                          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                          referrerpolicy="strict-origin-when-cross-origin" allowfullscreen>
+                      </iframe>
+
+                      <div class="col-xs-12 col-sm-4">
+                        <h4>CINEMA EXPERIENCE</h4>
+                        <p><strong>IMAX - BEING BIGGER IS JUST THE BEGINNING</strong></p>
+                        <p>The innovative IMAX technology combines proprietary software, architecture, and equipment, that take you beyond the edge of your seat into a world beyond your wildest imagination. The best filmmakers and studios use IMAX to achieve a deeper connection with their audiences.</p>
+                        <p>The network of IMAX theaters is among the most important and successful cinema platforms in the distribution of blockbusters worldwide.</p>
+                        <p>IMAX is an unforgettable experience! The best way to enjoy the IMAX experience is to indulge yourself and watch:</p>
+                      </div>
+                    </div>
+
+                    <div>
+                      <div class="col-xs-12 col-sm-4">
+                        <div class="imax-img">
+                          <img class="img-responsive" src="/images/imax-movies.png" alt="IMAX Movies" />
+                        </div>
+                      </div>
+
+                      <div class="col-xs-12 col-sm-8">
+                        <p>Immerse yourself in the most immersive cinema experience.</p>
+
+                        <p><strong>SOUND YOU CAN FEEL</strong></p>
+                        <p>Huge explosion. Whisper in your ear. The booming bass you feel more than hear. The combination of the perfectly tuned 12-channel audio system and the precise positioning of the speakers ensures that you will not only be able to hear the sound of a pin falling, but also determine exactly where it has fallen.</p>
+
+                        <p><strong>BREATHTAKING PICTURE</strong></p>
+                        <p>Clarity, detail and size make IMAX movies different. Our remastering or DMR process completely transforms every frame of the film to create the best possible version of the director's vision. Two spotlights work simultaneously to deliver the perfect image with a balance of warmth and sharpness.</p>
+
+                        <p><strong>AN IMMERSIVE EXPERIENCE</strong></p>
+                        <p>The movies are to be watched. But watching a movie in IMAX® is so much more. It's called the IMAX Experience®. Every element in our IMAX is planned, designed and positioned to create the most intense experience. The hall's special geometry creates cinematic magic every time the lights go down.</p>
+
+                        <p><strong>CINEMATOGRAPHY</strong></p>
+                        <p>IMAX cameras have been on top of Mount Everest, at the bottom of the ocean, and even in space. For 40 years now, they push the boundaries of engineering and are known worldwide as the best filmmaking equipment available today.</p>
+
+                        <p><strong>IMAX SCREEN</strong></p>
+                        <p>Its height is 14 meters and its length is 24 meters. It is made of a special diffused silver vinyl, perforated with thousands of tiny holes to allow sound to pass freely, so-called "acoustic transparency". The screen is flat, but has a slight arc that's out of peripheral vision. This, combined with a 23-degree seat angle, provides full and undisturbed visibility from every seat in the cinema hall. Even if a two-meter person is sitting in front of you, you will see without any problem. The 3D effect of IMAX 3D technology is recognized as the best 3D in the world.</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- OFFERS CONTENT -->
+        <div id="content-offers" class="content-section" style="display: none;">
+          <div class="line-hor"></div>
+          <div class="box">
+            <div class="border-right">
+              <div class="border-left">
+                <div class="inner">
+                  
+                  <!-- Админ бутон, показвай с JavaScript ако потребителят е администратор -->
+                  <div class="button-holder d-flex justify-content-center admin-only">
+                    <a href="/offers/add-offer">
+                      <button type="submit">Add Offer</button>
+                    </a>
+                  </div>
+                  
+                  <div class="container-fluid static">
+                    <!-- Cinema Offers -->
+                    <div class="row mb-md">
+                      <div class="col-md-12">
+                        <h3>Cinema <span>Offers</span></h3>
+                        <img src="./images/company-vouchers.jpg" class="img-responsive visible-xs" alt="offer-img">
+                      </div>
+                      <div class="col-md-3 offer-card" data-category="cinema">
+                        <!-- JS ще зарежда оферти тук -->
+                      </div>
+                    </div>
+                    
+                    <!-- School Offers -->
+                    <div class="row mb-md">
+                      <div class="col-md-12">
+                        <h3>For the <span>Schools</span></h3>
+                        <img src="./images/company-vouchers.jpg" class="img-responsive visible-xs" alt="offer-img">
+                      </div>
+                    </div>
+                    <div class="col-md-3 offer-card" data-category="school">
+                      <!-- JS ще зарежда оферти тук -->
+                    </div>
+                  </div>
+                  
+                  <!-- Business Offers -->
+                  <div class="row mb-md">
+                    <div class="col-md-12">
+                      <h3>For the <span>Business</span></h3>
+                      <img src="./images/company-vouchers.jpg" class="img-responsive visible-xs" alt="offer-img">
+                    </div>
+                  </div>
+                  <div class="col-md-3 offer-card" data-category="business">
+                    <!-- JS ще зарежда оферти тук -->
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ABOUT-US CONTENT -->
+        <div id="content-about-us" class="content-section" style="display: none;">
+          <div class="line-hor"></div>
+          <div class="box">
+            <div class="border-right">
+              <div class="border-left">
+                <div class="inner">
+                  <h3>About <b>Cinema</b> <span>Tickets</span></h3>
+                  <p>
+                    The first multiplex with 13 halls was built in Sofia in 2006.
+                    It houses the first and largest IMAX screen in Bulgaria.
+                    This is just the beginning of a rapid business development of the chain in the country.
+                  </p>
+                  <div class="img-box1">
+                    <img src="/images/1page-img1.jpg" alt="Cinema">
+                    <p>
+                      The second multiplex with 11 screens in Plovdiv opened
+                      its doors in March 2009. A multiplex with 7 halls was opened in Stara Zagora
+                      in November 2010. The same year, in December, the modern facility in the city of Ruse was opened.
+                    </p>
+                  </div>
+                  <p>
+                    Cinema Tickets Gallery Burgas opened its doors in 2012.
+                    It is equipped with the latest generation of cinema equipment, 10 modern halls,
+                    5 of which are 3D. Cinema Tickets Paradise has 14 halls, and for the first
+                    time before the Bulgarian viewers was presented the absolute 4DX cinema experience
+                    - exclusively offered by Cinema Tickets for Bulgaria.
+                  </p>
+                  <p>
+                    Since 2016, there is also a 4DX hall in Cinema Tickets Plovdiv.
+                    March 2019 also opened our newest and modern cinema: Cinema Tickets Varna.
+                    The multiplex consists of 12 halls, among which a hall with Dolby Atmos Surround sound,
+                    as well as the first 4DX on the Bulgarian Black Sea coast.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="content">
+            <div class="col-md-6"></div>
+            <img class="bg-map-img" src="/images/map_BG_2019.jpg" alt="Map of Cinema Locations" />
+          </div>
+        </div>
+
+        <!-- CONTACT-US CONTENT -->
+        <div id="content-contact-us" class="content-section" style="display: none;">
+          <div class="line-hor"></div>
+          <div class="box">
+            <div class="border-right">
+              <div class="border-left">
+                <div class="inner">
+                  <h3>Our <span>Contacts</span></h3>
+                  <div class="address">
+                    <div class="fleft">
+                      <span>Zip Code:</span> 1000<br/>
+                      <span>Country:</span> Bulgaria<br/>
+                      <span>Telephone:</span> +359 123456789<br/>
+                      <span>Fax:</span> +359 123456789
+                    </div>
+                    <div class="extra-wrap">
+                      <span>Note:</span><br/>
+                      <p>Please provide us with a minimum amount of data,
+                        i.e. only that which is necessary to contact us or for identification!
+                      </p>
+                      <p>A copy of your message will be sent to
+                        the email address provided. In case you want to contact us
+                        and provide us with your personal data, we inform you that your personal
+                        data will be processed by Cinema Tickets,
+                        in its capacity as a personal data controller, in accordance
+                        with the Personal Data Protection Act. Simultaneously with
+                        providing your personal data, you consent to the data specified by you
+                        being used by Cinema Tickets for the provision of the ordered services or
+                        products and/or for communication with you in case of necessity.
+                      </p>
+                      <p>The provision of personal data is voluntary.
+                        When for the use of a given service or functionality the Site requires
+                        the provision of personal data, Cinema Tickets clearly indicates the mandatory
+                        or optional nature of the collected data.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="content">
+            <h3>Contact <span>Form</span></h3>
+            <form id="contacts-form" action="#">
+              <fieldset>
+                <div class="field">
+                  <label>Your Name:</label>
+                  <input type="text" name="name" value=""/>
+                </div>
+                <div class="field">
+                  <label>Your E-mail:</label>
+                  <input type="email" name="email" value=""/>
+                </div>
+                <div class="field">
+                  <label>Your Message:</label>
+                  <textarea name="message" cols="30" rows="5"></textarea>
+                </div>
+                <div class="wrapper">
+                  <button type="submit" class="link2">
+                    <span>Send Message</span>
+                  </button>
+                </div>
+              </fieldset>
+            </form>
+          </div>
+        </div>
+
+        <footer id="footer"></footer>
+
+      </div>
+    </div>
+  </div>
+
+  <script type="module" src="/js/main.js"></script>
+</body>
+</html>

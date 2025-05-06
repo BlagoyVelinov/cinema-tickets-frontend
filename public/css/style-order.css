@@ -1,0 +1,5614 @@
+
+html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, font, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    outline: 0;
+    font-weight: inherit;
+    font-style: inherit;
+    font-size: 100%;
+    vertical-align: baseline;
+    font-family: roboto, sans-serif
+}
+
+body {
+    background: url(../images/cinema-hall2.jpg) no-repeat fixed center;
+}
+
+* {
+    margin: 0;
+    padding: 0
+}
+
+html {
+    min-height: 100%;
+    position: relative;
+    margin-bottom: 0
+}
+
+.wrapper {
+    background-image: url(../images/cinema-hall2.jpg);
+    min-height: 1200px;
+    background-color: #000;
+    background-repeat: repeat-x
+}
+
+body {
+    text-align: left;
+    min-height: 100%;
+    margin-bottom: 0;
+    font-family: Arial;
+    direction: ltr;
+    font-size: 14px;
+    min-width: 310px;
+    background-color: #fff;
+    overflow-x: hidden
+}
+
+.clear {
+    clear: both
+}
+
+.pagecontainer {
+    margin: auto;
+    width: 100%;
+    /*background-image: url(../images/nav-bg.gif);*/
+    background-repeat: repeat-x;
+    min-width: 310px
+}
+
+.wrap {
+    width: 1200px;
+    min-height: 100%;
+    margin: 0 auto;
+    margin-bottom: 110px
+}
+
+#logo {
+    background-size: 100px;
+    background-repeat: no-repeat;
+    background-position-x: 15px;
+    background-position-y: 10px;
+    height: 58px;
+    width: 120px;
+    cursor: pointer;
+    float: left
+}
+
+.footer {
+    margin: auto;
+    width: 100%;
+    height: 100px;
+    background-repeat: repeat-x;
+    bottom: 0;
+    position: absolute
+}
+
+.movieName {
+    padding: 5px 0;
+    font-size: 1.2em
+}
+
+.eventdate {
+    padding: 5px 0;
+    font-size: 1em
+}
+
+.siteinfo {
+    padding: 5px 0
+}
+
+.more-info {
+    padding: 5px 0
+}
+
+.more-info a {
+    text-decoration: none;
+    color: #f5821e;
+    font-size: .95em;
+    display: none
+}
+
+.seatplanControl {
+    padding-top: 25px;
+    background-color: #d4d4d4
+}
+
+#panzoom-parent {
+    border: none;
+    margin: 0 auto
+}
+
+#lblconfirmationNumber {
+    color: #f44336
+}
+
+.type-ticket {
+    font-weight: 700
+}
+
+.title-login {
+    margin-top: 20px
+}
+
+h1 {
+    width: 50%;
+    font-size: 30px;
+    display: inline
+}
+
+.framepl {
+    min-height: 800px;
+    background: #fff;
+    margin: auto !important
+}
+
+.out-content {
+    margin: auto !important;
+    width: 1200px
+}
+
+.out-head {
+}
+
+.bookingType {
+    min-height: 500px;
+    margin: auto !important;
+    padding: 10px
+}
+
+.out-content {
+    margin: auto !important;
+    max-width: 1200px
+}
+
+.out-head {
+    padding: 10px 0
+}
+
+h1 {
+    font-size: 36px;
+    margin: 10px 0
+}
+
+h2 {
+    font-size: 24px;
+    margin: 20px 0 10px
+}
+
+.red {
+    color: red
+}
+
+.orange {
+    color: #ff4500;
+    text-decoration: none
+}
+
+.sep-line {
+    height: 1px;
+    border-top: 1px solid gray;
+    margin: 20px 0
+}
+
+.sep-line-orange {
+    height: 1px;
+    border-top: 2px solid orange;
+    margin: 20px 0
+}
+
+.sm-txt {
+    font-size: 12px;
+    margin-left: 22px
+}
+
+label.sm-txt {
+    margin: 0
+}
+
+.sm-txt input {
+    margin-right: 10px
+}
+
+.mand-fields span.sm-txt {
+    margin-left: 0
+}
+
+.fline {
+    font-size: 13px;
+    font-weight: 700;
+    margin-left: 5px
+}
+
+.txt-block {
+    display: inline-block
+}
+
+a.nextBtn {
+    display: inline-block;
+    padding: 10px 30px;
+    background-color: #f5821e;
+    color: #fff;
+    border-radius: 10px;
+    text-decoration: none;
+    cursor: pointer;
+    float: right
+}
+
+a.nextBtn:hover {
+    background-color: #e26304
+}
+
+
+.msgInrow {
+    line-height: 50px
+}
+
+.msg-block {
+    margin-left: 60px;
+    vertical-align: middle;
+    line-height: 50px
+}
+
+.msg-description {
+    color: #fff;
+    font-size: .9em;
+    line-height: 12px;
+    vertical-align: middle;
+    margin-top: -10px
+}
+
+.msg-title {
+    line-height: 55px;
+    color: #fff;
+    font-size: 1.1em;
+    vertical-align: middle
+}
+
+.page-title {
+    font-size: 3em;
+    width: 50%;
+    display: inline
+}
+
+#chkTermsAgree {
+    margin-right: 10px
+}
+
+.login-link {
+    display: inline;
+    height: 42px;
+    float: right;
+    margin-top: 20px;
+    margin-bottom: -10px
+}
+
+.login-link a {
+    background-image: url(../images/login-icon.gif);
+    background-size: 20px;
+    background-repeat: no-repeat;
+    background-position-x: right;
+    padding: 7px 30px 0 0;
+    text-decoration: none;
+    color: orange
+}
+
+.steps {
+    padding-top: 5px;
+    display: flex
+}
+
+.steps div.step {
+    width: 25%;
+    float: left;
+    background-color: #000;
+    color: #fff;
+    border-left: 1px solid #fff;
+    border-top: 1px solid #fff;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    padding: 5px;
+    padding-left: 10px;
+    font-size: 14px
+}
+
+.steps div.step.onstep {
+    background-color: #fff;
+    color: #fff
+}
+
+.steps div.step label {
+    color: #fff;
+    text-decoration: none
+}
+
+.steps div.step.onstep label {
+    color: #000
+}
+
+.steps div.step.last {
+    border-right: 1px solid #fff
+}
+
+.steps div.step span {
+    display: inline-block;
+    padding: 3px;
+    background-color: #555;
+    margin-right: 7px;
+    border-radius: 100%;
+    width: 20px;
+    height: 20px;
+    text-align: center;
+    line-height: 1.4em;
+    font-weight: 700
+}
+
+.steps div.step.onstep span {
+    background-color: #000;
+    color: #fff
+}
+
+.friend-num {
+    width: 222px;
+    display: inline-block;
+    margin-left: 15px
+}
+
+.name-pers {
+    width: 50%
+}
+
+.error-msg {
+    font-size: 13px;
+    font-weight: 700;
+    color: red
+}
+
+.total-block {
+    color: #f44336;
+    font-size: 17px;
+    border-top: 1px solid #f44336;
+    width: 100%;
+    padding-top: 5px
+}
+
+.sc-total-block {
+    font-size: 17px;
+    width: 100%
+}
+
+.total-sum {
+    padding: 6px;
+    text-align: center
+}
+
+.total-sum-txt {
+    float: left
+}
+
+.total-sum-val {
+    float: right
+}
+
+.btn-td {
+    padding-left: 5px
+}
+
+div.selectTicket .ticketGroupDescription {
+    margin-bottom: 20px;
+    line-height: 1.7em;
+    font-size: 14px
+}
+
+div.selectTicket .ticketmsg {
+    margin-bottom: 20px;
+    line-height: 1.7em;
+    font-size: 14px
+}
+
+table.ticketTable {
+    width: 100%;
+    margin-bottom: 10px
+}
+
+table.ticketTable td {
+    padding: 10px
+}
+
+table.ticketTable tr.header td {
+    background-color: #eee;
+    border-bottom: 1px solid #d3d3d3
+}
+
+table.ticketTable td {
+    border-bottom: 1px dashed #d3d3d3
+}
+
+table.ticketTable tr.prompt td {
+    border: none;
+    background-color: #ccc
+}
+
+a.actionBtn {
+    display: inline-block;
+    padding: 10px 30px;
+    background-color: #f5821e;
+    color: #fff;
+    border-radius: 10px;
+    text-decoration: none;
+    cursor: pointer;
+    float: right
+}
+
+a.actionBtn:hover {
+    background-color: #e26304
+}
+
+a.cancelBtn, a.backBtn {
+    display: inline-block;
+    padding: 5px 25px;
+    background-color: #f5821e;
+    color: #fff;
+    border-radius: 10px;
+    text-decoration: none;
+    float: left;
+    margin-right: 10px;
+    margin-top: 5px;
+    line-height: normal;
+    cursor: pointer;
+}
+
+/*=============================== Chose Seats*/
+input.actionBtn {
+    display: inline-block;
+    padding: 10px 30px;
+    background-color: #f5821e;
+    color: #ffffff;
+    border-radius: 10px;
+    text-decoration: none;
+    cursor: pointer;
+    float: right
+}
+
+input.actionBtn:hover {
+    background-color: #e26304
+}
+
+input.cancelBtn, input.backBtn {
+    display: inline-block;
+    padding: 5px 25px;
+    background-color: #f5821e;
+    color: #fff;
+    border-radius: 10px;
+    text-decoration: none;
+    float: left;
+    margin-right: 10px;
+    margin-top: 5px;
+    line-height: normal;
+    cursor: pointer;
+}
+input.actionBtn {
+    display: inline-block;
+    padding: 18px 30px;
+    background-color: #f5821e;
+    color: #000;
+    border-radius: 4px;
+    text-decoration: none;
+    cursor: pointer;
+    float: right;
+    font-weight: 700 !important;
+    text-transform: uppercase;
+    font-size: 18px;
+    border: solid 1px #ececec;
+    margin-bottom: 10px
+}
+
+input.actionBtn:hover {
+    background-color: #c26717 !important;
+    color: #000;
+    border: solid 1px #ddd
+}
+/*===============================*/
+a.cancelBtn:hover, a.backBtn:hover {
+    background-color: #e26304
+}
+
+.selectTicket a.actionBtn {
+    margin: 2px 0
+}
+
+.logincontainer {
+    padding-top: 15px
+}
+
+.logincontainer .login-form div {
+}
+
+.logincontainer .login-form div label {
+    width: 105px;
+    display: inline-block
+}
+
+.logincontainer .login-form div input {
+    border: 2px solid #d3d3d3;
+    border-radius: 2px;
+    padding: 5px
+}
+
+.logincontainer .login-error {
+    padding: 3px 5px;
+    border-bottom-left-radius: 3px;
+    border-bottom-right-radius: 3px;
+    background-color: #d00101;
+    color: #fff;
+    font-size: 12px;
+    position: absolute;
+    width: 173px;
+    margin: -1px 0 0 79px !important;
+    display: none
+}
+
+.logincontainer .login-form .login-failed {
+    background-color: #fcc;
+    padding: 10px;
+    line-height: 1.7em;
+    border-radius: 3px;
+    border: 1px solid #f03;
+    width: 238px;
+    display: none
+}
+
+.logincontainer .actionBtn {
+    padding: 10px 30px;
+    background-color: #f5821e;
+    color: #fff;
+    border: none;
+    border-radius: 10px;
+    font-size: 100%;
+    outline: #e26304;
+    margin: 15px 0;
+    float: left;
+    cursor: pointer
+}
+
+.logincontainer .backBtn {
+    margin: 20px 0 15px;
+    float: right;
+    padding: 14px 20px
+}
+
+.logincontainer .actionBtn:hover {
+    background-color: #e26304
+}
+
+.login-form {
+    width: 250px
+}
+
+div#LoggedInContainer {
+    padding-top: 15px
+}
+
+div#LoggedInContainer .mpName {
+    display: none
+}
+
+.bookingType #LoggedInContainer {
+    padding-top: 0
+}
+
+.bookingType #LoggedInContainer:after {
+    visibility: hidden;
+    display: block;
+    font-size: 0;
+    content: " ";
+    clear: both;
+    height: 0
+}
+
+div.logout-link {
+    float: right;
+    margin-top: 20px
+}
+
+#LoggedInContainer a {
+    color: #f5821e
+}
+
+.selectionInfo {
+    padding-top: 5px
+}
+
+.selectionInfo img {
+    border: 1px solid #d3d3d3;
+    width: 100%;
+    margin-top: 20px;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box
+}
+
+.selectionInfoInner {
+}
+
+.sidebar {
+    float: left;
+    width: 200px;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    padding: 0 10px 10px 20px;
+    overflow: hidden
+}
+
+.seperator {
+    height: 20px
+}
+
+.main {
+    padding: 0 20px 10px 10px;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    margin-left: 200px;
+    border-left: 1px solid #d3d3d3;
+    min-height: 400px;
+    overflow: hidden;
+    padding-bottom: 100px;
+    background-color: #919293;
+}
+
+.main.fullwidth {
+    margin-right: 0;
+    margin-left: 0;
+    border-right: 0;
+    border-left: none;
+    max-width: 100%;
+    padding: 1px
+}
+
+.selectionInfoInner a.movieName {
+    font-size: 22px;
+    font-weight: 700;
+    text-decoration: none;
+    color: #000;
+    display: block;
+    padding-bottom: 10px
+}
+
+.selectionInfoInner .movieDate {
+    font-size: 16px;
+    color: gray;
+    font-weight: 700
+}
+
+.selectionInfoInner .movieTime {
+    font-size: 16px;
+    color: gray;
+    font-weight: 700
+}
+
+.selectionInfoInner .movieLocation {
+    font-size: 16px;
+    color: #000;
+    padding-top: 15px;
+    font-weight: 700
+}
+
+.selectionInfoInner .movieVenue a {
+    font-size: 14px;
+    color: gray;
+    text-decoration: none
+}
+
+.actionHolder {
+    text-align: right
+}
+
+.actionHolder:after {
+    visibility: hidden;
+    display: block;
+    font-size: 0;
+    content: " ";
+    clear: both;
+    height: 0
+}
+
+.orderForm .actionHolder {
+    width: 100%;
+    float: left
+}
+
+.orderForm, .errorpage, .thankyou, .checkreservation {
+    max-width: 760px;
+    min-width: 300px;
+    margin: 0 auto;
+    font-size: 14px;
+    text-align: justify
+}
+
+.cancellation-container, .svinquiry {
+    max-width: 760px;
+    min-width: 300px;
+    margin: 0 auto;
+    font-size: 14px
+}
+
+.orderForm .formRow {
+    position: relative;
+    min-height: 85px
+}
+
+.orderForm .coupon .formRow {
+    min-height: 0
+}
+
+.orderForm .coupon .seatSelection td {
+    text-align: left;
+    padding: 5px
+}
+
+.orderForm .coupon {
+    margin: 0 0 30px
+}
+
+.orderForm .coupon .actionBtn {
+    padding: 14px 20px;
+    font-size: 14px;
+    float: left;
+    margin-top: 10px
+}
+
+.personalInfo > .formRow:nth-child(odd) {
+    float: left;
+    width: 50%
+}
+
+.personalInfo > .formRow:nth-child(even) {
+    float: left;
+    width: 50%
+}
+
+.personalInfo > .formRow:nth-child(odd):after {
+    clear: both
+}
+
+.personalInfo > .formRow:nth-child(odd) .input-label-container {
+    margin: 0 10px 0 0
+}
+
+.personalInfo > .formRow:nth-child(even) .input-label-container {
+    margin: 0 0 0
+}
+
+.personalInfo.customerInfo:after {
+    visibility: hidden;
+    display: block;
+    font-size: 0;
+    content: " ";
+    clear: both;
+    height: 0
+}
+
+.checkbox-container {
+    float: left
+}
+
+.orderForm .authentication .formRow, .cancellation-container .authentication {
+    float: none
+}
+
+.pagecontainer.cancelreservationloginres #header, .pagecontainer.CancelReservationRes #header {
+    height: 100px
+}
+
+.cancellation-container .actionBtn {
+    float: none
+}
+
+.orderForm .formRow::after {
+    clear: both
+}
+
+.orderForm .field {
+    float: left;
+    margin: 10px 0 30px
+}
+
+.orderForm .field input {
+    width: 230px;
+    border: 2px solid #d3d3d3;
+    border-radius: 2px;
+    padding: 5px
+}
+
+.orderForm #delivery, .orderForm .paypal {
+    margin: 20px 0 10px;
+    text-transform: uppercase
+}
+
+.orderForm #delivery a {
+    color: #f5821e
+}
+
+.orderForm #delivery a:hover {
+    color: #e26304
+}
+
+.orderForm #delivery .radiobuttonlist input {
+    margin-bottom: 10px;
+    margin-right: 10px;
+    padding-top: 5px
+}
+
+input.error-input {
+    border: 2px solid #d00101 !important;
+    border-bottom-left-radius: 1px !important;
+    border-bottom-right-radius: 1px !important
+}
+
+.field span.Error {
+    background-color: #d00101;
+    color: #fff;
+    font-size: 12px;
+    padding: 3px 5px;
+    width: 234px;
+    border-bottom-left-radius: 3px;
+    border-bottom-right-radius: 3px;
+    margin-top: -1px
+}
+
+.orderForm .label {
+    font-size: 14px;
+    font-weight: 700;
+    line-height: 1em;
+    white-space: nowrap
+}
+
+.orderForm .checkboxLabel {
+    width: auto;
+    float: left;
+    text-align: left;
+    padding: 5px;
+    font-size: 13px
+}
+
+.orderForm .field input.checkbox {
+    width: auto;
+    border: none;
+    padding: 0;
+    box-shadow: none;
+    margin-left: 5px
+}
+
+.orderForm h2 {
+    font-size: 20px;
+    font-weight: 700;
+    margin: 10px 0 5px
+}
+
+.orderForm p {
+    width: 100%;
+    float: left
+}
+
+table.seatSelection tr.sums {
+    font-weight: 400
+}
+
+.payment#divPerTicketMembership input {
+    width: 90%
+}
+
+input::-webkit-outer-spin-button, input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0
+}
+
+#gvPerTicketMem {
+    margin: 0 auto
+}
+
+.paymentselect2 {
+    width: 74px
+}
+
+.paymentNumber2, .expiry2, .ssn2 {
+    float: right;
+    margin-left: 5px
+}
+
+.orderForm .payment, .orderForm .perticketsv, .perticketmembershipec {
+    background-color: #eee;
+    border: 1px solid #d3d3d3;
+    padding: 10px;
+    margin-top: 20px;
+    margin-bottom: 10px;
+    font-size: 14px
+}
+
+.payment .paymentType, .payment .paymentNumber, .payment .expiry, .payment .ssn, .payment .cvv {
+    float: right;
+    margin-left: 10px
+}
+
+.payment input {
+    width: 120px;
+    border: 1px solid gray;
+    padding: 3px;
+    box-shadow: inset 2px 2px 2px rgba(0, 0, 0, .1)
+}
+
+.payment select {
+    padding: 3px
+}
+
+.paymentType select {
+    width: 110px
+}
+
+.payment .ssn input {
+    width: 70px
+}
+
+.payment .expiry span {
+    display: inline-block
+}
+
+.payment .paymentLabel {
+    margin-bottom: 7px
+}
+
+.orderForm .field input.fieldError {
+    border: 1px solid red
+}
+
+.myCardNumber {
+    padding: 6px 0;
+    direction: ltr;
+    text-align: right
+}
+
+.fieldErrorMessage {
+    padding: 3px 5px;
+    border-radius: 3px;
+    background-color: #d00101;
+    color: #fff;
+    font-size: 12px;
+    position: absolute;
+    left: 0;
+    top: 53px;
+    width: 234px;
+    margin-top: -1px
+}
+
+.trustImage {
+    text-align: center;
+    margin-bottom: 20px
+}
+
+.showtimes {
+    padding: 0 10px 10px
+}
+
+.showtimes .item {
+    padding-top: 20px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid #d3d3d3
+}
+
+.showtimes .poster {
+    float: right;
+    margin-left: 20px
+}
+
+.showtimes .poster img {
+    border: 1px solid gray;
+    width: 100px
+}
+
+.showtimes .movieInfo {
+    float: left;
+    width: 200px
+}
+
+.showtimes .movieInfo h2 {
+    font-size: 22px;
+    font-weight: 700;
+    margin-bottom: 20px
+}
+
+.showtimes .movieInfo div.movieCategory, .showtimes .movieInfo div.movieRestriction, .showtimes .movieInfo div.movieLength {
+    font-size: 12px;
+    color: gray;
+    margin-bottom: 5px;
+    font-style: italic
+}
+
+.showtimes .movieInfo a.movieMoreInfo {
+    background-image: url(../images/info.png);
+    background-repeat: no-repeat;
+    background-position: right;
+    color: gray;
+    padding: 2px 20px 2px 0;
+    text-decoration: none;
+    margin-top: 10px;
+    display: block
+}
+
+.showtimes .times {
+    float: left
+}
+
+.showtimes .times .venueNames {
+    color: gray;
+    margin-bottom: 15px
+}
+
+.showtimes .times ul li {
+    list-style: none;
+    display: inline-block;
+    margin-right: 5px;
+    border: none;
+    border-radius: 3px;
+    overflow: hidden;
+    margin-bottom: 5px;
+    width: 55px
+}
+
+.showtimes .times ul li.expired {
+    border: 1px solid #d3d3d3
+}
+
+.showtimes .times ul li.threeD {
+    border: 1px solid #f5821e
+}
+
+.showtimes .times ul li.vip {
+    border: 1px solid #007cfa;
+    width: 93px;
+    text-align: right
+}
+
+.showtimes .times ul li a {
+    background-color: #f5821e;
+    color: #fff;
+    text-decoration: none;
+    display: inline-block;
+    height: 30px;
+    line-height: 2.1em;
+    padding: 0 10px;
+    transition: .5s
+}
+
+.showtimes .times ul li a:hover {
+    background-color: #e26304
+}
+
+.showtimes .times ul li.expired a {
+    background-color: gray
+}
+
+.showtimes .times ul li.threeD a {
+}
+
+.showtimes .times ul li.vip a {
+    background-color: #007cfa
+}
+
+.showtimes .times ul li i.attribute {
+    background-color: #fff;
+    display: inline-block;
+    color: #575596;
+    height: 30px;
+    line-height: 2.1em;
+    padding: 0 7px;
+    font-style: normal
+}
+
+.showtimes .times ul li.expired i.attribute {
+    color: #d3d3d3;
+    display: none
+}
+
+.showtimes .times ul li.threeD i.attribute {
+    color: #51ca01;
+    display: none
+}
+
+.showtimes .times ul li.vip i.attribute {
+    color: #007cfa
+}
+
+.showtimes a.changeDate {
+    text-decoration: none;
+    color: #00a6f3;
+    font-style: italic;
+    display: block
+}
+
+.showtimes a.changeDate span {
+    font-style: normal;
+    color: #00a6f3
+}
+
+.showtimes .filters {
+    border-radius: 3px;
+    margin-top: 20px;
+    margin-bottom: 20px
+}
+
+.showtimes .filters .filter {
+    display: inline-block;
+    margin-right: 5px;
+    padding: 10px;
+    color: #fff;
+    background-color: gray;
+    border-radius: 3px
+}
+
+.showtimes .filters .filter.threeD {
+    background-color: #51ca01
+}
+
+.showtimes .filters .filter.vip {
+    background-color: #007cfa
+}
+
+.error {
+    background-image: url(../assets/images/PL_RES/icon_alert.png);
+    background-repeat: no-repeat;
+    background-position-x: 20px;
+    background-position-y: 50%;
+    background-position: 1% 50%;
+    background-color: #d83722;
+    padding: 10px;
+    line-height: 1.7em;
+    min-height: 55px
+}
+
+.success {
+    background-image: url(../assets/images/PL_RES/success.svg);
+    background-repeat: no-repeat;
+    background-position-x: 20px;
+    background-position-y: 50%;
+    background-position: 1% 50%;
+    background-color: #39aa49;
+    padding: 10px;
+    line-height: 1.7em;
+    min-height: 55px
+}
+
+.info {
+    background-image: url(../assets/images/PL_RES/icon_time.png);
+    background-repeat: no-repeat;
+    background-position-x: 20px;
+    background-position-y: 50%;
+    background-position: 1% 50%;
+    background-color: #486cdc;
+    padding: 10px;
+    line-height: 1.7em;
+    min-height: 55px
+}
+
+.orange-container {
+    border: 2px solid #f5821e;
+    border-radius: 3px;
+    padding: 5px;
+    display: inline-block
+}
+
+.errorb {
+    background-color: #d00101;
+    padding: 5px;
+    font-size: 12px;
+    border-radius: 3px;
+    border: 1px solid #f03;
+    clear: both;
+    color: #fff;
+    margin: 2px 0
+}
+
+span.errorb[style*=inline] {
+    display: block !Important
+}
+
+.showtimes .actionHolder {
+    text-align: right;
+    padding-top: 20px
+}
+
+.showtimes .venueNames a {
+    color: gray;
+    text-decoration: none
+}
+
+.seatplan .seat {
+    position: absolute;
+    background-color: #575596;
+    height: 50px;
+    width: 50px;
+    line-height: 50px;
+    color: #fff;
+    border-radius: 0 0 10px 10px
+}
+
+.seatplan .seat.unavailable {
+    background-color: #ccc
+}
+
+.seatplan .seat.selected {
+    background-color: #51ca01
+}
+
+.seatplan .screen {
+    text-align: center
+}
+
+.seatplan .screen .label {
+    margin-top: -20px;
+    color: gray;
+    font-size: 18px;
+    font-weight: 700
+}
+
+.seatplan .message {
+}
+
+.seatplan, .venuedisplay {
+    max-width: 800px;
+    margin: 0 auto
+}
+
+.seatplan .actionHolder {
+    text-align: center;
+    margin-bottom: 20px;
+    margin-top: 20px
+}
+
+.seatplan .actionHolder a.actionBtn {
+    margin-right: 5px
+}
+
+.seatplan .buttons {
+    margin: 25px
+}
+
+.seatplan .buttons:after {
+    content: '';
+    display: block;
+    clear: both
+}
+
+table.seatSelection {
+    width: 100%;
+    margin-top: 15px;
+    border-right: 1px solid #d3d3d3;
+    border-left: 1px solid #d3d3d3;
+    border-top: 1px solid #d3d3d3
+}
+
+table.seatSelection th, table.seatSelection td {
+    padding: 5px 0;
+    text-align: center;
+    border-bottom: 1px solid #d3d3d3;
+    font-weight: 700
+}
+
+.summary {
+    background-color: #eee
+}
+
+.summary td, legend {
+    font-weight: 700
+}
+
+fieldset {
+    border: 1px solid gray;
+    margin: 10px 0;
+    padding: 10px;
+    background: #fff
+}
+
+fieldset.firstPayment {
+    margin-top: 0
+}
+
+
+table.seatSelection tr.header {
+    background-color: #eee
+}
+
+.ticketLimit {
+    margin-top: 10px;
+    color: gray
+}
+
+.splegend::after {
+    visibility: hidden;
+    display: block;
+    font-size: 0;
+    content: " ";
+    clear: both;
+    height: 0
+}
+
+.legendContainer {
+    padding: 15px 0;
+    border-top: 1px solid #d3d3d3;
+    margin-top: 10px
+}
+
+.legendContainer .legend {
+    display: inline-block
+}
+
+.legendContainer .legend .graphic {
+    height: 16px;
+    width: 16px;
+    display: inline-block;
+    margin-right: 10px
+}
+
+.legendContainer .legend .graphic.available {
+    background-color: #575596
+}
+
+.legendContainer .legend .graphic.unavailable {
+    background-color: #ccc
+}
+
+.legendContainer .legend .graphic.selected {
+    background-color: #51ca01
+}
+
+.legendContainer .legend .label {
+    display: inline-block;
+    height: 16px;
+    padding-right: 7px;
+    float: right
+}
+
+.seatplan .sectionsel {
+    background-color: #f0f0f0;
+    padding: 10px;
+    line-height: 1.7em;
+    border-radius: 3px;
+    border: 1px solid #ccc;
+    margin-bottom: 10px;
+    text-align: center
+}
+
+.seatplan .ticketgroupsel {
+    background-color: #f0f0f0;
+    padding: 10px;
+    line-height: 1.7em;
+    border-radius: 3px;
+    border: 1px solid #ccc;
+    margin-bottom: 10px;
+    text-align: center;
+    color: #000
+}
+
+.seatplan .ticketgroupsel select {
+    padding: 3px
+}
+
+.orderForm table.seatSelection {
+    margin-bottom: 20px
+}
+
+.orderForm .paypalInfo {
+    margin-bottom: 20px
+}
+
+.orderForm span.required {
+    color: red;
+    font-size: 15px
+}
+
+.orderForm .timer {
+    font-size: 20px;
+    color: gray;
+    font-weight: 700;
+    margin: 20px 0
+}
+
+.confirmation {
+    width: 600px;
+    margin: 0 auto;
+    font-size: 14px
+}
+
+span.termserror[style*=inline] {
+    display: block !important;
+    color: red
+}
+
+.sellables {
+    max-width: 900px;
+    margin: 0 auto;
+    font-size: 14px
+}
+
+.confirmation .section {
+    margin: 20px 0
+}
+
+.orderForm .section {
+    margin: 20px 0
+}
+
+.confirmation h2, .sellables h2 {
+    font-size: 20px;
+    font-weight: 700;
+    margin-bottom: 10px
+}
+
+.confirmation table.orderDetails td {
+    padding: 10px;
+    border-bottom: 1px solid #d3d3d3
+}
+
+.confirmation table.orderDetails td.label {
+    width: 120px;
+    border-left: none
+}
+
+.confirmation table.orderDetails.payments {
+    margin-bottom: 10px
+}
+
+.checkreservation h3 {
+    font-size: 19px;
+    margin: 10px
+}
+
+.checkreservation .eventdetails {
+    background-color: #eee;
+    margin-bottom: 20px
+}
+
+.checkreservation table.orderDetails td, .svinquiry table.orderDetails td {
+    padding: 10px;
+    border-bottom: 1px solid #d3d3d3
+}
+
+.checkreservation table.orderDetails td.label, .svinquiry table.orderDetails td.label {
+    width: 120px;
+    border-left: none
+}
+
+.svinquiry .generalinfo {
+    margin: 10px
+}
+
+.checkreservation table.orderDetails.payments {
+    margin-bottom: 10px
+}
+
+.svinfo .actionHolder {
+    margin-top: 10px
+}
+
+table.ticketSelection {
+    width: 100%;
+    margin-top: 15px;
+    border: 1px solid #d3d3d3
+}
+
+table.ticketSelection td, table.ticketSelection th {
+    padding: 10px;
+    text-align: center;
+    border-bottom: 1px solid #d3d3d3
+}
+
+table.ticketSelection tr.sums {
+    font-size: 14px
+}
+
+table.ticketSelection tr.header {
+    background-color: #eee
+}
+
+.confirmation table.orderDetails tr.tickettype td span {
+    display: inline-block
+}
+
+.thankyou {
+    width: 500px;
+    margin: 0 auto;
+    font-size: 14px
+}
+
+.thankyou .section {
+    margin-bottom: 20px
+}
+
+.thankyou h2 {
+    font-size: 20px;
+    font-weight: 700;
+    margin-bottom: 10px;
+    text-align: left
+}
+
+.thankyou .section:first-child {
+    background: url(../assets/images/PL_RES/successfull.png) no-repeat;
+    background-size: 100px 100px;
+    min-height: 100px;
+    padding: 0 0 0 110px;
+    display: block;
+    margin: 15px 0 20px
+}
+
+.thankyou img.ticket {
+    max-width: 100%
+}
+
+table.errordetails {
+    width: 100%;
+    margin-top: 15px;
+    border-right: 1px solid #d3d3d3;
+    border-left: 1px solid #d3d3d3;
+    border-top: 1px solid #d3d3d3;
+    margin-bottom: 20px
+}
+
+table.errordetails td {
+    padding: 5px;
+    border-bottom: 1px solid #d3d3d3
+}
+
+table.errordetails th.cap {
+    background-color: #eee;
+    border-bottom: 1px solid #d3d3d3;
+    width: 30%
+}
+
+.storedvaluesale select {
+    padding: 3px;
+    width: 100%
+}
+
+.storedvaluesale .formRow {
+    width: 50%
+}
+
+.storedvaluerecharge select {
+    padding: 5px;
+    width: 100%
+}
+
+.storedvaluerecharge > .formRow {
+    float: right;
+    width: 50%
+}
+
+.storedvaluerecharge > .formRow:nth-child(odd) .input-label-container {
+    margin: 0 10px 10px 0
+}
+
+.storedvaluerecharge > .formRow:nth-child(even) .input-label-container {
+    margin: 0 0 10px 10px
+}
+
+.storedvalueactivation > .formRow {
+    float: right;
+    width: 50%
+}
+
+.forceUpdate {
+    margin-top: 10px;
+    color: #000;
+    background-color: #f0f0f0;
+    padding: 10px;
+    font-weight: 700;
+    border: 1px solid red
+}
+
+.forceUpdate input[type=checkbox] {
+    float: right;
+    margin-top: 2px
+}
+
+.forceUpdate .fuDesc {
+    margin-right: 20px;
+    display: block
+}
+
+#masterpass .option {
+    float: right;
+    margin: 0 0 10px 10px
+}
+
+#masterpass .option input[type=radio] {
+    margin-top: 2px;
+    float: right
+}
+
+#masterpass .option label {
+    padding: 0;
+    margin: 0;
+    padding-right: 20px;
+    display: block
+}
+
+#masterpass .lnkmpdesc {
+    text-decoration: underline;
+    color: #00a6f3;
+    padding-right: 5px
+}
+
+.mpdesc {
+    text-align: right
+}
+
+#mpButtonContainer {
+    padding: 10px;
+    background-color: #f0f0f0;
+    border-radius: 4px
+}
+
+#masterpass .mpterms input[type=checkbox] {
+    margin: 3px 0 0 6px;
+    float: right
+}
+
+#masterpass .mpterms label {
+    margin: 0 0 10px;
+    float: right;
+    width: 90%
+}
+
+.mpbutton {
+    text-align: center
+}
+
+#masterpass .option.all img {
+    width: 320px
+}
+
+#masterpass .option.mp img {
+    height: 45px
+}
+
+#masterpass img {
+    cursor: pointer;
+    margin-top: 5px
+}
+
+#masterpass #imgMasterPass {
+    margin-top: 10px
+}
+
+#masterpass .mpterms {
+    margin-top: 20px;
+    clear: both
+}
+
+.promotion .skip {
+    margin: 10px 0;
+    text-align: right;
+    font-size: 16px
+}
+
+.promotion .formRow {
+    min-height: AUTO;
+    width: 50%
+}
+
+.invoice {
+    clear: both;
+    background-color: inherit;
+    border-radius: 4px;
+    padding: 10px
+}
+
+.invoice #enableInvoice {
+    position: relative;
+    top: 2px;
+    margin-right: 10px;
+    margin-left: 1px;
+    margin-top: 1px
+}
+
+.invoice.on {
+    background-color: #f0f0f0
+}
+
+.invoice .personalInfo {
+    margin-top: 10px
+}
+
+.svdesc {
+    background-color: #f0f0f0;
+    padding: 5px;
+    display: none
+}
+
+.gsale {
+    margin: 20px 0
+}
+
+table.ticketTable tr.trgsale td {
+    border-bottom: none !important
+}
+
+.gsale .type-ticket {
+    float: left
+}
+
+.gsale .opty {
+    float: right;
+    margin-left: 50px
+}
+
+.gsale:after {
+    content: "";
+    display: table;
+    clear: both
+}
+
+.gsale label {
+    font-size: 14px;
+    font-weight: 400
+}
+
+.gsale input[type=radio] {
+    margin: 7px 5px 0 0;
+    float: left
+}
+
+.gsale .glasel {
+    padding-top: 20px
+}
+
+.gsale .plus, .gsale .minus {
+    font-size: 14px
+}
+
+#accesibleSeatPlanContainer {
+    background-color: #d4d4d4;
+    clear: both;
+    overflow: scroll;
+    display: none
+}
+
+.tableSP {
+    margin: 0 auto;
+    cellpadding: 5px;
+    cellspacing: 5px;
+    border-collapse: collapse;
+    table-layout: fixed;
+    direction: ltr
+}
+
+.tableSP tr td {
+    width: 30px;
+    max-width: 30px;
+    height: 30px;
+    min-width: 30px;
+    border-collapse: collapse;
+    padding: 2px;
+    border: solid 0;
+    text-align: center;
+    vertical-align: middle;
+    color: #fff
+}
+
+.tableSP tr td a, .tableSP tr td div.aseat {
+    display: block;
+    height: 30px;
+    max-width: 30px;
+    min-width: 30px;
+    width: 30px;
+    font-size: 8px;
+    display: table;
+    color: #fff;
+    text-decoration: none;
+    background-size: 100% 100%
+}
+
+.tableSP tr td a .ds, .tableSP tr td div.aseat .ds {
+    display: table-cell;
+    vertical-align: middle
+}
+
+.accessoptionscontainer {
+    float: right;
+    width: 100%;
+    text-align: right;
+    margin: 7px 0;
+    font: 16px 700
+}
+
+.accessoptions input {
+    vertical-align: middle;
+    position: relative;
+    bottom: 1px
+}
+
+.perticketmembershipec {
+    text-align: right
+}
+
+.input-container .label span {
+    display: inline;
+
+}
+
+.perticketmembershipec .input-label-container {
+    width: 50%;
+    float: right
+}
+
+.perticketmembershipec span.required {
+    display: inline !important
+}
+
+.perticketmembershipec .input-container {
+    margin-left: 20px
+}
+
+.storedvaluemulti {
+    margin: 30px 0
+}
+
+.storedvaluemulticontainer {
+    margin: 10px 0 0
+}
+
+.storedvaluemulti .col {
+    width: 50%;
+    float: right
+}
+
+.ltr .storedvaluemulti .col {
+    width: 50%;
+    float: left
+}
+
+.storedvaluemulti .sel.checked {
+    border: 2px solid #f5821e
+}
+
+.storedvaluemulticontainer .sel {
+    padding: 20px;
+    border: 1px solid #d5d5d5;
+    border-radius: 4px;
+    cursor: pointer;
+    background: #fff
+}
+
+.storedvaluemulticontainer .sel p {
+    font-size: 22px;
+    font-weight: 700
+}
+
+.storedvaluemulticontainer .sel:after {
+    display: table;
+    clear: both;
+    content: ""
+}
+
+.storedvaluemulti .storedvaluemulticontainer:after {
+    display: table;
+    clear: both;
+    content: ""
+}
+
+.storedvaluemulticontainer .selsv {
+    width: 270px
+}
+
+.storedvaluemulticontainer .sel.voucher {
+    margin-right: 10px
+}
+
+.storedvaluemulticontainer.single .sel.voucher {
+    margin-right: 0
+}
+
+.ltr .storedvaluemulticontainer.single .sel.voucher {
+    margin-right: 10px
+}
+
+.ltr .storedvaluemulticontainer .sel.moviecard {
+    margin-right: 10px
+}
+
+.storedvaluemulticontainer select {
+    margin: 10px 0 0 1px;
+    float: right;
+    box-sizing: border-box;
+    border: 2px solid #d3d3d3;
+    border-radius: 2px;
+    padding: 5px;
+    height: 34px;
+    padding: 6px 0;
+    font-size: 14px;
+    line-height: 1.42857143;
+    color: #555;
+    background-color: #fff;
+    background-image: none;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
+    box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
+    -webkit-transition: border-color ease-in-out .15s, -webkit-box-shadow ease-in-out .15s;
+    -o-transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
+    transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s
+}
+
+.svcategory {
+    margin-bottom: 10px;
+    width: 50%
+}
+
+.svcategory .svcategorycontainer {
+    margin-right: 10px
+}
+
+.storedvaluemulti .svcategory #ddlSVCategories {
+    margin: 10px 0 0 1px;
+    box-sizing: border-box;
+    border: 2px solid #d3d3d3;
+    border-radius: 2px;
+    padding: 5px;
+    height: 34px;
+    padding: 6px 0;
+    font-size: 14px;
+    line-height: 1.42857143;
+    color: #555;
+    background-color: #fff;
+    background-image: none;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
+    box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
+    -webkit-transition: border-color ease-in-out .15s, -webkit-box-shadow ease-in-out .15s;
+    -o-transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
+    transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
+    width: 100%
+}
+
+.clearfix:after {
+    visibility: hidden;
+    display: block;
+    font-size: 0;
+    content: " ";
+    clear: both;
+    height: 0
+}
+
+.personalInfo .formCheckbox {
+    width: 100%;
+    float: left;
+    display: flex;
+    align-items: center;
+    box-sizing: border-box
+}
+
+.lds-grid {
+    display: inline-block;
+    position: relative;
+    width: 64px;
+    height: 64px
+}
+
+.lds-grid div {
+    position: absolute;
+    width: 13px;
+    height: 13px;
+    border-radius: 50%;
+    background: #fff;
+    animation: lds-grid 1.2s linear infinite
+}
+
+.lds-grid div:nth-child(1) {
+    top: 6px;
+    left: 6px;
+    animation-delay: 0s
+}
+
+.lds-grid div:nth-child(2) {
+    top: 6px;
+    left: 26px;
+    animation-delay: -.4s
+}
+
+.lds-grid div:nth-child(3) {
+    top: 6px;
+    left: 45px;
+    animation-delay: -.8s
+}
+
+.lds-grid div:nth-child(4) {
+    top: 26px;
+    left: 6px;
+    animation-delay: -.4s
+}
+
+.lds-grid div:nth-child(5) {
+    top: 26px;
+    left: 26px;
+    animation-delay: -.8s
+}
+
+.lds-grid div:nth-child(6) {
+    top: 26px;
+    left: 45px;
+    animation-delay: -1.2s
+}
+
+.lds-grid div:nth-child(7) {
+    top: 45px;
+    left: 6px;
+    animation-delay: -.8s
+}
+
+.lds-grid div:nth-child(8) {
+    top: 45px;
+    left: 26px;
+    animation-delay: -1.2s
+}
+
+.lds-grid div:nth-child(9) {
+    top: 45px;
+    left: 45px;
+    animation-delay: -1.6s
+}
+
+@keyframes lds-grid {
+    0%, 100% {
+        opacity: 1
+    }
+
+    50% {
+        opacity: .5
+    }
+}
+
+.ticketValidationCap {
+    margin-top: 20px;
+    font-size: 16px
+}
+
+tr.TT_1.ticketValidation td {
+    border: 0
+}
+
+tr.ticketValidationHeader td {
+    border: 0 !important
+}
+
+@media (max-width: 1200px) {
+    .orderForm .label {
+        float: none;
+        font-size: 13px;
+        white-space: normal
+    }
+
+    .orderForm .field input {
+    }
+
+    .orderForm, .cancellation-container, .checkreservation, .svinquiry {
+        width: 96%
+    }
+
+    .confirmation {
+        width: 96% !important
+    }
+
+    .sellables {
+        width: 96%
+    }
+
+    .thankyou {
+        width: 96%
+    }
+
+    .errorpage {
+        width: 100%
+    }
+
+    .field span.Error {
+        width: 96%
+    }
+
+    .payment .paymentType, .payment .paymentNumber, .payment .expiry, .payment .ssn, .payment .cvv {
+        float: none;
+        margin-bottom: 15px
+    }
+
+    .trustImage img {
+        width: 100%
+    }
+
+    .seatplan .screen img {
+        width: 100%
+    }
+
+    .seatplan .screen .label {
+        margin-top: 0
+    }
+
+    .seatplan .buttons button {
+        background-size: 40px 40px
+    }
+
+    table.seatSelection span.break {
+        display: block
+    }
+
+    table.seatSelection td {
+        font-size: 11px
+    }
+
+    .paymentType select {
+        width: 100% !important
+    }
+
+    .payment input, .perticketsv input {
+        width: 100% !important
+    }
+
+    .payment .expiry select {
+        width: 70px
+    }
+
+    .payment .ssn input {
+        width: 100% !important;
+        margin-bottom: 15px
+    }
+
+    .payment .cvv input {
+        width: 100% !important
+    }
+
+    .payment .paymentType, .payment .paymentNumber, .payment .expiry, .payment .ssn, .payment .cvv {
+        margin-left: 0
+    }
+
+    .payment select, .payment input {
+        -moz-box-sizing: border-box;
+        -webkit-box-sizing: border-box;
+        box-sizing: border-box
+    }
+
+    .total-block {
+        width: 100%
+    }
+
+    .thankyou .section:first-child {
+        background: url(../images/icons/success.svg) center 0 no-repeat;
+        padding: 150px 0 0
+    }
+
+    .p {
+        text-align: center
+    }
+
+    .wrap {
+        width: 100%
+    }
+
+    .footer {
+    }
+
+    .seperator {
+        height: 0
+    }
+
+    .cancellation-container a.details {
+        display: block
+    }
+
+    .cancellation-container a.cancel {
+        display: block
+    }
+
+    #divSellables ul li {
+        width: 100% !important;
+        border: 0 !important;
+        margin: 0 0 20px !important
+    }
+
+    .gsale .opty {
+        float: left;
+        width: 100%;
+        margin-left: inherit
+    }
+}
+
+@media (max-width: 768px) {
+    .storedvaluemulti .col {
+        width: 100% !important;
+        float: right
+    }
+
+    .storedvaluemulticontainer .sel.moviecard {
+        margin: 10px 0 !important
+    }
+
+    .storedvaluemulticontainer select {
+        width: 70%
+    }
+
+    .storedvaluemulticontainer select.selq {
+        width: 20%
+    }
+
+    .storedvaluemulticontainer .sel.voucher {
+        margin-right: 0 !important
+    }
+
+    .payupopup .savedcards, .payupopup .newcard {
+        width: 100% !important;
+        max-width: 430px
+    }
+
+    .payuoptions {
+        max-width: none !important
+    }
+
+    .orderForm .payuoptions .payuOpt {
+        margin-right: 0 !important
+    }
+
+    .svcategory {
+        width: unset
+    }
+
+    .svcategory .svcategorycontainer {
+        margin-right: 0
+    }
+}
+
+@media (max-width: 600px) {
+    #masterpass .option.all img {
+        width: 100%
+    }
+
+    #masterpass .option.mp img {
+        height: 100%;
+        max-height: 50px
+    }
+
+    .siteinfo {
+        display: none
+    }
+
+    .more-info a {
+        display: block
+    }
+
+    .login-form {
+        width: 100%
+    }
+
+    .steps div.step {
+        text-align: center;
+        font-size: 11px;
+        padding: 10px 3px 3px
+    }
+
+    .legendContainer {
+        padding: 15px 0 10px
+    }
+
+    .legendContainer .legend {
+        margin-left: 0;
+        margin-bottom: 10px;
+        margin-right: 5px
+    }
+
+    .timerinfo {
+        margin-left: 20px !important;
+        line-height: 19px !important;
+        margin-bottom: 15px
+    }
+
+    .timer {
+        margin-left: 20px !important
+    }
+
+    .timer-block {
+        background-image: none !important;
+        padding: 10px 20px 10px 0;
+        font-size: initial
+    }
+
+    .login-link {
+        margin-top: 0;
+        margin-bottom: -15px
+    }
+
+    .msg-title {
+        margin-top: 18px;
+        line-height: normal
+    }
+
+    .msg-description {
+        margin-top: 0
+    }
+
+    .msgInrow {
+        line-height: normal
+    }
+
+    .seatplan .buttons {
+        margin: 25px 10px
+    }
+
+    .orderForm .field input {
+        width: 173px
+    }
+
+    .fieldErrorMessage {
+        width: 177px
+    }
+
+    .friend-num {
+        width: 70%;
+        margin: auto
+    }
+
+    .steps div.step span {
+        margin: 0;
+        -moz-box-sizing: border-box;
+        -webkit-box-sizing: border-box;
+        box-sizing: border-box
+    }
+
+    .steps div.step label {
+        display: block;
+        padding-top: 5px;
+        padding-bottom: 5px
+    }
+
+    .sidebar {
+        float: none;
+        width: 100%
+    }
+
+    .main {
+        margin-left: 0;
+        width: 100%;
+        padding: 0 10px 10px
+    }
+
+    div.selectTicket a.actionBtn {
+        text-align: center
+    }
+
+    .selectionInfo img {
+        display: none
+    }
+
+    .selectionInfoInner {
+    }
+
+    .showtimes .poster img {
+        width: 80px
+    }
+
+    .showtimes .times {
+        float: none;
+        width: 100%;
+        clear: both;
+        padding-top: 10px
+    }
+
+    .showtimes .movieInfo {
+        width: 190px
+    }
+
+    .showtimes .times .venueNames {
+        margin-bottom: 7px
+    }
+
+    .showtimes .item {
+        padding-top: 10px;
+        padding-bottom: 10px
+    }
+
+    .showtimes .movieInfo h2 {
+        margin-bottom: 7px;
+        font-size: 18px
+    }
+
+    .selectTicket .actionHolder {
+        text-align: center
+    }
+
+    .sidebar {
+        background-color: #000;
+        color: #fff;
+        margin-top: 1px
+    }
+}
+
+@media (max-width: 420px) {
+    .total-block {
+        width: 100%
+    }
+
+    .personalInfo > .formRow:nth-child(odd) {
+        width: 100% !important
+    }
+
+    .personalInfo > .formRow:nth-child(even) {
+        width: 100% !important
+    }
+
+    .orderForm .field input {
+        width: 300px
+    }
+
+    .fieldErrorMessage {
+        width: 304px
+    }
+
+    .confirmation h2 {
+        font-size: 16px
+    }
+
+    .cancellation-container {
+        padding: 2px !important
+    }
+
+    .personalInfo > .formRow:nth-child(even) .input-label-container {
+        margin-left: 0;
+        margin-right: 0
+    }
+
+    .personalInfo > .formRow:nth-child(odd) .input-label-container {
+        margin-left: 0;
+        margin-right: 0
+    }
+
+    .storedvaluesale .formRow, .promotion .formRow, .storedvalueactivation .formRow {
+        width: 100%
+    }
+
+    .cancellation-container div.formRow, .checkreservation div.formRow, .svinquiry div.formRow, .storedvaluemulticontainer select {
+        width: 100% !important
+    }
+
+    .orderForm .perticketmembershipec .input-label-container {
+        width: 100%
+    }
+
+    .orderForm .perticketmembershipec .input-container {
+        margin: 0
+    }
+
+    .storedvaluemulti .svcategory #ddlSVCategories {
+        width: 100%
+    }
+}
+
+.SpecialMessage {
+    background-color: #fcc;
+    padding: 10px;
+    line-height: 1.7em;
+    border-radius: 3px;
+    border: 1px solid #f03
+}
+
+.VenueMessage {
+    background-color: #f0f0f0;
+    padding: 10px;
+    line-height: 1.7em;
+    border-radius: 3px;
+    border: 1px solid #ccc
+}
+
+.VenueMessage ul {
+    margin: 0;
+    padding-right: 15px
+}
+
+table.ticketTable td, table.ticketTable th {
+    padding: 10px;
+    text-align: left
+}
+
+table.ticketTable tr.header td, table.ticketTable tr.header th {
+    border-bottom: 1px solid #d3d3d3;
+    font-weight: 700
+}
+
+table.ticketTable td, table.ticketTable th {
+    border-bottom: 1px dashed #d3d3d3
+}
+
+table.ticketTable tr.TT_101 td {
+    background-color: #09f;
+    color: #fff
+}
+
+table.ticketTable tbody {
+    border-bottom: 2px solid #f5821e
+}
+
+.tipsy {
+    padding: 5px;
+    font-size: 12px;
+    opacity: .8;
+    filter: alpha(opacity=80);
+    background-repeat: no-repeat;
+    background-image: url(tipsy.gif)
+}
+
+.tipsy-inner {
+    padding: 5px 8px 4px;
+    background-color: #000;
+    color: #fff;
+    max-width: 200px;
+    text-align: center
+}
+
+.tipsy-inner {
+    -moz-border-radius: 3px;
+    -webkit-border-radius: 3px
+}
+
+.tipsy-north {
+    background-position: top center
+}
+
+.tipsy-south {
+    background-position: bottom center
+}
+
+.tipsy-east {
+    background-position: right center
+}
+
+.tipsy-west {
+    background-position: left center
+}
+
+.dirLTR {
+    direction: ltr
+}
+
+#divSellables {
+    position: relative;
+    overflow: hidden;
+    margin: 20px auto 0
+}
+
+p {
+    text-align: justify
+}
+
+#divSellables ul {
+    position: relative;
+    margin: 0;
+    padding: 0;
+    list-style: none
+}
+
+#divSellables ul li {
+    position: relative;
+    display: block;
+    float: right;
+    margin: 0;
+    padding: 0;
+    width: 280px;
+    height: 300px;
+    text-align: center;
+    border: 6px solid #fff
+}
+
+#divSellables ul li div {
+    background: rgba(128, 128, 128, .24);
+    padding: 8px 0
+}
+
+#divSellables ul li div.selected {
+    background: rgba(128, 128, 128, .24);
+    padding: 8px 0;
+    border: 3px solid #007cfa
+}
+
+#divSellables ul li img, #divSellables ul li span {
+    display: block
+}
+
+#divSellables ul li select, #divSellables ul li img, #divSellables ul li span {
+    font-size: 1.3em
+}
+
+.sellables .actionHolder {
+    text-align: center
+}
+
+.discount {
+    margin-top: 20px
+}
+
+.discount .formRow {
+    min-height: AUTO
+}
+
+.discount .input-container input {
+    width: 50%
+}
+
+.pgwModal.emInfo .pm-content, .pgwModal.emInfo .pm-content table {
+    text-align: right !important
+}
+
+.pgwModal.emInfo .emDesc {
+    margin-bottom: 10px
+}
+
+.authentication, .authentication .formRow {
+    margin-top: 10px;
+    float: right;
+    width: 100%
+}
+
+.delivery {
+    margin: 10px 0
+}
+
+.cardnumbererror {
+    background-color: Red;
+    color: #fff
+}
+
+.zoom-in, .zoom-out, button.reset {
+    height: 40px;
+    width: 40px;
+    border: none;
+    border-radius: 3px;
+    color: transparent;
+    background-size: 40px 40px;
+    margin-bottom: 15px;
+    margin-right: 10px
+}
+
+.zoom-in {
+    background-image: url(../assets/images/PL_RES/plus.svg);
+    background-color: #fff;
+    margin-right: 20px;
+    float: left
+}
+
+.zoom-out {
+    background-image: url(../assets/images/PL_RES/minus.svg);
+    background-color: #fff;
+    float: left
+}
+
+button.reset {
+    border-radius: 3px;
+    background-image: url(../assets/images/PL_RES/reset.png);
+    background-color: #fff;
+    color: #000;
+    float: right;
+    width: 120px;
+    margin-right: 0;
+    float: right
+}
+
+.timerinfo {
+    line-height: 15px;
+    margin-left: 60px
+}
+
+.timer {
+    line-height: 25px;
+    font-size: larger;
+    margin-left: 60px
+}
+
+.infomessage {
+    background-color: #f0f0f0;
+    padding: 10px;
+    line-height: 1.7em;
+    border-radius: 3px;
+    border: 1px solid #ccc;
+    margin-bottom: 10px
+}
+
+.cancellation-container form.cancellation .card-error {
+    font-size: 16px;
+    font-weight: 700;
+    color: #f5821e
+}
+
+.cancellation-container div {
+    margin: 15px 0 25px
+}
+
+.cancellation-container div.formRow, .checkreservation div.formRow, .svinquiry div.formRow {
+    width: 50%
+}
+
+.cancellation-container img {
+    margin: 0 0 15px
+}
+
+.input-label-container .label {
+    margin: 5px 0;
+    display: block
+}
+
+.input-container input, .friend-num input {
+    box-sizing: border-box;
+    width: 100%;
+    border: 2px solid #d3d3d3;
+    border-radius: 2px;
+    padding: 5px
+}
+
+.input-container input.readonly {
+    border-color: #fff
+}
+
+.input-container span.input-error {
+    padding: 3px 5px;
+    border-bottom-left-radius: 3px;
+    border-bottom-right-radius: 3px;
+    box-sizing: border-box;
+    background-color: #d00101;
+    color: #fff;
+    font-size: 12px;
+    width: 100%;
+    display: block
+}
+
+.input-container span.input-error[style*=inline] {
+    display: block !important
+}
+
+.cancellation-container .buttons {
+    margin: 30px 0 0
+}
+
+.cancellation-container table {
+    width: 100%
+}
+
+.cancellation-container table th {
+    background-color: #eee;
+    border-bottom: 1px solid #d3d3d3;
+    font-weight: 700;
+    padding: 10px
+}
+
+.cancellation-container table td {
+    border-bottom: 1px dashed #d3d3d3;
+    padding: 10px
+}
+
+.cancellation-container a.details {
+    color: #f5821e;
+    margin: 0 0 0 10px
+}
+
+.cancellation-container a.cancel {
+    color: #f5821e
+}
+
+.pgwModal .pm-title {
+    background-color: #e5e5e5;
+    line-height: 2em;
+    color: #000;
+    font-weight: 700;
+    letter-spacing: .05em
+}
+
+.pm-content table {
+    margin-bottom: 10px;
+    text-align: left
+}
+
+.pm-content table th {
+    background-color: #eee;
+    border-bottom: 1px solid #d3d3d3;
+    font-weight: 700;
+    padding: 10px;
+    text-align: right
+}
+
+.pm-content table td {
+    padding: 10px;
+    text-align: right
+}
+
+.pm-content table.event-details-table {
+    width: 100%;
+    text-align: center
+}
+
+.cancellation-container .order-details-table {
+    border: 1px solid #555
+}
+
+.cancellation-container .event-details {
+    display: inline-block
+}
+
+.cancellation-container .event-details a {
+    display: block;
+    padding: 10px;
+    text-align: center;
+    text-decoration: none;
+    font-size: 16px;
+    font-weight: 700;
+    color: #fff;
+    letter-spacing: .05em
+}
+
+.cancellation-container .event-details a:first-child {
+    background-color: #f5821e;
+    border-top-left-radius: 3px;
+    border-top-right-radius: 3px
+}
+
+.cancellation-container .event-details a:last-child {
+    background-color: #555;
+    border-bottom-left-radius: 3px;
+    border-bottom-right-radius: 3px
+}
+
+.cancellation-container input {
+}
+
+.rtl {
+    text-align: right
+}
+
+.rtl p {
+    text-align: right
+}
+
+.rtl input[type=radio] {
+    float: right
+}
+
+.authentication h2 {
+    font-size: 20px;
+    font-weight: 700;
+    margin-bottom: 15px
+}
+
+.authentication > p {
+    margin-bottom: 10px
+}
+
+.authentication {
+    margin-bottom: 20px
+}
+
+.seatplan .message.required {
+    color: Red
+}
+
+.pgwModal.payuModal .pm-body {
+    margin-top: 0 !important
+}
+
+#payupopupcontainer {
+    display: none
+}
+
+.payupopup .logo {
+    background-image: url(../assets/images/PL_RES/cinema_city.svg);
+    background-size: 60px;
+    background-repeat: no-repeat;
+    background-position-x: 0;
+    background-position-y: 0;
+    height: 33px;
+    margin-bottom: 20px;
+    border-bottom: solid 1px #ddd
+}
+
+.payupopup {
+    min-height: 600px
+}
+
+.payupopup h2 {
+    margin: 10px 0;
+    font-size: 18px !important;
+    font-weight: 700
+}
+
+.payupopup .savedcards, .payupopup .newcard {
+    width: 50%;
+    float: left
+}
+
+.payupopup .newcard h2 {
+    margin-bottom: 0
+}
+
+.payupopup .savedcards .card {
+    line-height: 55px;
+    margin: 0;
+    border-top: solid 1px #ddd;
+    margin-right: 20px
+}
+
+.payupopup .savedcards .card label {
+    display: block;
+    cursor: pointer;
+    font-weight: 700;
+    float: left
+}
+
+.payupopup .savedcards .card input {
+    float: left;
+    margin: 20px 10px 0;
+    display: inline-block;
+    vertical-align: middle
+}
+
+.payupopup .savedcards .card label img {
+    max-height: 15px;
+    margin: 0 10px;
+    display: inline-block;
+    vertical-align: middle
+}
+
+.payupopup .savedcards .card a {
+    float: right;
+    text-decoration: none;
+    font-weight: 700;
+    color: #f5821e
+}
+
+.payupopup .confirmDelete {
+    margin-right: 20px;
+    background-color: #f0f0f0;
+    padding: 8px 8px 0;
+    border-radius: 5px;
+    display: none
+}
+
+.payupopup .savedcards .confirmBtn {
+    border-radius: 50px;
+    background-color: #fff;
+    font-family: open sans, Arial, Tahoma, Helvetica, sans-serif;
+    display: inline-block;
+    padding: 17px 30px;
+    color: #333;
+    border-radius: 50px;
+    text-decoration: none;
+    cursor: pointer;
+    font-size: 16px;
+    border: solid 1px #a6c307;
+    margin: 10px 0;
+    font-weight: 700
+}
+
+.payupopup .savedcards .confirmDelete #no {
+    float: left
+}
+
+.payupopup .savedcards .confirmDelete #yes {
+    float: right
+}
+
+.payupopup .savedcards a.confirmBtn:hover {
+    background-color: #a6c307;
+    color: #fff
+}
+
+.orderForm .payuoptions {
+    max-width: 50%
+}
+
+.orderForm .payuoptions .payuOpt {
+    border-radius: 5px;
+    /* border: solid 1px #ddd; */
+    background-color: #fff;
+    margin: -7px 0;
+    height: 55px;
+    /*margin-right: 10px;*/
+}
+
+.orderForm .payuoptions .payuOpt.selected {
+    border: solid 2px #c26717
+}
+
+.orderForm .payuoptions .payuOpt img {
+    max-height: 20px;
+    float: right;
+    margin: 19px 10px
+}
+
+.orderForm .payuoptions .payuOpt label {
+    display: block;
+    cursor: pointer;
+    font-weight: 700
+}
+
+.orderForm .payuoptions .payuOpt .changecard {
+    float: right;
+    color: #f5821e;
+    font-weight: 900;
+    margin: 20px 8px 0 0;
+    display: none
+}
+
+.orderForm .payuoptions .payuOpt .name {
+    float: left;
+    margin-top: 18px
+}
+
+.orderForm .payuoptions .payuOpt .name.toksel {
+    margin-top: 10px
+}
+
+.orderForm .payuoptions .payuOpt .name span {
+    font-weight: 400
+}
+
+.orderForm .payuoptions .payuOpt input {
+    float: left;
+    margin: 20px 10px 0
+}
+
+#payuContainer {
+    float: right;
+    width: 100%;
+    margin-bottom: 20px
+}
+
+#payuContainer .payuOpt {
+    border-radius: 4px;
+    border: 1px solid #ddd;
+    background-color: #fff;
+    padding-left: 15px;
+    width: 150px;
+    float: left;
+    margin: 10px 0 5px
+}
+
+.payuOpt input, .payuOpt img {
+    display: inline-block;
+    vertical-align: middle
+}
+
+.timeout {
+    padding: 10px;
+    cursor: default;
+    display: none;
+    float: left;
+    text-align: left
+}
+
+.timeout #btnReselectedSeats {
+    cursor: pointer;
+    float: none
+}
+
+.timeout .actionHolder {
+    margin-top: 10px;
+    text-align: center
+}
+
+.changebookingtype {
+    float: right;
+    margin: 24px 4px 0 0
+}
+
+.types-block.disabled {
+    opacity: .2
+}
+
+.changebookingtype a {
+    color: #fff;
+    text-decoration: underline;
+    font-size: 12px
+}
+
+.sessionended, .reservationDisabled {
+    padding: 10px;
+    cursor: default;
+    display: none
+}
+
+.sessionended #btnContinue {
+    cursor: pointer;
+    float: none
+}
+
+.sessionended .actionHolder {
+    margin-top: 10px;
+    text-align: center
+}
+
+.reservationDisabled .cancelBtn {
+    cursor: pointer;
+    float: none
+}
+
+.reservationDisabled .actionHolder {
+    margin-top: 10px;
+    text-align: center
+}
+
+.ordercompletepromo img {
+    max-width: 100%
+}
+
+.FooterTable {
+    direction: rtl;
+    display: inline-block
+}
+
+.General_WebControl_ContainerTable {
+    direction: rtl;
+    padding: 15px
+}
+
+p .General_Caption {
+    direction: rtl;
+    float: right;
+    color: red;
+    font-size: 20px;
+    margin-right: 20px
+}
+
+.Footer_Security_Table {
+    direction: rtl
+}
+
+.rating.restricted {
+    color: #e26304;
+    font-weight: 700
+}
+
+.venuedisplay .seatplanimage {
+    max-width: 100%;
+    height: auto
+}
+
+.promotions .radiobuttonlist label {
+    margin-right: 20px;
+    display: inline-block
+}
+
+.promotions .radiobuttonlist input[type=radio] {
+    position: absolute;
+    margin-right: 0 !important;
+    margin-top: 3px
+}
+
+.tooclose {
+    padding: 10px;
+    cursor: default;
+    text-align: right
+}
+
+.tooclose:after {
+    visibility: hidden;
+    display: block;
+    font-size: 0;
+    content: " ";
+    clear: both;
+    height: 0
+}
+
+.tooclose .actionHolder {
+    margin-top: 10px;
+    text-align: center
+}
+
+.tooclose .actionHolder .actionBtn {
+    float: left
+}
+
+.tooclose .actionHolder .cancelBtn {
+    float: right
+}
+
+.confirmationModal {
+    padding: 10px;
+    cursor: default;
+    text-align: right
+}
+
+.confirmationModal:after {
+    visibility: hidden;
+    display: block;
+    font-size: 0;
+    content: " ";
+    clear: both;
+    height: 0
+}
+
+.confirmationModal .actionHolder {
+    margin-top: 10px;
+    text-align: center
+}
+
+.confirmationModal .actionHolder .actionBtn {
+    float: left
+}
+
+.confirmationModal .actionHolder .cancelBtn {
+    float: right
+}
+
+/*================================== WebTixs*/
+@import url("https://fonts.googleapis.com/css?family=Roboto:300,400,700&subset=latin-ext");
+html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, font, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    outline: 0;
+    font-weight: inherit;
+    font-style: inherit;
+    font-size: 100%;
+    vertical-align: baseline;
+    font-family: roboto, helvetica neue, helvetica, arial, serif !important
+}
+
+* {
+    margin: 0;
+    padding: 0
+}
+
+html {
+    min-height: 100%;
+    position: relative;
+    margin-bottom: 0
+}
+
+.wrapper {
+    background-image: url(../../images/PL_RES/bg.jpg);
+    min-height: 1200px;
+    background-color: #000;
+    background-repeat: repeat-x
+}
+
+body {
+    text-align: left;
+    min-height: 100%;
+    margin-bottom: 0;
+    font-family: Arial;
+    direction: ltr;
+    font-size: 14px;
+    min-width: 310px;
+    background-color: #f4f4f4;
+    line-height: 1.4
+}
+
+.clear {
+    clear: both
+}
+
+.pagecontainer {
+    margin: auto;
+    width: 100%;
+    background-repeat: repeat-x;
+    min-width: 310px
+}
+
+.wrap {
+    width: 1000px;
+    min-height: 100%;
+    margin: 0 auto;
+    margin-bottom: 110px
+}
+
+
+.movieName {
+    padding: 5px 0;
+    font-size: 16px;
+    font-weight: 700
+}
+
+.eventdate {
+    padding: 5px 0
+}
+
+.siteinfo {
+    padding: 5px 0
+}
+
+.more-info {
+    padding: 5px 0
+}
+
+.more-info a {
+    text-decoration: none;
+    color: #f5821e;
+    font-size: .95em;
+    display: none
+}
+
+.seatplanControl {
+    padding-top: 25px;
+    background-color: #d4d4d4
+}
+
+#panzoom-parent {
+    border: none
+}
+
+#lblconfirmationNumber {
+    color: #f44336
+}
+
+.type-ticket {
+}
+
+.header {
+    border-bottom: 2px solid #f5821e;
+    background: 0 0 !important
+}
+
+.title-login {
+    margin-top: 20px
+}
+
+h1 {
+    text-transform: uppercase;
+    width: inherit;
+    font-size: 36px;
+    display: block;
+    font-weight: 700;
+    line-height: normal
+}
+
+.framepl {
+    min-height: 800px;
+    background: #fff;
+    margin: auto !important
+}
+
+.out-content {
+    margin: auto !important;
+    width: 1200px
+}
+
+.out-head {
+}
+
+.bookingType {
+    min-height: 500px;
+    margin: auto !important;
+    padding: 10px
+}
+
+.out-content {
+    margin: auto !important;
+    max-width: 1200px
+}
+
+.out-head {
+    padding: 10px 0
+}
+
+h2 {
+    font-size: 24px;
+    text-transform: uppercase !important;
+    margin: 20px 0 10px
+}
+
+.red {
+    color: red
+}
+
+.orange {
+    color: #f48120;
+    text-decoration: none
+}
+
+.sep-line {
+    height: 1px;
+    border-top: 1px solid gray;
+    margin: 10px 0
+}
+
+.sep-line-orange {
+    height: 1px;
+    border-top: 2px solid orange;
+    margin: 20px 0
+}
+
+.sm-txt {
+    font-size: 100%;
+    margin-left: 19px
+}
+
+.bookingType .mand-fields .sm-txt {
+    text-transform: uppercase;
+    font-size: 12px
+}
+
+.bookingType #cbAgree {
+    float: left;
+    margin-top: 3px
+}
+
+label .sm-txt {
+    margin: 0
+}
+
+.sm-txt input {
+    margin-right: 10px
+}
+
+.mand-fields span.sm-txt {
+    margin-left: 0
+}
+
+.types-block {
+    margin-top: 20px
+}
+
+.types-block input[type=radio] {
+    float: left;
+    margin-top: 5px
+}
+
+.fline {
+    font-size: 18px;
+    font-weight: 700;
+    margin-left: 5px;
+    text-transform: uppercase
+}
+
+.txt-block {
+    display: inline-block
+}
+
+a.nextBtn {
+    display: inline-block;
+    padding: 18px 30px;
+    background-color: #f5821e;
+    color: #000;
+    font-weight: 700;
+    border-radius: 4px;
+    text-decoration: none;
+    cursor: pointer;
+    float: right;
+    font-size: 18px;
+    text-transform: uppercase
+}
+
+a.nextBtn:hover {
+    background-color: #e26304
+}
+
+.timer-block {
+    background-image: url(../../images/PL_RES/icon_time.png);
+    background-repeat: no-repeat;
+    background-position-y: 50%;
+    background-color: #5068b0;
+    padding: 10px;
+    line-height: 1.7em;
+    min-height: 55px;
+    color: #d2d8eb
+}
+
+.msgInrow {
+    line-height: 50px
+}
+
+.msg-block {
+    margin-left: 60px;
+    vertical-align: middle;
+    line-height: 50px
+}
+
+.msg-description {
+    color: #fff;
+    font-size: .9em;
+    line-height: 12px;
+    vertical-align: middle;
+    margin-top: -10px
+}
+
+.msg-title {
+    line-height: 55px;
+    color: #fff;
+    font-size: 1.1em;
+    vertical-align: middle
+}
+
+.page-title {
+    font-size: 3em;
+    width: 50%;
+    display: inline
+}
+
+#chkTermsAgree {
+    margin-right: 10px
+}
+
+.login-link {
+    display: inline;
+    height: 42px;
+    float: right;
+    margin-top: 10px;
+    margin-bottom: -10px
+}
+
+.login-link a {
+    background-image: url(../../images/PL_RES/user_icon.svg);
+    background-size: 20px;
+    background-repeat: no-repeat;
+    background-position-x: right;
+    padding: 3px 30px 0 0;
+    text-decoration: none;
+    color: orange
+}
+
+.steps {
+    padding-top: 5px;
+    display: flex
+}
+
+.steps div.step {
+    width: 25%;
+    float: left;
+    background-color: #000;
+    color: #fff;
+    border-left: 1px solid #fff;
+    border-top: 1px solid #fff;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    padding: 1.5%;
+    padding-left: 14px;
+    font-size: 15px;
+    border-radius: 10px;
+}
+
+.steps div.step.onstep {
+    background-color: #ececec;
+    color: #fff
+}
+
+.steps div.step label {
+    color: #fff;
+    text-decoration: none;
+    text-transform: uppercase;
+    font-weight: 700
+}
+
+.steps div.step.onstep label {
+    color: #000
+}
+
+.steps div.step.last {
+    border-right: 1px solid #fff
+}
+
+.steps div.step span {
+    display: inline-block;
+    padding: 0;
+    background-color: #555;
+    margin-right: 7px;
+    border-radius: 100%;
+    width: 20px;
+    height: 20px;
+    text-align: center;
+    line-height: 1.4em;
+    font-weight: 700
+}
+
+.steps div.step.onstep span {
+    background-color: #000;
+    color: #fff
+}
+
+.friend-num {
+    width: 222px;
+    display: inline-block;
+    margin-left: 15px
+}
+
+.name-pers {
+    width: 50%
+}
+
+.error-msg {
+    font-size: 13px;
+    font-weight: 700;
+    color: red
+}
+
+.total-block {
+    color: #000;
+    font-size: 17px;
+    border-top: 1px solid #000;
+    width: 100%;
+    padding-top: 5px
+}
+
+.total-sum {
+    padding: 0 0 10px;
+    text-align: left;
+    font-weight: 700
+}
+
+.total-sum-txt {
+    float: left
+}
+
+.total-sum-val {
+    float: right
+}
+
+.btn-td {
+    padding-left: 5px
+}
+
+div.selectTicket .ticketGroupDescription {
+    margin-bottom: 20px;
+    line-height: 1.7em;
+    font-size: 14px
+}
+
+div.selectTicket .ticketmsg {
+    margin-bottom: 20px;
+    line-height: 1.7em;
+    font-size: 14px
+}
+
+table.ticketTable {
+    width: 100%;
+    margin-bottom: 10px
+}
+
+table.ticketTable td {
+    padding: 10px;
+    color: #191919;
+    font-size: 14px;
+    text-transform: uppercase
+}
+
+table.ticketTable tr.header td {
+    background-color: #eee;
+    border-bottom: 1px solid #d3d3d3
+}
+
+table.ticketTable td {
+    border-bottom: 1px dashed #d3d3d3
+}
+
+table.ticketTable tr.prompt td {
+    border: none;
+    background-color: #ccc
+}
+
+a.actionBtn {
+    display: inline-block;
+    padding: 18px 30px;
+    background-color: #f5821e;
+    color: #000;
+    border-radius: 4px;
+    text-decoration: none;
+    cursor: pointer;
+    float: right;
+    font-weight: 700 !important;
+    text-transform: uppercase;
+    font-size: 18px;
+    border: solid 1px #ececec;
+    margin-bottom: 10px
+}
+
+a.actionBtn:hover {
+    background-color: #c26717 !important;
+    color: #000;
+    border: solid 1px #ddd
+}
+
+a.cancelBtn, a.backBtn {
+    display: inline-block;
+    padding: 14px 20px;
+    background-color: #aaaaaa;
+
+    color: #000;
+    border-radius: 4px;
+    text-decoration: none;
+    float: left;
+    margin-right: 10px;
+    margin-bottom: 10px;
+    font-weight: 700 !important;
+    border: solid 1px #ddd;
+    font-size: 14px;
+    text-transform: uppercase
+}
+
+a.cancelBtn:hover, a.backBtn:hover {
+    border: solid 1px #bababa;
+    color: #000;
+    background-color: #fff
+}
+
+.selectTicket a.actionBtn {
+    margin: 2px 0
+}
+
+.logincontainer {
+    padding-top: 15px;
+    font-size: 16px
+}
+
+.logincontainer .login-form div {
+}
+
+.logincontainer .login-form div label {
+    width: 75px;
+    display: inline-block
+}
+
+.logincontainer .login-form div input {
+    border: 2px solid #d3d3d3;
+    border-radius: 2px;
+    padding: 5px
+}
+
+.logincontainer .login-error {
+    padding: 3px 5px;
+    border-bottom-left-radius: 3px;
+    border-bottom-right-radius: 3px;
+    background-color: #d00101;
+    color: #fff;
+    font-size: 12px;
+    position: absolute;
+    width: 173px;
+    margin: -1px 0 0 79px !important;
+    display: none
+}
+
+.logincontainer .login-form .login-failed {
+    background-color: #fcc;
+    padding: 10px;
+    line-height: 1.7em;
+    border-radius: 3px;
+    border: 1px solid #f03;
+    width: 238px;
+    display: none
+}
+
+.logincontainer a {
+    color: #f5821e;
+    text-transform: uppercase
+}
+
+.logincontainer a:hover {
+    color: #e26304
+}
+
+.logincontainer .actionBtn {
+    padding: 14px 20px;
+    background-color: #f5821e;
+    color: #000;
+    border: none;
+    border-radius: 4px;
+    font-size: 14px;
+    outline: #e26304;
+    margin: 15px 0;
+    font-weight: 700;
+    text-transform: uppercase;
+    float: right
+}
+
+.logincontainer .backBtn {
+    float: left;
+    margin-top: 15px
+}
+
+.logincontainer .actionBtn:hover {
+    background-color: #e26304
+}
+
+.login-form {
+    width: 250px
+}
+
+div#LoggedInContainer {
+    padding-top: 15px
+}
+
+div.logout-link {
+    float: right;
+    margin-top: 20px
+}
+
+#LoggedInContainer a {
+    color: #f5821e
+}
+
+.selectionInfo {
+    /*margin-top: 6px*/
+    border: solid 1px white;
+    margin: 0 -11px 0 -19px;
+    text-align: center;
+    font-size: larger;
+    background: #a77d7d38;
+    color: papayawhip;
+}
+
+.selectionInfo img {
+    border: 1px solid #d3d3d3;
+    width: 100%;
+    margin-top: 20px;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box
+}
+
+.selectionInfoInner {
+}
+
+.sidebar {
+    float: left;
+    width: 200px;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    padding: 0 10px 10px 20px;
+    overflow: hidden
+}
+
+.seperator {
+    height: 20px
+}
+
+.main {
+    padding: 0 20px 10px 10px;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    margin-left: 200px;
+    border-left: 1px solid #d3d3d3;
+    min-height: 400px;
+    overflow: hidden;
+    padding-bottom: 100px
+}
+
+.main.fullwidth {
+    margin-right: 0;
+    margin-left: 0;
+    border-right: 0;
+    border-left: none;
+    max-width: 100%;
+    padding: 1px
+}
+
+.selectionInfoInner a.movieName {
+    font-size: 22px;
+    font-weight: 700;
+    text-decoration: none;
+    color: #000;
+    display: block;
+    padding-bottom: 10px
+}
+
+.selectionInfoInner .movieDate {
+    font-size: 16px;
+    color: gray;
+    font-weight: 700
+}
+
+.selectionInfoInner .movieTime {
+    font-size: 16px;
+    color: gray;
+    font-weight: 700
+}
+
+.selectionInfoInner .movieLocation {
+    font-size: 16px;
+    color: #000;
+    padding-top: 15px;
+    font-weight: 700
+}
+
+.selectionInfoInner .movieVenue a {
+    font-size: 14px;
+    color: gray;
+    text-decoration: none
+}
+
+.actionHolder {
+    text-align: right
+}
+
+.errorpage, .thankyou {
+    max-width: 760px;
+    min-width: 300px;
+    margin: 0 auto;
+    font-size: 14px;
+    text-align: left
+}
+
+.orderForm {
+    max-width: 1000px !important;
+    min-width: 300px;
+    margin: inherit !important;
+    font-size: 14px;
+    text-align: left;
+}
+
+.orderformcontainer {
+    max-width: 755px;
+    margin-left: 10px
+}
+
+.orderForm .formRow {
+    position: relative;
+    min-height: 85px
+}
+
+.orderForm .coupon .formRow {
+    min-height: 0;
+    max-width: 400px
+}
+
+.orderForm .coupon .seatSelection td {
+    text-align: left;
+    padding: 5px
+}
+
+.orderForm .coupon {
+    margin: 0 0 30px
+}
+
+.personalInfo > .formRow:nth-child(odd) {
+    float: left;
+    width: 50%
+}
+
+.personalInfo > .formRow:nth-child(even) {
+    float: left;
+    width: 50%
+}
+
+.personalInfo > .formRow:nth-child(odd):after {
+    clear: both
+}
+
+.personalInfo > .formRow:nth-child(odd) .input-label-container {
+    margin: 0 10px 0 0
+}
+
+.personalInfo > .formRow:nth-child(even) .input-label-container {
+    margin: 0 10px 0 0
+}
+
+.formCheckbox:before {
+    clear: both
+}
+
+.formCheckbox:after {
+    clear: both
+}
+
+.checkbox-container {
+    float: left
+}
+
+.orderForm .authentication .formRow, .cancellation-container .authentication {
+    float: none
+}
+
+.pagecontainer.cancelreservationloginres #header, .pagecontainer.CancelReservationRes #header {
+    height: 100px
+}
+
+.cancellation-container .actionBtn {
+    float: none
+}
+
+.orderForm .formRow::after {
+    clear: both
+}
+
+.orderForm .field {
+    float: left;
+    margin: 10px 0 30px
+}
+
+.orderForm .field input {
+    width: 230px;
+    border: 2px solid #d3d3d3;
+    border-radius: 2px;
+    padding: 5px
+}
+
+.orderForm #delivery, .orderForm .paypal {
+    margin: 20px 0 10px
+}
+
+.orderForm #delivery a {
+    color: #f5821e
+}
+
+.orderForm #delivery a:hover {
+    color: #e26304
+}
+
+.orderForm #delivery .radiobuttonlist input {
+    margin-bottom: 10px;
+    margin-right: 10px;
+    padding-top: 5px
+}
+
+input.error-input {
+    border: 2px solid #d00101 !important;
+    border-bottom-left-radius: 1px !important;
+    border-bottom-right-radius: 1px !important
+}
+
+.field span.Error {
+    background-color: #d00101;
+    color: #fff;
+    font-size: 12px;
+    padding: 3px 5px;
+    width: 234px;
+    border-bottom-left-radius: 3px;
+    border-bottom-right-radius: 3px;
+    margin-top: -1px
+}
+
+.orderForm .label {
+    font-size: 14px;
+    line-height: 1.428;
+    white-space: nowrap;
+    font-weight: 400 !important
+}
+
+.orderForm .checkboxLabel {
+    width: auto;
+    float: left;
+    text-align: left;
+    padding-left: 10px;
+    font-size: 14px;
+    line-height: 1.3em;
+    color: gray
+}
+
+.orderForm .field input.checkbox {
+    width: auto;
+    border: none;
+    padding: 0;
+    box-shadow: none;
+    margin-left: 5px
+}
+
+.orderForm h2 {
+    margin: 10px 0;
+    font-size: 18px !important
+}
+
+.orderForm p {
+    width: inherit;
+    float: none
+}
+
+.payment#divPerTicketMembership input {
+    width: 90%
+}
+
+input::-webkit-outer-spin-button, input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0
+}
+
+#gvPerTicketMem {
+    margin: 0 auto
+}
+
+.paymentselect2 {
+    width: 74px
+}
+
+.paymentNumber2, .expiry2, .ssn2 {
+    float: right;
+    margin-left: 5px
+}
+
+.orderForm .payment, .orderForm .perticketsv {
+    background-color: #eee;
+    border: 1px solid #d3d3d3;
+    padding: 10px;
+    margin-top: 20px;
+    margin-bottom: 10px;
+    font-size: 14px
+}
+
+.payment .paymentType, .payment .paymentNumber, .payment .expiry, .payment .ssn, .payment .cvv {
+    float: right;
+    margin-left: 15px
+}
+
+.payment input {
+    width: 110px;
+    border: 1px solid gray;
+    padding: 3px;
+    box-shadow: inset 2px 2px 2px rgba(0, 0, 0, .1)
+}
+
+.payment select {
+    padding: 3px
+}
+
+.paymentType select {
+    width: 74px
+}
+
+.payment .ssn input {
+    width: 70px
+}
+
+.payment .expiry span {
+    display: inline-block;
+    padding: 0 5px
+}
+
+.payment .paymentLabel {
+    margin-bottom: 7px
+}
+
+.orderForm .field input.fieldError {
+    border: 1px solid red
+}
+
+.fieldErrorMessage {
+    padding: 3px 5px;
+    border-radius: 3px;
+    background-color: #d00101;
+    color: #fff;
+    font-size: 12px;
+    position: absolute;
+    left: 0;
+    top: 53px;
+    width: 234px;
+    margin-top: -1px
+}
+
+.trustImage {
+    text-align: center;
+    margin-bottom: 20px
+}
+
+.showtimes {
+    padding: 0 10px 10px
+}
+
+.showtimes .item {
+    padding-top: 20px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid #d3d3d3
+}
+
+.showtimes .poster {
+    float: right;
+    margin-left: 20px
+}
+
+.showtimes .poster img {
+    border: 1px solid gray;
+    width: 100px
+}
+
+.showtimes .movieInfo {
+    float: left;
+    width: 200px
+}
+
+.showtimes .movieInfo h2 {
+    font-size: 22px;
+    font-weight: 700;
+    margin-bottom: 20px
+}
+
+.showtimes .movieInfo div.movieCategory, .showtimes .movieInfo div.movieRestriction, .showtimes .movieInfo div.movieLength {
+    font-size: 12px;
+    color: gray;
+    margin-bottom: 5px;
+    font-style: italic
+}
+
+.showtimes .movieInfo a.movieMoreInfo {
+    background-image: url(../images/info.png);
+    background-repeat: no-repeat;
+    background-position: right;
+    color: gray;
+    padding: 2px 20px 2px 0;
+    text-decoration: none;
+    margin-top: 10px;
+    display: block
+}
+
+.showtimes .times {
+    float: left
+}
+
+.showtimes .times .venueNames {
+    color: gray;
+    margin-bottom: 15px
+}
+
+.showtimes .times ul li {
+    list-style: none;
+    display: inline-block;
+    margin-right: 5px;
+    border: none;
+    border-radius: 3px;
+    overflow: hidden;
+    margin-bottom: 5px;
+    width: 55px
+}
+
+.showtimes .times ul li.expired {
+    border: 1px solid #d3d3d3
+}
+
+.showtimes .times ul li.threeD {
+    border: 1px solid #f5821e
+}
+
+.showtimes .times ul li.vip {
+    border: 1px solid #007cfa;
+    width: 93px;
+    text-align: right
+}
+
+.showtimes .times ul li a {
+    background-color: #f5821e;
+    color: #fff;
+    text-decoration: none;
+    display: inline-block;
+    height: 30px;
+    line-height: 2.1em;
+    padding: 0 10px;
+    transition: .5s
+}
+
+.showtimes .times ul li a:hover {
+    background-color: #e26304
+}
+
+.showtimes .times ul li.expired a {
+    background-color: gray
+}
+
+.showtimes .times ul li.threeD a {
+}
+
+.showtimes .times ul li.vip a {
+    background-color: #007cfa
+}
+
+.showtimes .times ul li i.attribute {
+    background-color: #fff;
+    display: inline-block;
+    color: #575596;
+    height: 30px;
+    line-height: 2.1em;
+    padding: 0 7px;
+    font-style: normal
+}
+
+.showtimes .times ul li.expired i.attribute {
+    color: #d3d3d3;
+    display: none
+}
+
+.showtimes .times ul li.threeD i.attribute {
+    color: #51ca01;
+    display: none
+}
+
+.showtimes .times ul li.vip i.attribute {
+    color: #007cfa
+}
+
+.showtimes a.changeDate {
+    text-decoration: none;
+    color: #00a6f3;
+    font-style: italic;
+    display: block
+}
+
+.showtimes a.changeDate span {
+    font-style: normal;
+    color: #00a6f3
+}
+
+.showtimes .filters {
+    border-radius: 3px;
+    margin-top: 20px;
+    margin-bottom: 20px
+}
+
+.showtimes .filters .filter {
+    display: inline-block;
+    margin-right: 5px;
+    padding: 10px;
+    color: #fff;
+    background-color: gray;
+    border-radius: 3px
+}
+
+.showtimes .filters .filter.threeD {
+    background-color: #51ca01
+}
+
+.showtimes .filters .filter.vip {
+    background-color: #007cfa
+}
+
+.error {
+    background-image: url(../../images/PL_RES/icon_alert.png);
+    background-repeat: no-repeat;
+    background-position-x: 20px;
+    background-position-y: 50%;
+    background-color: #d83722;
+    padding: 10px;
+    line-height: 1.7em;
+    min-height: 55px
+}
+
+.success {
+    background-image: url(../../images/PL_RES/success.svg);
+    background-repeat: no-repeat;
+    background-position-x: 20px;
+    background-position-y: 50%;
+    background-color: #39aa49;
+    padding: 10px;
+    line-height: 1.7em;
+    min-height: 55px
+}
+
+.info {
+    background-image: url(../../images/PL_RES/icon_time.png);
+    background-repeat: no-repeat;
+    background-position-x: 20px;
+    background-position-y: 50%;
+    background-color: #486cdc;
+    padding: 10px;
+    line-height: 1.7em;
+    min-height: 55px
+}
+
+.orange-container {
+    border: 2px solid #f5821e;
+    border-radius: 3px;
+    padding: 5px;
+    display: inline-block
+}
+
+.errorb {
+    background-color: #d00101;
+    padding: 5px;
+    font-size: 12px;
+    border-radius: 3px;
+    border: 1px solid #f03;
+    clear: both;
+    color: #fff
+}
+
+span.errorb[style*=inline] {
+    display: block !Important
+}
+
+.showtimes .actionHolder {
+    text-align: right;
+    padding-top: 20px
+}
+
+.showtimes .venueNames a {
+    color: gray;
+    text-decoration: none
+}
+
+.seatplan .seat {
+    position: absolute;
+    background-color: #575596;
+    height: 50px;
+    width: 50px;
+    line-height: 50px;
+    color: #fff;
+    border-radius: 0 0 10px 10px
+}
+
+.seatplan .seat.unavailable {
+    background-color: #ccc
+}
+
+.seatplan .seat.selected {
+    background-color: #51ca01
+}
+
+.seatplan .screen {
+    text-align: center
+}
+
+.seatplan .screen .label {
+    margin-top: -20px;
+    color: gray;
+    font-size: 18px;
+    font-weight: 700
+}
+
+.seatplan .message {
+}
+
+.seatplan, .venuedisplay, .selectTicket {
+    max-width: 800px;
+    margin: 10px auto
+}
+
+.seatplan .actionHolder {
+    text-align: center;
+    margin-bottom: 20px;
+    margin-top: 20px
+}
+
+.seatplan .actionHolder a.actionBtn {
+    margin-right: 5px;
+}
+
+.seatplan .buttons {
+    margin: 25px
+}
+
+table.seatSelection {
+    width: 119%;
+    margin-top: 15px;
+    border-right: 1px solid #d3d3d3;
+    border-left: 1px solid #d3d3d3;
+    border-top: 1px solid #d3d3d3
+}
+
+table.seatSelection td {
+    padding: 5px 0;
+    text-align: center;
+    border-bottom: 1px solid #d3d3d3;
+    font-weight: 700
+}
+
+.summary {
+    background-color: #eee
+}
+
+.summary td, legend {
+    font-weight: 700
+}
+
+fieldset {
+    border: 1px solid gray;
+    margin: 10px 0;
+    padding: 10px;
+    background: #fff
+}
+
+.ticketLimit {
+    margin-top: 10px;
+    color: gray
+}
+
+.legendContainer {
+    padding: 15px 0;
+    border-top: 1px solid #d3d3d3;
+    margin-top: 10px
+}
+
+.legendContainer .legend {
+    display: inline-block
+}
+
+.legendContainer .legend .graphic {
+    height: 16px;
+    width: 16px;
+    display: inline-block;
+    margin-right: 10px
+}
+
+.legendContainer .legend .graphic.available {
+    background-color: #575596
+}
+
+.legendContainer .legend .graphic.unavailable {
+    background-color: #ccc
+}
+
+.legendContainer .legend .graphic.selected {
+    background-color: #51ca01
+}
+
+.legendContainer .legend .label {
+    display: inline-block;
+    height: 16px;
+    padding-right: 7px;
+    float: right
+}
+
+.orderForm table.seatSelection {
+    margin-bottom: 28px;
+}
+
+.orderForm .paypalInfo {
+    margin-bottom: 20px
+}
+
+.orderForm span.required {
+    color: red;
+    font-size: 15px
+}
+
+.orderForm .timer {
+    font-size: 20px;
+    color: gray;
+    font-weight: 700;
+    margin: 20px 0
+}
+
+.confirmation {
+    width: 600px;
+    margin: 0 auto;
+    font-size: 14px
+}
+
+span.termserror[style*=inline] {
+    display: block !important;
+    color: red
+}
+
+.sellables {
+    max-width: 900px;
+    margin: 0 auto;
+    font-size: 14px
+}
+
+.confirmation .section {
+    margin: 20px 0
+}
+
+.confirmation h2, .sellables h2 {
+    font-size: 20px;
+    font-weight: 700;
+    margin-bottom: 10px
+}
+
+.confirmation table.orderDetails {
+}
+
+.confirmation table.orderDetails td {
+    padding: 10px;
+    border-bottom: 1px solid #d3d3d3
+}
+
+.confirmation table.orderDetails td.label {
+    width: 120px;
+    border-left: none
+}
+
+.confirmation table.orderDetails.payments {
+    margin-bottom: 10px
+}
+
+table.ticketSelection {
+    width: 100%;
+    margin-top: 15px;
+    border: 1px solid #d3d3d3
+}
+
+table.ticketSelection td, table.ticketSelection th {
+    padding: 10px;
+    text-align: center;
+    border-bottom: 1px solid #d3d3d3
+}
+
+table.ticketSelection tr.sums {
+    font-size: 14px
+}
+
+table.ticketSelection tr.header {
+    background-color: #eee
+}
+
+.thankyou {
+    width: 500px;
+    margin: 0 auto;
+    font-size: 14px
+}
+
+.thankyou .section {
+    margin-bottom: 20px
+}
+
+.thankyou h2 {
+    font-size: 20px;
+    font-weight: 700;
+    margin-bottom: 10px;
+    text-align: left
+}
+
+.thankyou .section:first-child {
+    background: url(../../images/PL_RES/successfull.png) no-repeat;
+    background-size: 100px 100px;
+    min-height: 100px;
+    padding: 0 0 0 110px;
+    display: block;
+    margin: 15px 0 20px
+}
+
+.thankyou img.ticket {
+    max-width: 100%
+}
+
+table.errordetails {
+    width: 100%;
+    margin-top: 15px;
+    border-right: 1px solid #d3d3d3;
+    border-left: 1px solid #d3d3d3;
+    border-top: 1px solid #d3d3d3;
+    margin-bottom: 20px
+}
+
+table.errordetails td {
+    padding: 5px;
+    border-bottom: 1px solid #d3d3d3
+}
+
+table.errordetails td.cap {
+    background-color: #eee;
+    width: 30%
+}
+
+.orderForm .actionHolder #hlReset {
+    display: none
+}
+
+@media (max-width: 1200px) {
+    .orderForm .label {
+        float: none;
+        font-size: 13px;
+        white-space: normal
+    }
+
+    .orderForm .field input {
+    }
+
+    .orderForm {
+        width: 96%;
+        margin: 0 auto !important
+    }
+
+    .confirmation {
+        width: 96%;
+        margin: 0 auto !important
+    }
+
+    .sellables {
+        width: 96%;
+        margin: 0 auto !important
+    }
+
+    .thankyou {
+        width: 96%;
+        margin: 0 auto !important
+    }
+
+    .errorpage {
+        width: 100%;
+        margin: 0 auto !important
+    }
+
+    .field span.Error {
+        width: 96%
+    }
+
+    .payment .paymentType, .payment .paymentNumber, .payment .expiry, .payment .ssn {
+        float: none;
+        margin-bottom: 15px
+    }
+
+    .trustImage img {
+        width: 100%
+    }
+
+    .seatplan .screen img {
+        width: 100%
+    }
+
+    .seatplan .screen .label {
+        margin-top: 0
+    }
+
+    .seatplan .buttons button {
+        background-size: 40px 40px
+    }
+
+    table.seatSelection span.break {
+        display: block
+    }
+
+    table.seatSelection td {
+        font-size: 11px
+    }
+
+    .paymentType select {
+        width: 100%
+    }
+
+    .payment input, .perticketsv input {
+        width: 100%
+    }
+
+    .payment .expiry select {
+        width: 70px
+    }
+
+    .payment .ssn input {
+        width: 100%
+    }
+
+    .payment .cvv input {
+        width: 100%
+    }
+
+    .payment .paymentType, .payment .paymentNumber, .payment .expiry, .payment .ssn {
+        margin-left: 0
+    }
+
+    .payment select, .payment input {
+        -moz-box-sizing: border-box;
+        -webkit-box-sizing: border-box;
+        box-sizing: border-box
+    }
+
+    .total-block {
+        width: 100%
+    }
+
+    .thankyou .section:first-child {
+        background: url(../images/PL_RES/successfull.png) center 0 no-repeat;
+        padding: 150px 0 0
+    }
+
+    .p {
+        text-align: center
+    }
+
+    .cancellation-container {
+        width: 100% !important
+    }
+
+    .wrap {
+        width: 100%
+    }
+
+    .footer {
+    }
+
+    .seperator {
+        height: 0
+    }
+}
+
+@media (max-width: 600px) {
+    #payuContainer .payuOpt.payu, #payuContainer .payuOpt.paypal, #payuContainer .payuOpt.masterpass, #payuContainer .payuOpt.card {
+        width: 90% !important
+    }
+
+    .siteinfo {
+        display: none
+    }
+
+    .more-info a {
+        display: block
+    }
+
+    .login-form {
+        width: 100%
+    }
+
+    .steps div.step {
+        text-align: center;
+        font-size: 11px;
+        padding: 10px 3px 3px
+    }
+
+    .legendContainer {
+        padding: 15px 0 10px
+    }
+
+    .legendContainer .legend {
+        margin-left: 0;
+        margin-bottom: 10px;
+        margin-right: 30px
+    }
+
+    .timerinfo {
+        margin-left: 20px !important;
+        line-height: 19px !important;
+        margin-bottom: 15px
+    }
+
+    .timer {
+        margin-left: 20px !important
+    }
+
+    .timer-block {
+        background-image: none;
+        padding: 10px 20px 10px 0;
+        font-size: initial
+    }
+
+    .login-link {
+        margin-top: 0;
+        margin-bottom: -15px
+    }
+
+    .msg-title {
+        margin-top: 18px;
+        line-height: normal
+    }
+
+    .msg-description {
+        margin-top: 0
+    }
+
+    .msgInrow {
+        line-height: normal
+    }
+
+    .seatplan .buttons {
+        margin: 25px 10px
+    }
+
+    .orderForm .field input {
+        width: 173px
+    }
+
+    .fieldErrorMessage {
+        width: 177px
+    }
+
+    .friend-num {
+        width: 70%;
+        margin: auto
+    }
+
+    .steps div.step span {
+        margin: 0;
+        -moz-box-sizing: border-box;
+        -webkit-box-sizing: border-box;
+        box-sizing: border-box
+    }
+
+    .steps div.step label {
+        display: block;
+        padding-top: 5px;
+        padding-bottom: 5px
+    }
+
+    .sidebar {
+        float: none;
+        width: 100%
+    }
+
+    .main {
+        margin-left: 0;
+        width: 100%;
+        padding: 0 10px 10px
+    }
+
+    div.selectTicket a.actionBtn {
+        text-align: center
+    }
+
+    .selectionInfo img {
+        display: none
+    }
+
+    .selectionInfoInner {
+    }
+
+    .showtimes .poster img {
+        width: 80px
+    }
+
+    .showtimes .times {
+        float: none;
+        width: 100%;
+        clear: both;
+        padding-top: 10px
+    }
+
+    .showtimes .movieInfo {
+        width: 190px
+    }
+
+    .showtimes .times .venueNames {
+        margin-bottom: 7px
+    }
+
+    .showtimes .item {
+        padding-top: 10px;
+        padding-bottom: 10px
+    }
+
+    .showtimes .movieInfo h2 {
+        margin-bottom: 7px;
+        font-size: 18px
+    }
+
+    .selectTicket .actionHolder {
+        text-align: center
+    }
+
+    .sidebar {
+        background-color: #000;
+        color: #fff;
+        margin-top: 1px
+    }
+
+    .actionHolder a, .logincontainer .actionBtn, .logincontainer .backBtn, .coupon .actionBtn {
+        width: 100%;
+        display: block;
+        padding: 14px 0 !important;
+        text-align: center;
+        float: none
+    }
+
+    .logincontainer .actionBtn, .logincontainer .backBtn {
+        margin-bottom: 0
+    }
+
+    .selectTicket h1 {
+        float: left
+    }
+
+    .orderformcontainer {
+        margin-left: 0
+    }
+}
+
+@media (max-width: 420px) {
+    .total-block {
+        width: 100%
+    }
+
+    .personalInfo > .formRow:nth-child(odd) {
+        width: 100% !important
+    }
+
+    .personalInfo > .formRow:nth-child(even) {
+        width: 100% !important
+    }
+
+    .orderForm .field input {
+        width: 300px
+    }
+
+    .fieldErrorMessage {
+        width: 304px
+    }
+
+    .confirmation h2 {
+        font-size: 16px
+    }
+
+    .cancellation-container {
+        padding: 2px !important
+    }
+
+    .personalInfo > .formRow:nth-child(even) .input-label-container {
+        margin: 0 10px 0 0
+    }
+
+    .personalInfo > .formRow:nth-child(odd) .input-label-container {
+        margin: 0 10px 0 0
+    }
+}
+
+.SpecialMessage {
+    background-color: #fcc;
+    padding: 10px;
+    line-height: 1.7em;
+    border-radius: 3px;
+    border: 1px solid #f03;
+    margin-top: 10px
+}
+
+.VenueMessage {
+    background-color: #f0f0f0;
+    padding: 10px;
+    line-height: 1.7em;
+    border-radius: 3px;
+    border: 1px solid #ccc
+}
+
+table.ticketTable td, table.ticketTable th {
+    padding: 10px;
+    text-align: left
+}
+
+table.ticketTable tr.header td, table.ticketTable tr.header th {
+    border-bottom: 1px solid #d3d3d3;
+    font-weight: 700;
+    text-transform: uppercase
+}
+
+table.ticketTable td, table.ticketTable th {
+    border-bottom: 1px dashed #d3d3d3
+}
+
+table.ticketTable tr.TT_101 td {
+    background-color: #09f;
+    color: #fff
+}
+
+table.ticketTable tbody {
+    border-bottom: 2px solid #f5821e
+}
+
+.tipsy {
+    padding: 5px;
+    font-size: 12px;
+    opacity: .8;
+    filter: alpha(opacity=80);
+    background-repeat: no-repeat;
+    background-image: url(tipsy.gif)
+}
+
+.tipsy-inner {
+    padding: 5px 8px 4px;
+    background-color: #000;
+    color: #fff;
+    max-width: 200px;
+    text-align: center
+}
+
+.tipsy-inner {
+    -moz-border-radius: 3px;
+    -webkit-border-radius: 3px
+}
+
+.tipsy-north {
+    background-position: top center
+}
+
+.tipsy-south {
+    background-position: bottom center
+}
+
+.tipsy-east {
+    background-position: right center
+}
+
+.tipsy-west {
+    background-position: left center
+}
+
+.dirLTR {
+    direction: ltr
+}
+
+#divSellables {
+    position: relative;
+    overflow: hidden;
+    margin: 20px auto 0
+}
+
+p {
+    text-align: justify
+}
+
+#divSellables ul {
+    position: relative;
+    margin: 0;
+    padding: 0;
+    list-style: none
+}
+
+#divSellables ul li {
+    position: relative;
+    display: block;
+    float: right;
+    margin: 0;
+    padding: 0;
+    width: 280px;
+    height: 300px;
+    text-align: center;
+    border: 6px solid #fff
+}
+
+#divSellables ul li div {
+    background: rgba(128, 128, 128, .24);
+    padding: 8px 0
+}
+
+#divSellables ul li div.selected {
+    background: rgba(128, 128, 128, .24);
+    padding: 8px 0;
+    border: 3px solid #007cfa
+}
+
+#divSellables ul li img, #divSellables ul li span {
+    display: block
+}
+
+#divSellables ul li select, #divSellables ul li img, #divSellables ul li span {
+    font-size: 1.3em
+}
+
+.sellables .actionHolder {
+    text-align: center
+}
+
+.discount {
+    margin-top: 20px
+}
+
+.pgwModal .pm-content {
+}
+
+.authentication, .authentication .formRow {
+    margin-top: 10px;
+    float: right;
+    width: 100%
+}
+
+.delivery {
+    margin: 10px 0
+}
+
+.cardnumbererror {
+    background-color: Red;
+    color: #fff
+}
+
+
+
+.timerinfo {
+    line-height: 30px;
+    margin-left: 50px
+}
+
+.timer {
+    line-height: 25px;
+    font-size: larger;
+    margin-left: 50px
+}
+
+.General_InformationMessage_Text {
+    border: 2px solid #f5821e;
+    border-radius: 3px;
+    padding: 5px;
+    text-indent: 10px;
+    display: block;
+    margin-bottom: 10px
+}
+
+.cancellation-container {
+    padding: 20px;
+    width: 50%;
+    margin: auto;
+    box-sizing: border-box
+}
+
+.cancellation-container form.cancellation .card-error {
+    font-size: 16px;
+    font-weight: 700;
+    color: #f5821e
+}
+
+.cancellation-container div {
+    margin: 15px 0 25px
+}
+
+.cancellation-container div.input-container {
+    width: 200px
+}
+
+.cancellation-container img {
+    margin: 0 0 15px
+}
+
+.input-label-container .label {
+    margin: 5px 0;
+    display: block;
+    text-transform: uppercase;
+    font-size: 16px
+}
+
+.input-container input, .friend-num input {
+    box-sizing: border-box;
+    width: 100%;
+    border: 2px solid #d3d3d3;
+    border-radius: 2px;
+    padding: 5px;
+    height: 34px;
+    padding: 6px 12px;
+    font-size: 14px;
+    line-height: 1.42857143;
+    color: #555;
+    background-color: #fff;
+    background-image: none;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
+    box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
+    -webkit-transition: border-color ease-in-out .15s, -webkit-box-shadow ease-in-out .15s;
+    -o-transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
+    transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s
+}
+
+.input-container span {
+    display: block
+}
+
+.input-container span.input-error {
+    padding: 3px 5px;
+    border-bottom-left-radius: 3px;
+    border-bottom-right-radius: 3px;
+    box-sizing: border-box;
+    background-color: #d00101;
+    color: #fff;
+    font-size: 12px;
+    width: 100%
+}
+
+.input-container span.input-error[style*=inline] {
+    display: block !important
+}
+
+.cancellation-container .buttons {
+    margin: 30px 0 0
+}
+
+.cancellation-container table {
+    width: 100%
+}
+
+.cancellation-container table th {
+    background-color: #eee;
+    border-bottom: 1px solid #d3d3d3;
+    font-weight: 700;
+    padding: 10px;
+    text-align: left
+}
+
+.cancellation-container table td {
+    border-bottom: 1px dashed #d3d3d3;
+    padding: 10px;
+    text-align: left
+}
+
+.cancellation-container table td a:first-child {
+    color: #f5821e;
+    margin-right: 10px
+}
+
+.cancellation-container table td a:last-child {
+    color: #555
+}
+
+.pgwModal .pm-title {
+    background-color: #f5821e;
+    line-height: 2em;
+    color: #fff;
+    font-weight: 700;
+    letter-spacing: .05em
+}
+
+.pm-content table {
+    margin-bottom: 10px;
+    text-align: left
+}
+
+.pm-content table th {
+    background-color: #eee;
+    border-bottom: 1px solid #d3d3d3;
+    font-weight: 700;
+    padding: 10px
+}
+
+.pm-content table td {
+    padding: 10px
+}
+
+.pm-content table.event-details-table {
+    width: 100%;
+    text-align: center
+}
+
+.cancellation-container .order-details-table {
+    border: 1px solid #555
+}
+
+.cancellation-container .event-details {
+    display: inline-block
+}
+
+.cancellation-container .event-details a {
+    display: block;
+    padding: 10px;
+    text-align: center;
+    text-decoration: none;
+    font-size: 16px;
+    font-weight: 700;
+    color: #fff;
+    letter-spacing: .05em
+}
+
+.cancellation-container .event-details a:first-child {
+    background-color: #f5821e;
+    border-top-left-radius: 3px;
+    border-top-right-radius: 3px
+}
+
+.cancellation-container .event-details a:last-child {
+    background-color: #555;
+    border-bottom-left-radius: 3px;
+    border-bottom-right-radius: 3px
+}
+
+.cancellation-container input {
+}
+
+.rtl {
+    text-align: right
+}
+
+.rtl p {
+    text-align: right
+}
+
+.rtl input[type=radio] {
+    float: right
+}
+
+.authentication h2 {
+    font-size: 20px;
+    font-weight: 700;
+    margin-bottom: 15px
+}
+
+.authentication > p {
+    margin-bottom: 10px
+}
+
+.authentication {
+    margin-bottom: 20px
+}
+
+.seatplan .message.required {
+    olor: #c20000;
+    font-size: 17px;
+}
+
+#payuContainer {
+    float: right;
+    width: 100%;
+    margin-bottom: 20px
+}
+
+#payuContainer .payuOpt {
+    padding: 5px;
+    height: 40px
+}
+
+#payuContainer .payuOpt.masterpass img {
+    margin: 2px 0
+}
+
+#payuContainer .payuOpt.paypal img {
+    margin: 2px 0
+}
+
+#payuContainer .payuOpt.card input, #payuContainer .payuOpt.masterpass input, #payuContainer .payuOpt.payu input, #payuContainer .payuOpt.paypal input {
+    margin: 15px 10px 0 0
+}
+
+#payuContainer .payuOpt {
+    float: left;
+    margin: 10px 5px 5px 0
+}
+
+#payuContainer .payuOpt.payu {
+    width: 150px
+}
+
+#payuContainer .payuOpt.paypal {
+    width: 170px
+}
+
+#payuContainer .payuOpt.masterpass {
+    width: 205px
+}
+
+#payuContainer .payuOpt.card {
+    width: 160px
+}
+
+.payuOpt input, .payuOpt img {
+    display: inline-block;
+    vertical-align: middle;
+    float: left
+}
+
+.timeout {
+    padding: 10px;
+    cursor: default;
+    display: none;
+    float: left;
+    text-align: left
+}
+
+.timeout #btnReselectedSeats {
+    cursor: pointer;
+    float: none
+}
+
+.timeout .actionHolder {
+    margin-top: 10px;
+    text-align: center
+}
+
+.changebookingtype {
+    float: right;
+    margin: 24px 20px 0 0
+}
+
+.changebookingtype a {
+    color: #fff;
+    text-decoration: underline;
+    font-size: 12px
+}
+
+.sessionended {
+    padding: 10px;
+    cursor: default;
+    display: none;
+    text-align: left
+}
+
+.sessionended #btnContinue {
+    cursor: pointer;
+    float: none
+}
+
+.sessionended .actionHolder {
+    margin-top: 10px;
+    text-align: center
+}
+
+.ordercompletepromo img {
+    max-width: 100%
+}
+
+.invoice {
+}
+
+.type-ticket {
+    word-break: break-all !important
+}
+
+table.ticketTable tr.header td, table.ticketTable tr.header th {
+    word-break: break-all !important
+}
+
+/*================== footer*/
+.footer {
+    margin: auto;
+    width: 10%;
+    height: 0;
+    background-repeat: repeat-x;
+    bottom: 0;
+    position: absolute
+}
+
+#footer {
+    background: url(../images/footer-tail.gif) repeat-x left top #bfbfbf;
+    color: #1d1d1d;
+    font-size: .86em;
+    line-height: 1.667em;
+    text-align: center;
+}
+
+#footer .left {
+    background: url(../images/footer-left.gif) no-repeat left top;
+}
+
+#footer .right {
+    min-height: 89px;
+    height: auto !important;
+    height: 89px;
+    background: url(../images/footer-right.gif) no-repeat right top;
+    text-align: center;
+}
+
+#footer .footerlink {
+    padding: 35px 25px;
+}
+
+.footerlink p {
+    margin: 0;
+    padding: 0;
+    line-height: normal;
+    white-space: nowrap;
+    text-indent: inherit;
+    color: #1d1d1d;
+}
+
+.footerlink a {
+    color: #1d1d1d;
+    font-weight: normal;
+    margin: 0;
+    padding: 0;
+    border: none;
+    text-decoration: underline;
+    background-color: transparent;
+}
+
+.footerlink a:hover {
+    color: #1d1d1d;
+    background-color: transparent;
+    text-decoration: none;
+}
+
+.footerlink .lf {
+    float: left;
+}
+
+.footerlink .rf {
+    float: right;
+}
+
+/*=============================== Confirmation page*/
+.info-order {
+    font-size: 120%;
+}
+
+.logo a {
+    color: #a3a8a8;
+    font-size: 35px;
+    line-height: 50px;
+    padding: 0 80px;
+    margin-left: 80px;
+    font-family: Arial, Helvetica, sans-serif;
+    outline: none;
+    text-decoration: none;
+}
+
+.logo a .logo-name {
+    color: #d72a18;
+}
+/*=============================== Confirm order Table*/
+.seatInfo{
+    list-style: none;
+}
+
+/*============================language bar*/
+.language {
+    margin-top: 1%;
+    margin-right: 22%;
+    float: right;
+}
+
+.language .text-white {
+    color: #fff !important
+}
+.language .item-lang {
+    background-color: #0c4128;
+    color: white;
+    border-radius: 6px;
+    border-color: royalblue;
+    font-size: 1.2em;
+}
+

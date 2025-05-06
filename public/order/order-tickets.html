@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Projections Today</title>
+  <link rel="stylesheet" href="/css/style-program.css"/>
+    <script>
+        fetch('/partials/head.html')
+        .then(res => res.text())
+        .then(data => {
+        document.head.insertAdjacentHTML('beforeend', data);
+        });
+    </script>
+</head>
+<body id="page2">
+
+<!-- START PAGE SOURCE -->
+<div class="tail-top">
+  <div class="tail-bottom">
+    <div id="main">
+
+    <header id="nav"></header>
+
+      <div id="content">
+        <div class="line-hor"></div>
+        <div class="box">
+          <div class="border-right">
+            <div class="border-left">
+              <div class="inner">
+                <h3 class="title">Projections <span>Today</span></h3>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="content">
+          <h4>01 May 2025</h4>
+          <h4>Sofia</h4>
+
+          <ul class="list">
+            <!-- START Movie Item -->
+            <li class="movieList">
+              <img src="/images/movie-example.jpg" alt="Movie Pic" width="204" height="219"/>
+              <a href="/trailer/1" class="title-movie">The Great Adventure</a><br/>
+
+              <span class="qb-movie-rating-info">
+                <img src="/icons/pg.png" alt="Parental Guidance" height="30" class="rating-icon mr-sm"/>
+                <div class="qb-movie-info-wrapper">
+                  <div class="pt-xs">
+                    <span class="mr-sm">Adventure, Animation, Comedy, Family</span>
+                    <span class="ml-xs">|</span>
+                    <span class="mr-xs">101 min.</span>
+                    <div class="screening-type">2D</div>
+
+                    <div class="npm-quickbook">
+                      <!-- Ако няма часове -->
+                      <!-- <a class="h4">Coming soon</a> -->
+
+                      <!-- Ако има часове -->
+                      <a href="/order/buy-tickets/1/movie/1/time/1" class="btn btn-primary btn-lg">12:20</a>
+                      <a href="/order/buy-tickets/1/movie/1/time/2" class="btn btn-primary btn-lg">14:45</a>
+                    </div>
+
+                    <div class="qb-movie-info-column">
+                      <ul class="qb-movie-attributes"></ul>
+                      <span>(AUD: Bulgarian. SUB: English.)</span>
+                    </div>
+                  </div>
+                </div>
+              </span>
+            </li>
+            <!-- END Movie Item -->
+
+            <!-- Копирай още блокове <li> за други филми при нужда -->
+          </ul>
+        </div>
+      </div>
+
+      <footer id="footer"></footer>
+
+    </div>
+  </div>
+</div>
+<script type="module" src="/js/main.js"></script>
+<script type="text/javascript"> Cufon.now(); </script>
+<!-- END PAGE SOURCE -->
+
+</body>
+</html>

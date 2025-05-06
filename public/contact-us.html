@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title>Cinema Tickets</title>
+    <script>
+        fetch('/partials/head.html')
+          .then(res => res.text())
+          .then(data => {
+            document.head.insertAdjacentHTML('beforeend', data);
+          });
+    </script>
+</head>
+<body id="page10">
+<!-- START PAGE SOURCE -->
+<div class="tail-top">
+    <div class="tail-bottom">
+        <div id="main">
+
+            <header id="nav"></header>
+
+            <div id="content">
+                <div class="line-hor"></div>
+                <div class="box">
+                    <div class="border-right">
+                        <div class="border-left">
+                            <div class="inner">
+                                <h3>Our <span>Contacts</span></h3>
+                                <div class="address">
+                                    <div class="fleft">
+                                        <span>Zip Code:</span> 1000<br/>
+                                        <span>Country:</span> Bulgaria<br/>
+                                        <span>Telephone:</span> +359 123456789<br/>
+                                        <span>Fax:</span> +359 123456789
+                                    </div>
+                                    <div class="extra-wrap">
+                                        <span>Note:</span><br/>
+                                        <p>Please provide us with a minimum amount of data,
+                                            i.e. only that which is necessary to contact us or for identification!
+                                        </p>
+                                        <p>A copy of your message will be sent to
+                                            the email address provided. In case you want to contact us
+                                            and provide us with your personal data, we inform you that your personal
+                                            data will be processed by Cinema Tickets,
+                                            in its capacity as a personal data controller, in accordance
+                                            with the Personal Data Protection Act. Simultaneously with
+                                            providing your personal data, you consent to the data specified by you
+                                            being used by Cinema Tickets for the provision of the ordered services or
+                                            products and/or for communication with you in case of necessity.
+                                        </p>
+                                        <p>The provision of personal data is voluntary.
+                                            When for the use of a given service or functionality the Site requires
+                                            the provision of personal data, Cinema Tickets clearly indicates the mandatory
+                                            or optional nature of the collected data.
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="content">
+                    <h3>Contact <span>Form</span></h3>
+                    <form id="contacts-form" action="#">
+                        <fieldset>
+                            <div class="field">
+                                <label>Your Name:</label>
+                                <input type="text" name="name" value=""/>
+                            </div>
+                            <div class="field">
+                                <label>Your E-mail:</label>
+                                <input type="email" name="email" value=""/>
+                            </div>
+                            <div class="field">
+                                <label>Your Message:</label>
+                                <textarea name="message" cols="30" rows="5"></textarea>
+                            </div>
+                            <div class="wrapper">
+                                <button type="submit" class="link2">
+                                    <span>Send Message</span>
+                                </button>
+                            </div>
+                        </fieldset>
+                    </form>
+                </div>
+            </div>
+
+            <footer id="footer"></footer>
+
+        </div>
+    </div>
+</div>
+<script type="module" src="/js/main.js"></script>
+<script type="text/javascript"> Cufon.now(); </script>
+<!-- END PAGE SOURCE -->
+</body>
+</html>

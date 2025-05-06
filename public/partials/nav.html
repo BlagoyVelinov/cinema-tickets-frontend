@@ -1,0 +1,38 @@
+<nav id="header">
+  <div class="row-1">
+    <div class="fleft"><a href="/">Cinema <span>Tickets</span></a></div>
+    <ul>
+      <!-- Logged-in user section - will be shown/hidden via JS -->
+      <div class="form-inline my-2 my-lg-0 border px-3 welcome-message" style="display: none;">
+        <div class="logged-user">
+          <span>Welcome, User</span>
+        </div>
+        <form method="post" action="/api/users/logout">
+          <input type="submit" class="btn btn-info btn-logout" value="Logout" />
+        </form>
+      </div>
+      <!-- Login link for guests -->
+      <li><a href="/users/login"><img src="/images/login-icon.gif" alt="login" /></a></li>
+      <!-- Register link for guests -->
+      <li><a href="/users/register"><img src="/images/signup-green3.gif" alt="register" /></a></li>
+      <li class="nav-item">
+        <form class="language" method="get">
+          <label class="text-white" for="lang">Language</label>
+          <select class="item-lang" id="lang" name="lang" onchange="this.form.submit()">
+            <option value="en_US">En</option>
+            <option value="bg_BG">Бг</option>
+          </select>
+        </form>
+      </li>
+    </ul>
+  </div>
+  <div class="row-2">
+    <ul>
+      <li><a href="/" class="active">Home</a></li>
+      <li><a href="/program">Program</a></li>
+      <li><a href="/offers">Offers</a></li>
+      <li><a href="/4-dx">4-DX</a></li>
+      <li class="last"><a href="/imax">IMAX</a></li>
+    </ul>
+  </div>
+</nav>
