@@ -163,6 +163,7 @@ ul, ol {
 
 .movies {
     width: 100%;
+    padding: 0 1.5em;
 }
 
 .movies li {
@@ -671,8 +672,12 @@ a {
     width: 100%;
 }
 
+.inner > h3 {
+    margin-bottom: 1em;
+}
+
 .content > h3 {
-    margin-left: 0.5em;
+    margin: 0.5em 0.5em 1.2em 0.5em;
 }
 
 /*========================== about-us */
@@ -974,7 +979,7 @@ element.style {
   margin-right: 5px;
 }
 
-/* Подобрен стил за филмите в списъка */
+Подобрен стил за филмите в списъка
 #movie-app {
   margin-bottom: 30px;
 }
@@ -982,7 +987,6 @@ element.style {
 #movie-app .movies li {
   margin-bottom: 20px;
   padding-bottom: 15px;
-  border-bottom: 1px dotted rgba(255, 255, 255, 0.2);
 }
 
 #movie-app .movies li:last-child {

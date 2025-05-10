@@ -7,10 +7,12 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Cinema Tickets</title>
   <link rel="stylesheet" href="/css/style.css" />
-  <link rel="stylesheet" href="/css/style-program.css" />
-  
   <!-- Auth Service -->
   <script type="module" src="/services/init-auth.js"></script>
+  <script src="/js/cufon-yui.js"></script>
+  <script src="/js/Gill_Sans_400.font.js"></script>
+  <script src="/js/cufon-replace.js"></script>
+  <script type="text/javascript"> Cufon.now(); </script>
 </head>
 <body id="page1">
 
@@ -62,7 +64,6 @@
                 <p class="debug">{{ debugInfo }}</p>
               </div>
               <ul class="movies" v-else>
-                <p class="debug-count">Showing {{ movies.length }} movies. {{ debugInfo }}</p>
                 <movie-list :movies="movies"></movie-list>
               </ul>
             </div>
@@ -81,13 +82,13 @@
                     <form method="post" action="/program">
                       <div class="col">
                         <label for="dateInput">Date</label>
-                        <input type="date" name="projectionDate" id="dateInput" class="form-control" />
+                        <input type="date" name="projectionDate" id="dateInput" class="form-control" v-model="selectedDate" />
                         <small class="text-danger">Reserved date cannot be in the past</small>
                       </div>
 
                       <div class="form-group">
                         <label for="cityName">Select City</label>
-                        <select class="browser-default custom-select" id="cityName" name="location">
+                        <select class="browser-default custom-select" id="cityName" name="location" v-model="selectedCity">
                           <option value="">Select City</option>
                           <option value="SOFIA">Sofia</option>
                           <option value="PLOVDIV">Plovdiv</option>
@@ -120,38 +121,19 @@
           <div class="content">
             <h4 id="displayDate">Choose a date and city for reserve ticket</h4>
             <h4 id="displayName"></h4>
-            <ul class="list" id="movieList">
-              <!-- Примерен филм, ще се повтаря динамично с JavaScript/Vue -->
-              <li class="movieList">
-                <img src="/path/to/movie.jpg" alt="Movie Pic" width="204px" height="219px" />
-                <a href="/trailer/123" class="title-movie">Movie Title</a><br />
-                <span class="qb-movie-rating-info">
-                  <img src="/path/to/icon.png" alt="Rating" height="30" class="rating-icon mr-sm" />
-                  <div class="qb-movie-info-wrapper">
-                    <div class="pt-xs">
-                      <span class="mr-sm">Adventure, Comedy</span>
-                      <span class="ml-xs">|</span>
-                      <span class="mr-xs">101 min.</span>
-                      <div class="screening-type">2D</div>
-
-                      <!-- Покажи "Coming soon", ако няма часове -->
-                      <a class="h4">Coming soon</a>
-
-                      <!-- Покажи бутоните с часове -->
-                      <a href="/program" class="btn btn-primary btn-lg">12:20</a>
-
-                      <!-- Администраторски бутони -->
-                      <a href="/program/update-projection-time/123" class="btn btn-primary btn-lg">Update projection time</a>
-                      <form method="post" action="/movies/delete-movie/123">
-                        <div class="button-holder d-flex justify-content-center">
-                          <button type="submit" class="btn btn-info mb-3">Delete Movie</button>
-                        </div>
-                      </form>
-                    </div>
-                  </div>
-                </span>
-              </li>
-            </ul>
+            <div id="program-app">
+              <div v-if="isLoading" class="loading-message">
+                <p>Loading movies...</p>
+                <p class="debug">{{ debugInfo }}</p>
+              </div>
+              <div v-else-if="hasError" class="error-message">
+                <p>There was an error loading the movies.</p>
+                <p class="debug">{{ debugInfo }}</p>
+              </div>
+              <ul class="list" v-else>
+                <program-movie-list :movies="movies"></program-movie-list>
+              </ul>
+            </div>
           </div>
         </div>
 
@@ -435,7 +417,6 @@
       </div>
     </div>
   </div>
-
   <script type="module" src="/js/main.js"></script>
 </body>
 </html>

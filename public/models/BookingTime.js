@@ -1,8 +1,8 @@
 import BookingTimeEnum from './enums/booking-time-enum.js';
 
 export default class BookingTime {
-  constructor(id, bookingTime = null) {
-    this.id = id || 0;
+  constructor(id, bookingTime) {
+    this.id = id;
     this.bookingTime = bookingTime;
   }
 
@@ -36,24 +36,26 @@ export default class BookingTime {
     }
   }
 
+  /**
+   * Форматира времето от формата "_18_20" в "18:20"
+   * @returns {string} Форматирано време
+   */
+  getFormattedTime() {
+    if (!this.bookingTime) return '';
+    return this.bookingTime.replace('_', ' ').replace('_', ':');
+  }
+
+  /**
+   * Създава BookingTime обект от JSON данни
+   * @param {Object} json - JSON обект с id и bookingTime
+   * @returns {BookingTime} Нова инстанция на BookingTime
+   */
   static fromJSON(json) {
-    console.log('Parsing BookingTime from', json);
     if (!json) return null;
     
-    try {
-      // Създаваме нова инстанция на BookingTime с подадените id и bookingTime
-      const bookingTime = new BookingTime(json.id, json.bookingTime);
-      
-      // Допълнителни полета, ако има такива във входните данни
-      if (json.date) bookingTime.date = json.date;
-      if (json.location) bookingTime.location = json.location;
-      if (json.time) bookingTime.time = json.time;
-      
-      return bookingTime;
-    } catch (error) {
-      console.error('Error creating BookingTime from JSON:', error, json);
-      // Връщаме минимален валиден обект
-      return new BookingTime(json.id || 0, null);
-    }
+    return new BookingTime(
+      json.id || 0,
+      json.bookingTime || null
+    );
   }
 }

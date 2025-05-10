@@ -1,6 +1,7 @@
 import { createApp, ref, onMounted } from 'vue'
 import '../services/init-auth.js'
 import { movieService } from '../services/MovieService.js'
+import { programService } from '../services/program-service.js'
 
 const MovieListApp = {
   setup() {
@@ -67,13 +68,9 @@ app.component('movie-list', {
     <template v-else>
       <li v-for="(movie, index) in movies" :key="movie.id || index">
         <h4>{{ movie.name || 'Без име' }}</h4>
-        <p class="debug-info">ID: {{ movie.id || 'няма' }}</p>
         <img class="movie-1-pic" :src="movie.imageUrl" :alt="movie.name" width="224" height="269" />
         <p>{{ movie.description || 'Няма описание' }}</p>
-        <div class="movie-details">
-          <p v-if="movie.genre"><strong>Жанр:</strong> {{ movie.genre }}</p>
-          <p v-if="movie.duration"><strong>Продължителност:</strong> {{ movie.duration }} мин.</p>
-        </div>
+        
         <div class="wrapper">
           <a :href="'/trailer/' + movie.id" class="link2">
             <span><span>See Trailer</span></span>
@@ -87,6 +84,10 @@ app.component('movie-list', {
 
 // Монтираме приложението
 app.mount('#movie-app')
+
+// Initialize program page Vue app
+const programApp = programService.initProgramVue()
+programApp.mount('#program-app')
 
 document.addEventListener("DOMContentLoaded", function() {
   // Load navigation and footer

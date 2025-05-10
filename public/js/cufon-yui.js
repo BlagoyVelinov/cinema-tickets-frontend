@@ -913,7 +913,35 @@ Cufon.registerEngine("vml", (function () {
     }
     b = null;
     var h = (document.documentMode || 0) < 8;
-    document.write(('<style type="text/css">cufoncanvas{text-indent:0;}@media screen{cvml\\:shape,cvml\\:rect,cvml\\:fill,cvml\\:shadow{behavior:url(#default#VML);display:block;antialias:true;position:absolute;}cufoncanvas{position:absolute;text-align:left;}cufon{display:inline-block;position:relative;vertical-align:' + (h ? "middle" : "text-bottom") + ";}cufon cufontext{position:absolute;left:-10000in;font-size:1px;}a cufon{cursor:pointer}}@media print{cufon cufoncanvas{display:none;}}</style>").replace(/;/g, "!important;"));
+    var cssStyles = 'cufoncanvas{text-indent:0;}' +
+        '@media screen{' +
+        'cvml\\:shape,cvml\\:rect,cvml\\:fill,cvml\\:shadow{' +
+        'behavior:url(#default#VML);' +
+        'display:block;' +
+        'antialias:true;' +
+        'position:absolute;' +
+        '}' +
+        'cufoncanvas{' +
+        'position:absolute;' +
+        'text-align:left;' +
+        '}' +
+        'cufon{' +
+        'display:inline-block;' +
+        'position:relative;' +
+        'vertical-align:' + (h ? 'middle' : 'text-bottom') + ';' +
+        '}' +
+        'cufon cufontext{' +
+        'position:absolute;' +
+        'left:-10000in;' +
+        'font-size:1px;' +
+        '}' +
+        'a cufon{cursor:pointer}' +
+        '}' +
+        '@media print{' +
+        'cufon cufoncanvas{display:none;}' +
+        '}';
+    
+    document.write('<style type="text/css">' + cssStyles.replace(/;/g, '!important;') + '</style>');
 
     function c(i, j) {
         return a(i, /(?:em|ex|%)$|^[a-z-]+$/i.test(j) ? "1em" : j)
@@ -1101,26 +1129,27 @@ Cufon.registerEngine("vml", (function () {
     }
 })());
 
-
 document.addEventListener('DOMContentLoaded', function () {
     const dateInput = document.getElementById('dateInput');
     const displayDate = document.getElementById('displayDate');
-
-    dateInput.addEventListener('change', function () {
-        const selectedDate = dateInput.value;
-
-        displayDate.textContent = `Projections on: ${selectedDate}`;
-
-    });
-});
-document.addEventListener('DOMContentLoaded', function () {
     const cityName = document.getElementById('cityName');
     const displayName = document.getElementById('displayName');
 
-    cityName.addEventListener('change', function () {
-        const selectedCity = cityName.value;
+    if (dateInput && displayDate) {
+        dateInput.addEventListener('change', function () {
+            const selectedDate = dateInput.value;
+            if (selectedDate) {
+                displayDate.textContent = 'Projections on: ' + selectedDate;
+            }
+        });
+    }
 
-        displayName.textContent = ` in: ${selectedCity}`;
-
-    });
+    if (cityName && displayName) {
+        cityName.addEventListener('change', function () {
+            const selectedCity = cityName.value;
+            if (selectedCity) {
+                displayName.textContent = ' in: ' + selectedCity;
+            }
+        });
+    }
 });

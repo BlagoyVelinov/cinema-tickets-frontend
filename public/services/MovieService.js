@@ -81,6 +81,7 @@ class MovieService {
           return {
             id: dto.id,
             name: dto.name,
+            icon: dto.movieClass.icon,
             imageUrl: dto.imageUrl,
             description: dto.description,
             // Допълнителни полета, които може да са нужни
@@ -99,7 +100,8 @@ class MovieService {
             name: movieJson.name || 'Error Loading Movie',
             imageUrl: movieJson.imageUrl || '/images/default-movie.jpg',
             description: 'Error loading movie data',
-            bookingTimes: []
+            icon: movieJson.movieClass.icon,
+            bookingTimes: movieJson.bookingTimes || []
           };
         }
       });

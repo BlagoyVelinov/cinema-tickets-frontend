@@ -66,4 +66,9 @@ export default defineConfig({
     // CORS настройки
     cors: true
   },
+    resolve: {
+    alias: {
+      vue: 'vue/dist/vue.esm-bundler.js',
+    },
+  },
 })
