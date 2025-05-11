@@ -1,5 +1,6 @@
 import { createApp, ref, onMounted } from 'vue'
 import MovieService from './MovieService.js'
+import userService from './user-service.js'
 
 class ProgramService {
   constructor() {
@@ -142,12 +143,17 @@ class ProgramService {
         const debugInfo = ref('Loading...')
         const selectedDate = ref('')
         const selectedCity = ref('')
+        const isAdmin = ref(false)
         
         onMounted(async () => {
           try {
             console.log('Loading program movies...')
             isLoading.value = true
             debugInfo.value = 'Fetching movies from API...'
+            
+            // Check if user is admin
+            isAdmin.value = await userService.isAdmin()
+            console.log('Is user admin:', isAdmin.value)
             
             movies.value = await programService.getAllMoviesForProgram()
             for (const movie of movies.value) {
@@ -173,7 +179,8 @@ class ProgramService {
             hasError, 
             debugInfo,
             selectedDate,
-            selectedCity
+            selectedCity,
+            isadmin: isAdmin
           }
         }
       }
@@ -182,7 +189,7 @@ class ProgramService {
       const app = createApp(ProgramApp)
       
       app.component('program-movie-list', {
-        props: ['movies'],
+        props: ['movies', 'isadmin'],
         template: `
         <li v-if="movies.length === 0" class="no-movies">
           <p>No movies available for the selected date and city.</p>
@@ -224,10 +231,10 @@ class ProgramService {
                 <span class="movie-info-column-label">-(SUB:</span>
                 <span class="movie-info-column-value">{{ movie.subtitles }}.)</span>
               </div>
-            </div>
-              <template v-if="isAdmin">
+              <container class="admin-program-buttons">
+              <template v-if="isadmin">
                 <a :href="'/program/update-projection-time/' + movie.id" 
-                  class="btn btn-primary btn-lg">
+                  class="btn-lg">
                   Update projection time
                 </a>
                 <form :action="'/movies/delete-movie/' + movie.id" method="delete">
@@ -236,6 +243,8 @@ class ProgramService {
                   </div>
                 </form>
               </template>
+            </container>
+            </div>
             </section>
           </li>
           <li class="clear">&nbsp;</li>

@@ -861,10 +861,7 @@ a.card {
 a {
     color: #f5821e;
 }
-a {
-    color: #e52729;
-    text-decoration: none;
-}
+
 a {
     background: transparent;
 }
@@ -2186,7 +2183,6 @@ element.style {
 
 /* Common Header Styles */
 header.navigation {
-    /* background-color: rgba(5, 25, 10, 0.8); */
     position: fixed;
     top: 0;
     left: 0;
@@ -2433,6 +2429,27 @@ header.navigation ul li a:hover {
     margin-top: 0.5em;
     color: #ca6218;
 }
+.qb-movie-info-column {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+.admin-program-buttons {
+    display: flex;
+    gap: 1em;
+    align-items: end;
+}
+.admin-program-buttons > .btn-lg {
+    padding: 0.5em 1em;
+    background-color: #d76c0f;
+    color: #fff;
+    border-radius: 0.3em;
+    transition: background-color 0.3s ease;
+}
+.admin-program-buttons > .btn-lg:hover {
+    background-color: #9c4e1b;
+    color: #fff;
+}
 .button-holder {
     margin-top: 20px;
 }
@@ -2453,17 +2470,24 @@ header.navigation ul li a:hover {
 }
 
 .btn-primary:hover {
-    background-color: #a45621;
+    background-color: #9c4e1b;
     transition: background-color 0.3s ease;
+    
+}
+.btn-primary.btn-lg {
+    color: #fff;
+}
+.btn-primary.btn-lg:hover {
+    color: #fff;
 }
 
 .btn-info {
-    background-color: #17a2b8;
+    background-color: #cf3535;
     color: #fff;
 }
 
 .btn-info:hover {
-    background-color: #138496;
+    background-color: #720202;
 }
 
 .text-danger {
@@ -2617,7 +2641,7 @@ header.navigation ul li a:hover {
 }
 
 .admin-btn-add:hover {
-    background-color: #218838;
+    background-color: #136f27;
 }
 
 .admin-btn-edit {
