@@ -1,3 +1,5 @@
+import UserDto from '../models/UserDto';
+
 // User Service that works with Spring Security
 const userService = {
     // Базовият URL на фронтенд приложението
@@ -16,6 +18,7 @@ const userService = {
             
             if (response.ok) {
                 const data = await response.json();
+                console.log('Session data:', data); // Добавяме лог
                 return data.isAuthenticated;
             }
             return false;
@@ -25,26 +28,61 @@ const userService = {
         }
     },
     
-    // Get current username if available
-    async getCurrentUsername() {
+    // Get current user data
+    async getCurrentUser() {
         try {
-            const response = await fetch('/api/users/session', {
+            // Първо взимаме сесията за да получим username на потребителя
+            const sessionResponse = await fetch('/api/users/session', {
                 method: 'GET',
-                credentials: 'include', // Include cookies for session
+                credentials: 'include',
                 headers: {
-                    'X-Requested-With': 'XMLHttpRequest' // For CORS
+                    'X-Requested-With': 'XMLHttpRequest'
+                }
+            });
+            
+            if (!sessionResponse.ok) {
+                console.log('Session response not ok:', sessionResponse.status);
+                return null;
+            }
+            
+            const sessionData = await sessionResponse.json();
+            console.log('Full session data:', sessionData); // Добавяме лог
+            
+            // Проверяваме дали имаме username
+            if (!sessionData.username) {
+                console.log('No username in session data');
+                return null;
+            }
+            
+            console.log('Using username:', sessionData.username); // Добавяме лог
+            
+            // След това взимаме пълните данни за потребителя по username
+            const response = await fetch(`/api/user/${sessionData.username}`, {
+                method: 'GET',
+                credentials: 'include',
+                headers: {
+                    'X-Requested-With': 'XMLHttpRequest'
                 }
             });
             
             if (response.ok) {
                 const data = await response.json();
-                return data.isAuthenticated ? data.username : null;
+                console.log('User data from API:', data); // Добавяме лог
+                return UserDto.fromJSON(data);
             }
+            console.log('User API response not ok:', response.status);
             return null;
         } catch (error) {
             console.error('Error getting current user:', error);
             return null;
         }
+    },
+    
+    // Check if user has admin role
+    async isAdmin() {
+        const userData = await this.getCurrentUser();
+        console.log('User data for admin check:', userData); // Добавяме лог
+        return userData?.isAdmin() || false;
     },
     
     // Log out the user through Spring Security
@@ -81,7 +119,13 @@ const userService = {
     // Set up navigation based on authentication status
     async setupNavigation() {
         const isLoggedIn = await this.isLoggedIn();
-        const username = await this.getCurrentUsername();
+        console.log('Is logged in:', isLoggedIn); // Добавяме лог
+        
+        const userData = await this.getCurrentUser();
+        console.log('User data for navigation:', userData); // Добавяме лог
+        
+        const isAdmin = userData?.isAdmin() || false;
+        console.log('Is admin:', isAdmin); // Добавяме лог
         
         // Get navigation element
         const navElement = document.getElementById('header');
@@ -95,7 +139,7 @@ const userService = {
         // Обработка на логаут формата
         const logoutForm = navElement.querySelector('form[action="/api/users/logout"]');
         
-        if (isLoggedIn) {
+        if (isLoggedIn && userData) { // Добавяме проверка за userData
             // Show logged-in elements, hide guest elements
             if (loginItem) loginItem.style.display = 'none';
             if (registerItem) registerItem.style.display = 'none';
@@ -110,9 +154,19 @@ const userService = {
                 welcomeSection.style.display = '';
                 const welcomeSpan = welcomeSection.querySelector('.logged-user span');
                 if (welcomeSpan) {
-                    welcomeSpan.textContent = `${username || 'User'}`;
+                    welcomeSpan.textContent = userData.getUsername();
                 }
             }
+
+            // Show/hide admin buttons
+            const adminElements = document.querySelectorAll('.admin-only');
+            adminElements.forEach(element => {
+                if (isAdmin) {
+                    element.classList.add('visible');
+                } else {
+                    element.classList.remove('visible');
+                }
+            });
         } else {
             // Show guest elements, hide logged-in elements
             if (loginItem) loginItem.style.display = '';
@@ -120,6 +174,12 @@ const userService = {
             
             // Hide logged-in user elements
             if (welcomeSection) welcomeSection.style.display = 'none';
+
+            // Hide admin buttons
+            const adminElements = document.querySelectorAll('.admin-only');
+            adminElements.forEach(element => {
+                element.classList.remove('visible');
+            });
         }
     }
 };

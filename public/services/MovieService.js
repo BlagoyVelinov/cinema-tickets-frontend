@@ -83,6 +83,8 @@ class MovieService {
             name: dto.name,
             icon: dto.movieClass.icon,
             imageUrl: dto.imageUrl,
+            audio: dto.audio,
+            subtitles: dto.subtitles,
             description: dto.description,
             // Допълнителни полета, които може да са нужни
             duration: dto.movieLength,
@@ -90,6 +92,7 @@ class MovieService {
               ? dto.genreCategories.join(', ') 
               : (typeof dto.genreCategories === 'string' ? dto.genreCategories : ''),
             trailerUrl: dto.trailerUrl,
+            projectionFormat: dto.projectionFormat,
             bookingTimes: dto.bookingTimes || []
           };
         } catch (err) {
@@ -101,6 +104,7 @@ class MovieService {
             imageUrl: movieJson.imageUrl || '/images/default-movie.jpg',
             description: 'Error loading movie data',
             icon: movieJson.movieClass.icon,
+            projectionFormat: movieJson.projectionFormat,
             bookingTimes: movieJson.bookingTimes || []
           };
         }

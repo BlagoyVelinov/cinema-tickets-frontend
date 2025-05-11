@@ -1,4 +1,5 @@
 import BookingTime from './BookingTime.js';
+import ProjectionFormat from './enums/ProjectionFormat.js';
 
 class MovieDto {
   constructor() {
@@ -11,6 +12,7 @@ class MovieDto {
     this.description = '';
     this.imageUrl = '';
     this.trailerUrl = '';
+    this.projectionFormatKey = null;
     this.projectionFormat = null;
     this.movieClass = null;
     this.genreCategories = [];
@@ -61,11 +63,20 @@ class MovieDto {
     this.trailerUrl = url;
     return this;
   }
-
-  setProjectionFormat(format) {
-    this.projectionFormat = format;
+  setProjectionFormatKey(key) {
+    this.projectionFormatKey = key;
     return this;
   }
+  
+  setProjectionFormat(value) {
+    this.projectionFormat = value;
+    return this;
+  }
+
+  // setProjectionFormat(format) {
+  //   this.projectionFormat = format;
+  //   return this;
+  // }
 
   setMovieClass(movieClass) {
     this.movieClass = movieClass;
@@ -121,7 +132,8 @@ class MovieDto {
         .setDescription(json.description || 'Няма описание')
         .setImageUrl(json.imageUrl || '/images/default-movie.jpg')
         .setTrailerUrl(json.trailerUrl || '')
-        .setProjectionFormat(json.projectionFormat || null);
+        .setProjectionFormatKey(json.projectionFormat || null)
+        .setProjectionFormat(ProjectionFormat.getValue(json.projectionFormat));
   
       // Задаваме movieClass - това е директен обект, който запазваме както си е
       if (json.movieClass) {

@@ -71,7 +71,7 @@ app.component('movie-list', {
         <img class="movie-1-pic" :src="movie.imageUrl" :alt="movie.name" width="224" height="269" />
         <p>{{ movie.description || 'Няма описание' }}</p>
         
-        <div class="wrapper">
+        <div class="button-trailer-button">
           <a :href="'/trailer/' + movie.id" class="link2">
             <span><span>See Trailer</span></span>
           </a>

@@ -9,10 +9,6 @@
   <link rel="stylesheet" href="/css/style.css" />
   <!-- Auth Service -->
   <script type="module" src="/services/init-auth.js"></script>
-  <script src="/js/cufon-yui.js"></script>
-  <script src="/js/Gill_Sans_400.font.js"></script>
-  <script src="/js/cufon-replace.js"></script>
-  <script type="text/javascript"> Cufon.now(); </script>
 </head>
 <body id="page1">
 
@@ -31,7 +27,7 @@
               <p id="intro-text">
                 Bulgaria manages 7 multiplexes in 6 different cities in the country – Sofia, Plovdiv, Stara Zagora, Ruse, Burgas and Varna
               </p>
-              <div class="wrapper">
+              <div class="button-about-us">
                 <a href="/about-us" class="link1 tab-link" data-tab="about-us"><span><span>Learn More</span></span></a>
               </div>
             </div>
@@ -43,31 +39,33 @@
                 <div class="inner">
                   <h3>Welcome to <b>Cinema</b> <span>Tickets</span></h3>
                   <img class="start-img" src="/images/insideout.png" alt="Inside Out" />
+
+                  <div class="content">
+                    <h3>Upcoming <span>Premieres</span></h3>
+                    <div id="movie-app">
+                      <div v-if="isLoading" class="loading-message">
+                        <p>Loading movies...</p>
+                        <p class="debug">{{ debugInfo }}</p>
+                      </div>
+                      <div v-else-if="hasError" class="error-message">
+                        <p>There was an error loading the movies. Showing sample data instead.</p>
+                        <p class="debug">{{ debugInfo }}</p>
+                      </div>
+                      <div v-else-if="movies.length === 0" class="empty-message">
+                        <p>No movies available at the moment.</p>
+                        <p class="debug">{{ debugInfo }}</p>
+                      </div>
+                      <ul class="movies" v-else>
+                        <movie-list :movies="movies"></movie-list>
+                      </ul>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
 
-          <div class="content">
-            <h3>Upcoming <span>Premieres</span></h3>
-            <div id="movie-app">
-              <div v-if="isLoading" class="loading-message">
-                <p>Loading movies...</p>
-                <p class="debug">{{ debugInfo }}</p>
-              </div>
-              <div v-else-if="hasError" class="error-message">
-                <p>There was an error loading the movies. Showing sample data instead.</p>
-                <p class="debug">{{ debugInfo }}</p>
-              </div>
-              <div v-else-if="movies.length === 0" class="empty-message">
-                <p>No movies available at the moment.</p>
-                <p class="debug">{{ debugInfo }}</p>
-              </div>
-              <ul class="movies" v-else>
-                <movie-list :movies="movies"></movie-list>
-              </ul>
-            </div>
-          </div>
+          
         </div>
 
         <!-- PROGRAM PAGE CONTENT -->
@@ -106,10 +104,29 @@
                     </form>
 
                     <!-- Покажи бутона само ако потребителят е администратор -->
-                    <div class="button-holder d-flex justify-content-center admin-only">
-                      <a href="/movies/add-movie">
-                        <button type="button">Add Movie</button>
+                    <div class="admin-only">
+                      <a href="/movies/add-movie" class="admin-btn admin-btn-add">
+                        <i class='bx bx-plus'></i>
+                        Add Movie
                       </a>
+                    </div>
+                  </div>
+                  <!-- MOVIES -->
+                  <div class="content">
+                    <h4 id="displayDate">Choose a date and city for reserve ticket</h4>
+                    <h4 id="displayName"></h4>
+                    <div id="program-app">
+                      <div v-if="isLoading" class="loading-message">
+                        <p>Loading movies...</p>
+                        <p class="debug">{{ debugInfo }}</p>
+                      </div>
+                      <div v-else-if="hasError" class="error-message">
+                        <p>There was an error loading the movies.</p>
+                        <p class="debug">{{ debugInfo }}</p>
+                      </div>
+                      <ul class="list" v-else>
+                        <program-movie-list :movies="movies"></program-movie-list>
+                      </ul>
                     </div>
                   </div>
                 </div>
@@ -117,24 +134,7 @@
             </div>
           </div>
 
-          <!-- MOVIES -->
-          <div class="content">
-            <h4 id="displayDate">Choose a date and city for reserve ticket</h4>
-            <h4 id="displayName"></h4>
-            <div id="program-app">
-              <div v-if="isLoading" class="loading-message">
-                <p>Loading movies...</p>
-                <p class="debug">{{ debugInfo }}</p>
-              </div>
-              <div v-else-if="hasError" class="error-message">
-                <p>There was an error loading the movies.</p>
-                <p class="debug">{{ debugInfo }}</p>
-              </div>
-              <ul class="list" v-else>
-                <program-movie-list :movies="movies"></program-movie-list>
-              </ul>
-            </div>
-          </div>
+          
         </div>
 
         <!-- 4DX CONTENT -->
@@ -194,7 +194,7 @@
                 <div class="inner">
                   <h3>CINEMA <span>EXPERIENCE</span></h3>
                   <p><img class="imax-pic" src="/images/imax-cinema.jpeg" alt="IMAX" /></p>
-                  <div class="content">
+                  <div class="content-imax">
                     <div>
                       <iframe width="323" height="321" src="https://www.youtube.com/embed/B_UvdLYSk7Q"
                           title="What Is IMAX?" frameborder="0"
@@ -211,7 +211,7 @@
                       </div>
                     </div>
 
-                    <div>
+                    <div class="banner-content">
                       <div class="col-xs-12 col-sm-4">
                         <div class="imax-img">
                           <img class="img-responsive" src="/images/imax-movies.png" alt="IMAX Movies" />
@@ -229,13 +229,14 @@
 
                         <p><strong>AN IMMERSIVE EXPERIENCE</strong></p>
                         <p>The movies are to be watched. But watching a movie in IMAX® is so much more. It's called the IMAX Experience®. Every element in our IMAX is planned, designed and positioned to create the most intense experience. The hall's special geometry creates cinematic magic every time the lights go down.</p>
-
-                        <p><strong>CINEMATOGRAPHY</strong></p>
-                        <p>IMAX cameras have been on top of Mount Everest, at the bottom of the ocean, and even in space. For 40 years now, they push the boundaries of engineering and are known worldwide as the best filmmaking equipment available today.</p>
-
-                        <p><strong>IMAX SCREEN</strong></p>
-                        <p>Its height is 14 meters and its length is 24 meters. It is made of a special diffused silver vinyl, perforated with thousands of tiny holes to allow sound to pass freely, so-called "acoustic transparency". The screen is flat, but has a slight arc that's out of peripheral vision. This, combined with a 23-degree seat angle, provides full and undisturbed visibility from every seat in the cinema hall. Even if a two-meter person is sitting in front of you, you will see without any problem. The 3D effect of IMAX 3D technology is recognized as the best 3D in the world.</p>
                       </div>
+                    </div>
+                    <div class="text-imax-bottom">
+                      <p><strong>CINEMATOGRAPHY</strong></p>
+                      <p>IMAX cameras have been on top of Mount Everest, at the bottom of the ocean, and even in space. For 40 years now, they push the boundaries of engineering and are known worldwide as the best filmmaking equipment available today.</p>
+
+                      <p><strong>IMAX SCREEN</strong></p>
+                      <p>Its height is 14 meters and its length is 24 meters. It is made of a special diffused silver vinyl, perforated with thousands of tiny holes to allow sound to pass freely, so-called "acoustic transparency". The screen is flat, but has a slight arc that's out of peripheral vision. This, combined with a 23-degree seat angle, provides full and undisturbed visibility from every seat in the cinema hall. Even if a two-meter person is sitting in front of you, you will see without any problem. The 3D effect of IMAX 3D technology is recognized as the best 3D in the world.</p>
                     </div>
                   </div>
                 </div>
@@ -253,9 +254,10 @@
                 <div class="inner">
                   
                   <!-- Админ бутон, показвай с JavaScript ако потребителят е администратор -->
-                  <div class="button-holder d-flex justify-content-center admin-only">
-                    <a href="/offers/add-offer">
-                      <button type="submit">Add Offer</button>
+                  <div class="admin-only">
+                    <a href="/offers/add-offer" class="admin-btn admin-btn-add">
+                      <i class='bx bx-plus'></i>
+                      Add Offer
                     </a>
                   </div>
                   

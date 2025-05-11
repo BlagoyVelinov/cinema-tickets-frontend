@@ -9,7 +9,7 @@
   <link rel="stylesheet" href="/css/reset-css.css" />
   <link rel="stylesheet" href="/css/bootstrap.min.css" />
   <link rel="stylesheet" href="/css/main.css" />
-  <link rel="stylesheet" href="/css/style-login-register.css" />
+  <link rel="stylesheet" href="/css/style.css" />
 
   <!-- External Fonts & Icons -->
   <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet" />
@@ -17,11 +17,11 @@
   <link href="https://fonts.cdnfonts.com/css/tt-octas-trial" rel="stylesheet" />
   <link href="https://fonts.cdnfonts.com/css/poppins" rel="stylesheet" />
   
-  <!-- Auth Service - Само за навигацията и съобщенията за грешка -->
+  <!-- Auth Service -->
   <script type="module" src="/services/user-service.js"></script>
 </head>
 
-<body id="page7">
+<body>
   <header class="navigation" id="nav">
     <label class="logo">
       <a href="/">Cinema <span class="logo-name">Tickets</span></a>
@@ -35,49 +35,42 @@
     </ul>
   </header>
 
-  <div class="container">
-    <h2 class="text-center text-white">Login</h2>
+  <div class="wrapper">
+    <h2>Login</h2>
 
-    <!-- Връщаме се към JavaScript обработката на формата -->
-    <form id="login-form" action="#" 
-      class="main-form mx-auto col-md-8 d-flex flex-column justify-content-center">
-
-      <!-- Съобщение за грешка -->
+    <form id="login-form" action="#" class="auth-form-box">
+      <!-- Error message -->
       <small class="text-danger" style="display: none;">Incorrect username or password!</small>
 
-      <div class="form-group">
-        <label for="username" class="text-white font-weight-bold">Username</label>
+      <div class="input-box">
         <input id="username" name="username" type="text" min="2" max="50"
-          class="form-control" placeholder="Username" required />
+          placeholder="Username" required />
+        <i class='bx bxs-user'></i>
       </div>
 
-      <div class="form-group">
-        <label for="password" class="text-white font-weight-bold">Password</label>
+      <div class="input-box">
         <input id="password" name="password" type="password" min="2" max="20"
-          class="form-control" placeholder="Password" required />
+          placeholder="Password" required />
+        <i class='bx bxs-lock-alt'></i>
       </div>
 
       <div class="remember-me">
-        <label><input type="checkbox" name="rememberMe" /></label>
-        <span>Remember Me</span>
+        <label><input type="checkbox" name="rememberMe" /> Remember Me</label>
       </div>
 
-      <div class="row">
-        <div class="col col-md-4">
-          <div class="button-holder d-flex">
-            <input type="submit" class="btn btn-info btn-lg" value="Login" />
-          </div>
-        </div>
+      <button type="submit" class="btn">Login</button>
+
+      <div class="register-link">
+        <p>Don't have an account? <a href="/users/register">Register</a></p>
       </div>
     </form>
   </div>
 
   <footer></footer>
 
-  <!-- JavaScript обработка на формата -->
+  <!-- JavaScript -->
   <script type="module">
     document.addEventListener('DOMContentLoaded', function() {
-      // Проверка за параметри в URL-а, които показват грешка
       const urlParams = new URLSearchParams(window.location.search);
       if (urlParams.has('error') || urlParams.has('login-error')) {
         const errorMessage = document.querySelector('.text-danger');
@@ -87,7 +80,6 @@
         }
       }
       
-      // Обработка на формата
       const loginForm = document.getElementById('login-form');
       if (loginForm) {
         loginForm.addEventListener('submit', async function(e) {
@@ -114,10 +106,8 @@
             });
             
             if (response.ok) {
-              // Ако успешно сме се логнали, пренасочваме към главната страница
               window.location.href = '/';
             } else {
-              // Ако има грешка, показваме съобщение
               const errorMessage = document.querySelector('.text-danger');
               if (errorMessage) {
                 errorMessage.textContent = 'Грешно потребителско име или парола!';
