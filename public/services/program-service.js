@@ -144,12 +144,22 @@ class ProgramService {
         const selectedDate = ref('')
         const selectedCity = ref('')
         const isAdmin = ref(false)
+        const errors = ref({ dateError: false, cityError: false })
+        const todayDate = ref('')
         
         onMounted(async () => {
           try {
             console.log('Loading program movies...')
             isLoading.value = true
             debugInfo.value = 'Fetching movies from API...'
+            
+            // Set today's date
+            const today = new Date()
+            const year = today.getFullYear()
+            const month = String(today.getMonth() + 1).padStart(2, '0')
+            const day = String(today.getDate()).padStart(2, '0')
+            todayDate.value = `${year}-${month}-${day}`
+            selectedDate.value = todayDate.value
             
             // Check if user is admin
             isAdmin.value = await userService.isAdmin()
@@ -163,100 +173,140 @@ class ProgramService {
             if (movies.value.length === 0) {
               debugInfo.value = 'No movies found'
             } else {
-              debugInfo.value = `Successfully loaded ${movies.value.length} movies`            }
-            } catch (error) {
-              console.error('Error loading program movies:', error)
-              hasError.value = true
-              debugInfo.value = `Error: ${error.message}`
-            } finally {
-              isLoading.value = false
+              debugInfo.value = `Successfully loaded ${movies.value.length} movies`            
             }
-          })
+          } catch (error) {
+            console.error('Error loading program movies:', error)
+            hasError.value = true
+            debugInfo.value = `Error: ${error.message}`
+          } finally {
+            isLoading.value = false
+          }
+        })
+        
+        // Form validation function
+        const validateForm = () => {
+          let isValid = true
           
-          return { 
-            movies, 
-            isLoading, 
-            hasError, 
-            debugInfo,
-            selectedDate,
-            selectedCity,
-            isadmin: isAdmin
+          // Reset errors
+          errors.value.dateError = false
+          errors.value.cityError = false
+          
+          // Validate date
+          if (!selectedDate.value || new Date(selectedDate.value) < new Date(todayDate.value)) {
+            errors.value.dateError = true
+            isValid = false
+          }
+          
+          // Validate city
+          if (!selectedCity.value) {
+            errors.value.cityError = true
+            isValid = false
+          }
+          
+          // If form is valid, submit
+          if (isValid) {
+            document.querySelector('form[action="/program"]').submit()
           }
         }
+        
+        // Format city name function
+        const formatCityName = (cityName) => {
+          if (!cityName) return '';
+          return cityName.replace('_', ' ').split(' ')
+            .map(word => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase())
+            .join(' ');
+        }
+        
+        return { 
+          movies, 
+          isLoading, 
+          hasError, 
+          debugInfo,
+          selectedDate,
+          selectedCity,
+          isadmin: isAdmin,
+          errors,
+          todayDate,
+          validateForm,
+          formatCityName
+        }
       }
-      
-      // Create Vue component for movie list
-      const app = createApp(ProgramApp)
-      
-      app.component('program-movie-list', {
-        props: ['movies', 'isadmin'],
-        template: `
-        <li v-if="movies.length === 0" class="no-movies">
-          <p>No movies available for the selected date and city.</p>
-        </li>
-        <template v-else>
-          <li v-for="(movie, index) in movies" :key="movie.id || index" class="movieList">
-            <img :src="movie.imageUrl" :alt="movie.name" width="204" height="219" />
-            <a :href="'/trailer/' + movie.id" class="title-movie">{{ movie.name }}</a>
-            <span class="qb-movie-rating-info">
-              <img :src="movie.icon " alt="Rating" height="30" class="rating-icon mr-sm" />
-              <div class="qb-movie-info-wrapper">
-                <div class="pt-xs">
-                  <span class="mr-sm">{{ movie.genre }}</span>
-                  <span class="ml-xs">|</span>
-                  <span class="mr-xs">{{ movie.duration }} min.</span>
-                </div>
-              </div>
-            </span>
-            <section class="movie-info-program">
-            <div class="screening-type">{{ movie.projectionFormat || '2D' }}</div>
-
-            <div class="info-booking-times">
-              <template v-if="!movie.bookingTimes || movie.bookingTimes.length === 0">
-                <a class="h4">Coming soon</a>
-              </template>
-            
-              <template v-else>
-                <a v-for="time in movie.bookingTimes" 
-                    :key="time.id" 
-                    :href="'/program'" 
-                    class="btn btn-primary btn-lg">
-                    {{ time.bookingTime.replace('_', ' ').replace('_', ':') }}
-                </a>
-              </template>
-            </div>
-            <div class="qb-movie-info-column">
-              <div class="movie-info-column-item">
-                <span class="movie-info-column-value">{{ movie.audio }}.</span>
-                <span class="movie-info-column-label">-(SUB:</span>
-                <span class="movie-info-column-value">{{ movie.subtitles }}.)</span>
-              </div>
-              <container class="admin-program-buttons">
-              <template v-if="isadmin">
-                <a :href="'/program/update-projection-time/' + movie.id" 
-                  class="btn-lg">
-                  Update projection time
-                </a>
-                <form :action="'/movies/delete-movie/' + movie.id" method="delete">
-                  <div class="button-holder d-flex justify-content-center">
-                    <button type="submit" class="btn btn-info mb-3">Delete Movie</button>
-                  </div>
-                </form>
-              </template>
-            </container>
-            </div>
-            </section>
-          </li>
-          <li class="clear">&nbsp;</li>
-        </template>
-      `
-      })
-      
-      return app
     }
+    
+    // Create Vue component for movie list
+    const app = createApp(ProgramApp)
+    
+    app.component('program-movie-list', {
+      props: ['movies', 'isadmin'],
+      template: `
+      <li v-if="movies.length === 0" class="no-movies">
+        <p>No movies available for the selected date and city.</p>
+      </li>
+      <template v-else>
+        <li v-for="(movie, index) in movies" :key="movie.id || index" class="movieList">
+          <img :src="movie.imageUrl" :alt="movie.name" width="204" height="219" />
+          <a :href="'/trailer/' + movie.id" class="title-movie">{{ movie.name }}</a>
+          <span class="qb-movie-rating-info">
+            <img :src="movie.icon " alt="Rating" height="30" class="rating-icon mr-sm" />
+            <div class="qb-movie-info-wrapper">
+              <div class="pt-xs">
+                <span class="mr-sm">{{ movie.genre }}</span>
+                <span class="ml-xs">|</span>
+                <span class="mr-xs">{{ movie.duration }} min.</span>
+              </div>
+            </div>
+          </span>
+          <section class="movie-info-program">
+          <div class="screening-type">{{ movie.projectionFormat || '2D' }}</div>
+
+          <div class="info-booking-times">
+            <template v-if="!movie.bookingTimes || movie.bookingTimes.length === 0">
+              <a class="h4">Coming soon</a>
+            </template>
+          
+            <template v-else>
+              <a v-for="time in movie.bookingTimes" 
+                  :key="time.id" 
+                  :href="'/program'" 
+                  class="btn btn-primary btn-lg">
+                  {{ time.bookingTime.replace('_', ' ').replace('_', ':') }}
+              </a>
+            </template>
+          </div>
+          <div class="qb-movie-info-column">
+            <div class="movie-info-column-item">
+              <span class="movie-info-column-value">{{ movie.audio }}.</span>
+              <span class="movie-info-column-label">-(SUB:</span>
+              <span class="movie-info-column-value">{{ movie.subtitles }}.)</span>
+            </div>
+            <container class="admin-program-buttons">
+            <template v-if="isadmin">
+              <a :href="'/program/update-projection-time/' + movie.id" 
+                class="btn-lg">
+                Update projection time
+              </a>
+              <form :action="'/movies/delete-movie/' + movie.id" method="delete">
+                <div class="button-holder d-flex justify-content-center">
+                  <button type="submit" class="btn btn-info mb-3">Delete Movie</button>
+                </div>
+              </form>
+            </template>
+          </container>
+          </div>
+          </section>
+        </li>
+        <li class="clear">&nbsp;</li>
+      </template>
+    `
+    })
+    
+    return app
   }
-  
-  // Export a singleton instance
-  export const programService = new ProgramService()
-  export default programService
+}
+
+// Export a singleton instance
+const programService = new ProgramService()
+export { programService }
+export default programService
   

@@ -2389,10 +2389,21 @@ header.navigation ul li a:hover {
 .form-row {
     display: flex;
     flex-direction: column;
-    align-items: center;
+    align-items: flex-start;
     margin: 3em 0;
+    padding-left: 1em;
 }
 
+.form-row.m-5 > form {
+    width: 42%;
+}
+.form-row.m-5 .text-danger {
+    display: block;
+    margin: 0.5em 0;
+}
+.form-row.m-5 > form > .col > input {
+    margin: 0.5em 0 1em 0;
+}
 .form-group {
     margin-bottom: 20px;
 }
@@ -2407,11 +2418,12 @@ header.navigation ul li a:hover {
 
 .browser-default.custom-select {
     width: 100%;
-    padding: 0.8em 1em;
+    padding: 0.8em 1.5em;
     border: 1px solid #ddd;
     border-radius: 4px;
     font-size: 14px;
     background-color: #fff;
+    margin-top: 0.5em;
 }
 .movie-info-program {
     display: flex;
