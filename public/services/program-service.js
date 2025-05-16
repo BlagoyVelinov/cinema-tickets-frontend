@@ -246,7 +246,7 @@ class ProgramService {
       <template v-else>
         <li v-for="(movie, index) in movies" :key="movie.id || index" class="movieList">
           <img :src="movie.imageUrl" :alt="movie.name" width="204" height="219" />
-          <a :href="'/trailer/' + movie.id" class="title-movie">{{ movie.name }}</a>
+          <a :href="'/?trailer=' + movie.id" class="title-movie">{{ movie.name }}</a>
           <span class="qb-movie-rating-info">
             <img :src="movie.icon " alt="Rating" height="30" class="rating-icon mr-sm" />
             <div class="qb-movie-info-wrapper">

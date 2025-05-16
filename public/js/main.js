@@ -1,93 +1,21 @@
-import { createApp, ref, onMounted } from 'vue'
 import '../services/init-auth.js'
 import { movieService } from '../services/MovieService.js'
 import { programService } from '../services/program-service.js'
+import { trailerService } from '../services/trailer-service.js'
+import { createApp } from 'vue'
 
-const MovieListApp = {
-  setup() {
-    const movies = ref([])
-    const isLoading = ref(true)
-    const hasError = ref(false)
-    const debugInfo = ref('Зареждане...')
-
-    onMounted(async () => {
-      try {
-        console.log('Зареждане на предстоящи филми...')
-        isLoading.value = true
-        debugInfo.value = 'Изпращане на заявка към API...'
-
-        // Use the movie service to get upcoming movies (with empty bookingTimes)
-        const upcomingMovies = await movieService.getUpcomingMovies()
-        console.log('Получени данни за предстоящи филми:', upcomingMovies)
-        debugInfo.value = `Получени филми: ${upcomingMovies ? upcomingMovies.length : 0}`
-        
-        // Директно извеждаме имената на филмите в конзолата за дебъгване
-        if (upcomingMovies && upcomingMovies.length > 0) {
-          console.log('Имена на заредените филми:')
-          upcomingMovies.forEach((movie, index) => {
-            console.log(`${index + 1}. ${movie.name} (ID: ${movie.id})`)
-          })
-        }
-        
-        movies.value = upcomingMovies
-        
-        // If no movies were found, provide some fallback data
-        if (movies.value.length === 0) {
-          console.warn('No upcoming movies found or API not available')
-          debugInfo.value = 'Няма намерени филми'
-          // Fallback data
-          movies.value = []
-        } else {
-          debugInfo.value = `Успешно заредени ${movies.value.length} филми`
-        }
-      } catch (error) {
-        console.error('Грешка при зареждане на филми:', error)
-        hasError.value = true
-        debugInfo.value = `Грешка: ${error.message}`
-        // Empty array on error
-        movies.value = []
-      } finally {
-        isLoading.value = false
-      }
-    })
-
-    return { movies, isLoading, hasError, debugInfo }
-  }
-}
-
-// Създаваме Vue инстанция
-const app = createApp(MovieListApp)
-
-// Правим компонент за списъка с филми
-app.component('movie-list', {
-  props: ['movies'],
-  template: `
-    <li v-if="movies.length === 0" class="no-movies">
-      <p>Няма налични филми за показване.</p>
-    </li>
-    <template v-else>
-      <li v-for="(movie, index) in movies" :key="movie.id || index">
-        <h4>{{ movie.name || 'Без име' }}</h4>
-        <img class="movie-1-pic" :src="movie.imageUrl" :alt="movie.name" width="224" height="269" />
-        <p>{{ movie.description || 'Няма описание' }}</p>
-        
-        <div class="button-trailer-button">
-          <a :href="'/trailer/' + movie.id" class="link2">
-            <span><span>See Trailer</span></span>
-          </a>
-        </div>
-      </li>
-      <li class="clear">&nbsp;</li>
-    </template>
-  `
-})
+// Създаваме Vue инстанция за филмите
+const movieApp = movieService.initMovieListVue()
 
 // Монтираме приложението
-app.mount('#movie-app')
+movieApp.mount('#movie-app')
 
 // Initialize program page Vue app
 const programApp = programService.initProgramVue()
 programApp.mount('#program-app')
+
+// Забележка: Логиката за трейлъри е изнесена в trailer-service.js
+// и се инициализира автоматично при зареждане на страницата
 
 document.addEventListener("DOMContentLoaded", function() {
   // Load navigation and footer
@@ -149,7 +77,7 @@ function attachLinkHandler(link) {
       href === '#' || 
       href.startsWith('http') || 
       href.startsWith('mailto:') ||
-      href.includes('trailer/') ||
+      href.includes('trailer') ||
       link.getAttribute('target') === '_blank') {
     link.setAttribute('data-processed', 'true');
     return;
@@ -210,6 +138,12 @@ function attachLinkHandler(link) {
 function setupInitialLinkListeners() {
   const initialLinks = document.querySelectorAll('a.link1, a.link2, .wrapper a');
   initialLinks.forEach(link => {
+    // Ако е линк към трейлър, обработката е в TrailerService
+    if (link.getAttribute('href') && link.getAttribute('href').includes('?trailer=')) {
+      return; // Тези линкове се обработват от TrailerService
+    } 
+    
+    // Обикновени линкове обработваме нормално
     attachLinkHandler(link);
   });
 }
@@ -220,18 +154,12 @@ function setupTabNavigation() {
   const pathToTabMap = {
     '/': 'content-home',
     '/index.html': 'content-home',
-    '/program.html': 'content-program',
     '/program': 'content-program',
-    '/4-dx.html': 'content-4dx',
     '/4-dx': 'content-4dx',
-    '/imax.html': 'content-imax',
     '/imax': 'content-imax',
-    '/offers.html': 'content-offers',
     '/offers': 'content-offers',
-    '/about-us.html': 'content-about-us',
     '/about-us': 'content-about-us',
-    '/contact-us.html': 'content-contact-us',
-    '/contact-us': 'content-contact-us'
+    '/contact-us': 'content-contact-us',
   };
 
   // Set the initial active tab based on URL
@@ -247,7 +175,13 @@ function setupTabNavigation() {
   
   // Add click handler to all links
   allLinks.forEach(link => {
-    attachLinkHandler(link);
+    const href = link.getAttribute('href');
+    if (href && href.includes('?trailer=')) {
+      return; // Тези линкове се обработват от TrailerService
+    } else {
+      // Обикновени линкове обработваме нормално
+      attachLinkHandler(link);
+    }
   });
 
   // Set up a mutation observer to handle dynamically added links
@@ -258,7 +192,13 @@ function setupTabNavigation() {
           if (node.nodeType === 1) { // Element node
             const newLinks = node.querySelectorAll('a');
             newLinks.forEach(link => {
-              attachLinkHandler(link);
+              const href = link.getAttribute('href');
+              if (href && href.includes('?trailer=')) {
+                return; // Тези линкове се обработват от TrailerService
+              } else {
+                // Обикновени линкове обработваме нормално
+                attachLinkHandler(link);
+              }
             });
           }
         });
@@ -272,6 +212,7 @@ function setupTabNavigation() {
   window.addEventListener('popstate', function() {
     const path = window.location.pathname;
     const tabId = pathToTabMap[path] || 'content-home';
+    
     showTab(tabId);
     updateActiveNavItem(path);
     updateBodyId(tabId);

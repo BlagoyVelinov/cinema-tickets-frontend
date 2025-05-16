@@ -105,7 +105,7 @@ const ProgramApp = {
       <ul class="list" id="movieList">
         <li class="movieList" v-for="movie in movies" :key="movie.id">
           <img :src="movie.imageUrl" :alt="movie.name" width="204px" height="219px" />
-          <a :href="'/trailer/' + movie.id" class="title-movie">{{movie.name}}</a><br />
+          <a :href="'/?trailer=' + movie.id" class="title-movie">{{movie.name}}</a><br />
           <span class="qb-movie-rating-info">
             <div class="qb-movie-info-wrapper">
               <div class="pt-xs">
