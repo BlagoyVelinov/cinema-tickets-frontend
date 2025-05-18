@@ -1,6 +1,7 @@
 import { createApp, ref, onMounted } from 'vue'
 import userService from '../services/user-service.js'
 import { programService } from '../services/program-service.js'
+import { movieService } from '../services/movie-service.js'
 
 const ProgramApp = {
   setup() {
@@ -84,11 +85,33 @@ const ProgramApp = {
         .join(' ');
     }
     
-    // Функция за превключване на изгледа към/от формата за добавяне на филм
+    // Function to toggle the view between the add movie form and the movie list
     const toggleAddMovieForm = () => {
       showAddMovieForm.value = !showAddMovieForm.value;
-      console.log('Показване на формата за добавяне на филм:', showAddMovieForm.value);
+      console.log('Showing the add movie form:', showAddMovieForm.value);
     }
+    
+    // function for adding a movie
+    const handleAddMovieForm = async (event) => {
+      event.preventDefault();
+      
+      try {
+        // Take the data from the form
+        const form = event.target;
+        const formData = new FormData(form);
+        
+        // Use movieService to create the movie
+        await movieService.createMovieFromForm(formData);
+        
+        // Reload the movies and hide the form
+        movies.value = await programService.getAllMoviesForProgram();
+        showAddMovieForm.value = false;
+        
+      } catch (error) {
+        console.error('Error creating movie:', error);
+        alert(`Error adding movie: ${error.message}`);
+      }
+    };
     
     return { 
       movies, 
@@ -103,7 +126,8 @@ const ProgramApp = {
       validateForm,
       formatCityName,
       showAddMovieForm,
-      toggleAddMovieForm
+      toggleAddMovieForm,
+      handleAddMovieForm
     }
   },
   template: `
@@ -176,14 +200,14 @@ const ProgramApp = {
         </ul>
       </div>
       
-      <!-- ADD MOVIE FORM - Показва се само за админи когато showAddMovieForm е true -->
+      <!-- ADD MOVIE FORM - when showAddMovieForm is true -->
       <div class="content" v-if="showAddMovieForm && isadmin">
         <h1 class="text-center mt-2">
         <span class="badge badge-pill badge-add">Add</span>
         <span class="badge badge-pill badge-movie">Movie</span>
         </h1>
 
-        <form class="welcome add-movie-form" method="post" action="/movies/add-movie">
+        <form class="welcome add-movie-form" @submit="handleAddMovieForm">
             <div class="form-group">
                 <div class="label-holder text-white textCol d-flex justify-content-center">
                     <label for="name" class="h4 mb-2">Name</label>
@@ -275,7 +299,7 @@ const ProgramApp = {
                 <div class="label-holder text-white textCol d-flex justify-content-center">
                     <label for="classMovie" class="h4 mb-2">Class Of Movie</label>
                 </div>
-                <select class="browser-default custom-select movie-add" id="classMovie" name="classMovie">
+                <select class="browser-default custom-select movie-add" id="classMovie" name="movieClass">
                     <option value="">Select Class Movie</option>
                     <option value="B_">B</option>
                     <option value="C_">C</option>
@@ -320,6 +344,41 @@ const ProgramApp = {
 // Vue компонент за списък с филми
 const ProgramMovieList = {
   props: ['movies', 'isadmin'],
+  data() {
+    return {
+      editingMovieId: null,
+      submissionAttempted: {}, // Track submission attempts per movie
+      errorMessages: {} // Store error messages per movie
+    }
+  },
+  methods: {
+    toggleEditMode(movieId) {
+      this.editingMovieId = this.editingMovieId === movieId ? null : movieId;
+      // Reset validation state when toggling edit mode
+      if (this.editingMovieId === movieId) {
+        this.submissionAttempted[movieId] = false;
+        this.errorMessages[movieId] = "";
+      }
+    },
+    cancelEdit() {
+      this.editingMovieId = null;
+    },
+    validateAndSubmit(event, movieId) {
+      this.submissionAttempted[movieId] = true;
+      
+      // Get the select element
+      const selectElement = event.target.form.querySelector('select[name="startMovie[]"]');
+      
+      // Check if at least one option is selected
+      if (selectElement.selectedOptions.length === 0) {
+        // Set the error message from backend validation message
+        this.errorMessages[movieId] = "You must select at least one booking time!";
+        event.preventDefault(); // Prevent form submission
+      } else {
+        this.errorMessages[movieId] = "";
+      }
+    }
+  },
   template: `
     <li v-if="movies.length === 0" class="no-movies">
       <p>No movies available for the selected date and city.</p>
@@ -342,17 +401,52 @@ const ProgramMovieList = {
         <div class="screening-type">{{ movie.projectionFormat || '2D' }}</div>
 
         <div class="info-booking-times">
-          <template v-if="!movie.bookingTimes || movie.bookingTimes.length === 0">
-            <a class="h4">Coming soon</a>
+          <!-- Show form when editing this movie, otherwise show times -->
+          <template v-if="editingMovieId === movie.id">
+            <section class="update-projection-time-section">
+              <!--Choose new projection time -->
+              <form :action="'/program/update-projection-time/' + movie.id" method="post" class="form-group">
+                <div class="text-white label-holder d-flex justify-content-center">
+                  <label for="startMovie" class="h4 mb-2">Choose new projection time</label>
+                </div>
+                <select class="browser-default custom-select" name="startMovie[]" id="startMovie" multiple>
+                  <option value="">Select booking time</option>
+                  <option value="_10_20">10:20</option>
+                  <option value="_11_50">11:50</option>
+                  <option value="_12_20">12:20</option>
+                  <option value="_13_50">13:50</option>
+                  <option value="_14_20">14:20</option>
+                  <option value="_15_50">15:50</option>
+                  <option value="_16_20">16:20</option>
+                  <option value="_17_50">17:50</option>
+                  <option value="_18_20">18:20</option>
+                  <option value="_19_50">19:50</option>
+                  <option value="_20_20">20:20</option>
+                  <option value="_20_50">20:50</option>
+                </select>
+
+                <small class="text-danger" v-show="submissionAttempted[movie.id] && errorMessages[movie.id]">{{ errorMessages[movie.id] }}</small>
+
+                <!-- Save and Cancel buttons -->
+                <div class="button-holder d-flex justify-edit-time">
+                  <button type="submit" class="btn btn-info admin-btn-add" @click="validateAndSubmit($event, movie.id)">Save</button>
+                  <button type="button" @click="cancelEdit" class="btn btn-cancel mb-2">Cancel</button>
+                </div>
+              </form>
+            </section>
           </template>
-        
           <template v-else>
-            <a v-for="time in movie.bookingTimes" 
-                :key="time.id" 
-                :href="'/program'" 
-                class="btn btn-primary btn-lg">
-                {{ time.bookingTime.replace('_', ' ').replace('_', ':') }}
-            </a>
+            <template v-if="!movie.bookingTimes || movie.bookingTimes.length === 0">
+              <a class="h4">Coming soon</a>
+            </template>
+            <template v-else>
+              <a v-for="time in movie.bookingTimes" 
+                  :key="time.id" 
+                  :href="'/program'" 
+                  class="btn btn-primary btn-lg">
+                  {{ time.bookingTime.replace('_', ' ').replace('_', ':') }}
+              </a>
+            </template>
           </template>
         </div>
         <div class="qb-movie-info-column">
@@ -361,9 +455,8 @@ const ProgramMovieList = {
             <span class="movie-info-column-label">-(SUB:</span>
             <span class="movie-info-column-value">{{ movie.subtitles }}.)</span>
           </div>
-          <div class="admin-program-buttons">
-          <template v-if="isadmin">
-            <a :href="'/program/update-projection-time/' + movie.id" 
+          <div class="admin-program-buttons" v-if="isadmin && editingMovieId !== movie.id">
+            <a href="#" @click.prevent="toggleEditMode(movie.id)" 
               class="btn-lg">
               Update projection time
             </a>
@@ -372,8 +465,7 @@ const ProgramMovieList = {
                 <button type="submit" class="btn btn-info mb-3">Delete Movie</button>
               </div>
             </form>
-          </template>
-        </div>
+          </div>
         </div>
         </section>
       </li>
@@ -382,9 +474,9 @@ const ProgramMovieList = {
   `
 }
 
-// Функция за създаване на Vue приложение
+// Function for creating Vue application
 export function createProgramVue() {
-  console.log("Създавам програма Vue от program-view.js");
+  console.log("Creating program Vue from program-view.js");
   const app = createApp({
     components: {
       ProgramApp
@@ -392,7 +484,7 @@ export function createProgramVue() {
     template: '<program-app></program-app>'
   });
   
-  // Регистриране на глобален компонент
+  // Register global component
   app.component('program-movie-list', ProgramMovieList);
   
   return app;

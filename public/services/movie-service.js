@@ -359,49 +359,6 @@ class MovieService {
   }
 
   /**
-   * Create a new movie (admin function)
-   * @param {MovieDto} movieDto - Data for the new movie
-   * @returns {Promise<MovieDto|null>} Created MovieDto or null if failed
-   */
-  async createMovie(movieDto) {
-    try {
-      const url = `${this.moviesEndpoint}/add-movie`;
-      console.log('Creating movie at URL:', url, 'with data:', movieDto);
-      
-      const response = await fetch(url, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          'Accept': 'application/json'
-        },
-        body: JSON.stringify(movieDto)
-      });
-
-      console.log('Response status:', response.status);
-
-      if (!response.ok) {
-        console.error(`Error response from server: ${response.status} ${response.statusText}`);
-        throw new Error(`Error creating movie: ${response.status}`);
-      }
-
-      const responseData = await response.json();
-      console.log('Create movie response:', responseData);
-      
-      if (typeof responseData === 'string') {
-        // Сървърът връща само съобщение за успех
-        console.log('Server returned success message:', responseData);
-        return movieDto; // Връщаме оригиналния DTO
-      }
-      
-      // Иначе сървърът е върнал новия филм
-      return MovieDto.fromJSON(responseData);
-    } catch (error) {
-      console.error('Failed to create movie:', error);
-      return null;
-    }
-  }
-
-  /**
    * Update an existing movie (admin function)
    * @param {number} id - Movie ID to update
    * @param {MovieDto} movieDto - Updated movie data
@@ -509,97 +466,6 @@ class MovieService {
     }
   }
 
-  /**
-   * Convert plain movie object from API to MovieClass instance
-   * @param {Object} movieData - Raw movie data from API
-   * @returns {MovieClass} Properly formatted MovieClass instance
-   * @private
-   */
-  _convertToMovieClass(movieData) {
-    try {
-      console.log('Converting movie data:', movieData);
-      
-      if (!movieData) {
-        console.error('Received null or undefined movieData');
-        return this._createFallbackMovie();
-      }
-      
-      const movie = new MovieClass(movieData.ageRestriction || 'TBC');
-      
-      // Set basic properties
-      movie.setId(movieData.id || 0);
-      
-      // Set name directly (without validation as it's coming from backend)
-      movie.name = movieData.name || 'Unknown Movie';
-      
-      // Set description directly
-      movie.description = movieData.description || '';
-      
-      // Set additional properties directly on the object
-      movie.imageUrl = movieData.imageUrl || '/images/default-movie.jpg';
-      movie.trailerUrl = movieData.trailerUrl || '';
-      movie.duration = movieData.duration || 0;
-      movie.genre = movieData.genre || '';
-      
-      // Initialize bookingTimes array
-      movie.bookingTimes = [];
-      
-      // If bookingTimes are present, convert them to BookingTime instances
-      if (movieData.bookingTimes && Array.isArray(movieData.bookingTimes)) {
-        console.log('Processing booking times:', movieData.bookingTimes);
-        
-        movie.bookingTimes = movieData.bookingTimes
-          .map(time => {
-            if (!time) {
-              console.warn('Null or undefined booking time entry');
-              return null;
-            }
-            
-            console.log('Processing booking time:', time);
-            
-            if (time.id !== undefined) {
-              const bookingTime = new BookingTime(time.id);
-              if (time.time) {
-                bookingTime.bookingTime = time.time;
-              }
-              return bookingTime;
-            }
-            
-            console.warn('Invalid booking time data (missing id):', time);
-            return null;
-          })
-          .filter(time => time !== null);
-          
-        console.log('Processed booking times:', movie.bookingTimes);
-      }
-      
-      console.log('Converted movie:', movie);
-      return movie;
-    } catch (error) {
-      console.error('Error converting movie data:', error, movieData);
-      return this._createFallbackMovie(movieData);
-    }
-  }
-  
-  /**
-   * Create a fallback movie instance in case of errors
-   * @param {Object} movieData - Partial movie data if available
-   * @returns {MovieClass} A minimal valid MovieClass instance
-   * @private
-   */
-  _createFallbackMovie(movieData = {}) {
-    const fallbackMovie = new MovieClass('TBC');
-    fallbackMovie.setId(movieData.id || 0);
-    fallbackMovie.name = movieData.name || 'Error Loading Movie';
-    fallbackMovie.description = movieData.description || 'There was an error loading this movie data.';
-    fallbackMovie.imageUrl = '/images/default-movie.jpg';
-    fallbackMovie.trailerUrl = '';
-    fallbackMovie.duration = 0;
-    fallbackMovie.genre = '';
-    fallbackMovie.bookingTimes = [];
-    
-    return fallbackMovie;
-  }
 
   /**
    * Create a MovieDto from form data or MovieClass
@@ -624,6 +490,68 @@ class MovieService {
     }
     
     return movieDto;
+  }
+
+  /**
+   * Create a new movie from form data
+   * @param {FormData} formData - Form data from the movie creation form
+   * @returns {Promise<MovieDto|null>} Created MovieDto or null if failed
+   */
+  async createMovieFromForm(formData) {
+    try {
+      // Създаваме обект, който да съответства точно на CreateMovieDto в бекенда
+      const createMovieDto = {
+        name: formData.get('name') || '',
+        movieLength: parseInt(formData.get('movieLength'), 10) || 0,
+        hallNumber: formData.get('hallNumber') || null,
+        audio: formData.get('audio') || '',
+        subtitles: formData.get('subtitles') || '',
+        description: formData.get('description') || '',
+        imageUrl: formData.get('imageUrl') || '',
+        trailerUrl: formData.get('trailerUrl') || '',
+        projectionFormat: formData.get('projectionFormat') || null,
+        movieClass: formData.get('movieClass') || null,
+        genreCategories: formData.getAll('genreCategories[]') || []
+      };
+      
+      console.log('Изпращане на филм към бекенда:', createMovieDto);
+      
+      // Изпращане на заявка към бекенда
+      const url = `${this.moviesEndpoint}/add-movie`;
+      const response = await fetch(url, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json'
+        },
+        body: JSON.stringify(createMovieDto)
+      });
+      
+      console.log('Статус от бекенда:', response.status);
+      
+      if (!response.ok) {
+        const errorText = await response.text();
+        console.error('Грешка от бекенда:', errorText);
+        throw new Error(errorText || `Грешка при създаване на филм: ${response.status}`);
+      }
+      
+      // Успешно създаване на филм
+      console.log('Филмът е добавен успешно!');
+      
+      // Опитваме да парсваме отговора, ако има такъв
+      try {
+        const responseData = await response.json();
+        console.log('Отговор от сървъра:', responseData);
+        return responseData;
+      } catch (e) {
+        // Може сървърът да не връща данни, само статус код
+        console.log('Сървърът не върна данни, но операцията е успешна');
+        return createMovieDto;
+      }
+    } catch (error) {
+      console.error('Грешка при създаване на филм:', error);
+      throw error; // Препращаме грешката към извикващия код
+    }
   }
 
   /**

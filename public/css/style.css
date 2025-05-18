@@ -2478,6 +2478,11 @@ header.navigation ul li a:hover {
     font-size: 14px;
 }
 
+/* ======================= edit projection time styles ======================= */
+.update-projection-time-section {
+    width: 20em;
+}
+
 .browser-default.custom-select {
     width: 100%;
     padding: 0.8em 1.5em;
@@ -2534,6 +2539,11 @@ header.navigation ul li a:hover {
     justify-content: center;
     gap: 6em;
     margin-top: 1.5em;
+}
+.justify-edit-time {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 1em;
 }
 
 .label-holder {
