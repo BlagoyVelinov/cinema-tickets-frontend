@@ -108,16 +108,6 @@ const ProgramApp = {
   },
   template: `
     <div class="program-container">
-      <!-- Admin бутон за добавяне на филм - ПРЕМЕСТЕН НА ВИДИМО МЯСТО -->
-      <div v-if="isadmin" class="admin-controls mb-4" style="background-color: #f8f9fa; padding: 15px; border-radius: 5px; margin-top: 15px;">
-        <h4>Администраторски контроли</h4>
-        <button 
-          @click="toggleAddMovieForm" 
-          class="btn btn-primary btn-lg">
-          <i class='bx bx-plus'></i>
-          {{ showAddMovieForm ? 'Покажи филми' : 'Добави филм' }}
-        </button>
-      </div>
       
       <div class="form-row m-5">
         <form method="post" action="/program">
@@ -157,6 +147,13 @@ const ProgramApp = {
             <button type="button" class="btn btn-primary btn-lg" @click="validateForm">Continue</button>
           </div>
         </form>
+        <!-- Admin button for adding a movie -->
+      <div v-if="isadmin" class="admin-controls mb-4">
+        <button @click="toggleAddMovieForm" class="btn admin-btn-add">
+          <i class='bx bx-plus'></i>
+          {{ showAddMovieForm ? 'Show movies' : 'Add movie' }}
+        </button>
+      </div>
       </div>
       
       <!-- MOVIES -->
@@ -181,7 +178,10 @@ const ProgramApp = {
       
       <!-- ADD MOVIE FORM - Показва се само за админи когато showAddMovieForm е true -->
       <div class="content" v-if="showAddMovieForm && isadmin">
-        <h1 class="text-center mt-2"><span class="badge badge-pill badge-dark">Add Movie</span></h1>
+        <h1 class="text-center mt-2">
+        <span class="badge badge-pill badge-add">Add</span>
+        <span class="badge badge-pill badge-movie">Movie</span>
+        </h1>
 
         <form class="welcome add-movie-form" method="post" action="/movies/add-movie">
             <div class="form-group">
@@ -244,7 +244,7 @@ const ProgramApp = {
                 <div class="label-holder text-white textCol d-flex justify-content-center">
                     <label for="projectionFormat" class="h4 mb-2">Projection Format</label>
                 </div>
-                <select class="browser-default custom-select" id="projectionFormat" name="projectionFormat">
+                <select class="browser-default custom-select movie-add" id="projectionFormat" name="projectionFormat">
                     <option value="">Select Projection Format</option>
                     <option value="D_2D">2D</option>
                     <option value="D_3D">3D</option>
@@ -257,7 +257,7 @@ const ProgramApp = {
                 <div class="label-holder text-white textCol d-flex justify-content-center">
                     <label for="hallNumber" class="h4 mb-2">Hall Number</label>
                 </div>
-                <select class="browser-default custom-select" id="hallNumber" name="hallNumber">
+                <select class="browser-default custom-select movie-add" id="hallNumber" name="hallNumber">
                     <option value="">Select Hall Number</option>
                     <option value="HALL_1">1</option>
                     <option value="HALL_2">2</option>
@@ -275,7 +275,7 @@ const ProgramApp = {
                 <div class="label-holder text-white textCol d-flex justify-content-center">
                     <label for="classMovie" class="h4 mb-2">Class Of Movie</label>
                 </div>
-                <select class="browser-default custom-select" id="classMovie" name="classMovie">
+                <select class="browser-default custom-select movie-add" id="classMovie" name="classMovie">
                     <option value="">Select Class Movie</option>
                     <option value="B_">B</option>
                     <option value="C_">C</option>
@@ -291,7 +291,7 @@ const ProgramApp = {
                 <div class="label-holder text-white textCol d-flex justify-content-center">
                     <label for="genreCategories" class="h4 mb-2">Genre Of Movie</label>
                 </div>
-                <select class="browser-default custom-select" name="genreCategories[]" id="genreCategories" multiple="multiple">
+                <select class="browser-default custom-select movie-add" name="genreCategories[]" id="genreCategories" multiple="multiple">
                     <option value="ACTION">Action</option>
                     <option value="ADVENTURE">Adventure</option>
                     <option value="ANIMATION">Animation</option>
@@ -307,9 +307,9 @@ const ProgramApp = {
                 <small class="text-danger" id="error-genreCategories"></small>
             </div>
 
-            <div class="button-holder d-flex justify-content-center">
-                <button type="submit" class="btn btn-info mb-3">Add movie</button>
-                <button type="button" @click="toggleAddMovieForm" class="btn btn-secondary mb-3 ml-3">Cancel</button>
+            <div class="button-holder d-flex-add justify-content-center">
+                <button type="submit" class="btn btn-info admin-btn-add">Add movie</button>
+                <button type="button" @click="toggleAddMovieForm" class="btn btn-cancel mb-3 ml-3">Cancel</button>
             </div>
         </form>
       </div>

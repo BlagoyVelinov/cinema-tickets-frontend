@@ -1108,6 +1108,32 @@ element.style {
   margin-right: 5px;
 }
 
+.mb-4 {
+    position: absolute;
+    bottom: 0%;
+    left: 29%;
+}
+
+.mt-2 {
+    display: flex;
+    justify-content: center;
+    margin: 2.5em 0 1em 0;
+    gap: 0.3em;
+}
+.badge-add {
+    color: #c2bfbc;
+}
+.badge-movie {
+    color: #d72d0f;
+}
+
+.add-movie-form {
+    padding: 0em 8.4em;
+    display: flex;
+    align-items: stretch;
+    flex-direction: column;
+    width: 80%;
+}
 /* Error Page Styles */
 .error-body {
     margin: 0;
@@ -2422,6 +2448,7 @@ header.navigation ul li a:hover {
 /* Program Page Styles */
 
 .form-row {
+    position: relative;
     display: flex;
     flex-direction: column;
     align-items: flex-start;
@@ -2460,6 +2487,10 @@ header.navigation ul li a:hover {
     background-color: #fff;
     margin-top: 0.5em;
 }
+.custom-select.movie-add {
+    width: 97%;
+    margin-top: 0;
+}
 .movie-info-program {
     display: flex;
     flex-direction: column;
@@ -2469,7 +2500,7 @@ header.navigation ul li a:hover {
 .info-booking-times {
     display: flex;
     gap: 0.5em;
-    margin-bottom: 1em;
+    margin-bottom: 1.5em;
 }
 .info-booking-times > a.h4 {
     font-size: 1.5em;
@@ -2497,9 +2528,18 @@ header.navigation ul li a:hover {
     background-color: #9c4e1b;
     color: #fff;
 }
-.button-holder {
-    margin-top: 20px;
+.button-holder.d-flex-add {
+    width: 97%;
+    display: flex;
+    justify-content: center;
+    gap: 6em;
+    margin-top: 1.5em;
 }
+
+.label-holder {
+    margin-bottom: 0.4em;
+}
+
 
 .btn {
     padding: 10px 20px;
@@ -2530,6 +2570,15 @@ header.navigation ul li a:hover {
 
 .btn-info {
     background-color: #cf3535;
+    color: #fff;
+}
+
+.btn-cancel {
+    background-color: #c06418;
+    color: #fff;
+}
+
+.btn-cancel:hover {
     color: #fff;
 }
 
