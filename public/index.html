@@ -7,7 +7,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Cinema Tickets</title>
   <link rel="stylesheet" href="/css/style.css" />
-  <!-- Auth Service -->
   <script type="module" src="/services/init-auth.js"></script>
 </head>
 <body id="page1">
@@ -42,22 +41,10 @@
 
                   <div class="content">
                     <h3>Upcoming <span>Premieres</span></h3>
-                    <div id="movie-app">
-                      <div v-if="isLoading" class="loading-message">
-                        <p>Loading movies...</p>
-                        <p class="debug">{{ debugInfo }}</p>
-                      </div>
-                      <div v-else-if="hasError" class="error-message">
-                        <p>There was an error loading the movies. Showing sample data instead.</p>
-                        <p class="debug">{{ debugInfo }}</p>
-                      </div>
-                      <div v-else-if="movies.length === 0" class="empty-message">
-                        <p>No movies available at the moment.</p>
-                        <p class="debug">{{ debugInfo }}</p>
-                      </div>
-                      <ul class="movies" v-else>
-                        <movie-list :movies="movies"></movie-list>
-                      </ul>
+                    <div id="movie-app" class="movies-container">
+                      <script>
+                        console.log("movie-app element is created and this script is added to it for testing");
+                      </script>
                     </div>
                   </div>
                 </div>
@@ -77,66 +64,12 @@
                 <div class="inner">
                   <h3 class="title">Projections <span>Today</span></h3>
                   <div id="program-app">
-                    <div class="form-row m-5">
-                      <form method="post" action="/program">
-                        <div class="col">
-                          <label for="dateInput">Date</label>
-                          <input type="date" name="projectionDate" id="dateInput" class="form-control" v-model="selectedDate" :min="todayDate" />
-                          <small class="text-danger" v-show="errors.dateError">Reserved date cannot be in the past</small>
-                        </div>
-
-                        <div class="form-group">
-                          <label for="cityName">Select City</label>
-                          <select class="browser-default custom-select" id="cityName" name="location" v-model="selectedCity">
-                            <option value="">Select City</option>
-                            <option value="SOFIA">Sofia</option>
-                            <option value="PLOVDIV">Plovdiv</option>
-                            <option value="STARA_ZAGORA">Stara Zagora</option>
-                            <option value="RUSE">Ruse</option>
-                            <option value="BURGAS">Burgas</option>
-                            <option value="VARNA">Varna</option>
-                          </select>
-                          <small class="text-danger" v-show="errors.cityError">City Name is required</small>
-                        </div>
-
-                        <div class="button-holder d-flex justify-content-center">
-                          <button type="button" class="btn btn-primary btn-lg" @click="validateForm">Continue</button>
-                        </div>
-                      </form>
-
-                      <div class="admin-only">
-                        <a href="/movies/add-movie" class="admin-btn admin-btn-add">
-                          <i class='bx bx-plus'></i>
-                          Add Movie
-                        </a>
-                      </div>
-                    </div>
-                    <!-- MOVIES -->
-                    <div class="content">
-                      <h4 id="displayDate">
-                        {{ selectedDate ? 'Projections on: ' + selectedDate : 'Choose a date and city for reserve ticket' }}
-                        {{ selectedCity ? ' in: ' + formatCityName(selectedCity) : '' }}
-                      </h4>
-                      
-                      <div v-if="isLoading" class="loading-message">
-                        <p>Loading movies...</p>
-                        <p class="debug">{{ debugInfo }}</p>
-                      </div>
-                      <div v-else-if="hasError" class="error-message">
-                        <p>There was an error loading the movies.</p>
-                        <p class="debug">{{ debugInfo }}</p>
-                      </div>
-                      <ul class="list" v-else>
-                        <program-movie-list :movies="movies" :isadmin="isadmin"></program-movie-list>
-                      </ul>
-                    </div>
+                    <!-- Vue component will be loaded here -->
                   </div>
                 </div>
               </div>
             </div>
           </div>
-
-          
         </div>
 
         <!-- 4DX CONTENT -->

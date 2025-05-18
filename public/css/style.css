@@ -690,7 +690,7 @@ a {
     cursor: pointer;
 }
 
-.btn-logout {
+.btn-info.btn-logout {
     display: inline-block;
     text-align: center;
     white-space: nowrap;
@@ -702,7 +702,7 @@ a {
     background-color: coral;
     margin: -21px -14px -19px 12px;
     user-select: none;
-    border: 2px solid;
+    border: 1px solid;
 }
 .btn:hover {
     background-color: rgb(201, 16, 16);

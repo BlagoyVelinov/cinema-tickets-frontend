@@ -2,6 +2,7 @@ import MovieClass from '../models/MovieClass.js';
 import MovieDto from '../models/MovieDto.js';
 import BookingTime from '../models/BookingTime.js';
 import { createApp, ref, onMounted } from 'vue';
+import { createMovieListApp } from '../js/movie-view.js';
 
 /**
  * Service for handling movie-related operations and API requests
@@ -630,88 +631,8 @@ class MovieService {
    * @returns {import('vue').App} Vue приложение
    */
   initMovieListVue() {
-    const movieServiceInstance = this;  // Запазваме референция към this
-    
-    const MovieListApp = {
-      setup() {
-        const movies = ref([])
-        const isLoading = ref(true)
-        const hasError = ref(false)
-        const debugInfo = ref('Зареждане...')
-
-        onMounted(async () => {
-          try {
-            console.log('Зареждане на предстоящи филми...')
-            isLoading.value = true
-            debugInfo.value = 'Изпращане на заявка към API...'
-
-            // Use the movie service to get upcoming movies (with empty bookingTimes)
-            const upcomingMovies = await movieServiceInstance.getUpcomingMovies()
-            console.log('Получени данни за предстоящи филми:', upcomingMovies)
-            debugInfo.value = `Получени филми: ${upcomingMovies ? upcomingMovies.length : 0}`
-            
-            // Директно извеждаме имената на филмите в конзолата за дебъгване
-            if (upcomingMovies && upcomingMovies.length > 0) {
-              console.log('Имена на заредените филми:')
-              upcomingMovies.forEach((movie, index) => {
-                console.log(`${index + 1}. ${movie.name} (ID: ${movie.id})`)
-              })
-            }
-            
-            movies.value = upcomingMovies
-            
-            // If no movies were found, provide some fallback data
-            if (movies.value.length === 0) {
-              console.warn('No upcoming movies found or API not available')
-              debugInfo.value = 'Няма намерени филми'
-              // Fallback data
-              movies.value = []
-            } else {
-              debugInfo.value = `Успешно заредени ${movies.value.length} филми`
-            }
-          } catch (error) {
-            console.error('Грешка при зареждане на филми:', error)
-            hasError.value = true
-            debugInfo.value = `Грешка: ${error.message}`
-            // Empty array on error
-            movies.value = []
-          } finally {
-            isLoading.value = false
-          }
-        })
-
-        return { movies, isLoading, hasError, debugInfo }
-      }
-    }
-
-    // Създаваме Vue инстанция
-    const app = createApp(MovieListApp)
-
-    // Правим компонент за списъка с филми
-    app.component('movie-list', {
-      props: ['movies'],
-      template: `
-        <li v-if="movies.length === 0" class="no-movies">
-          <p>Няма налични филми за показване.</p>
-        </li>
-        <template v-else>
-          <li v-for="(movie, index) in movies" :key="movie.id || index">
-            <h4>{{ movie.name || '' }}</h4>
-            <img class="movie-1-pic" :src="movie.imageUrl" :alt="movie.name" width="224" height="269" />
-            <p>{{ movie.description || 'Няма описание' }}</p>
-            
-            <div class="button-trailer-button">
-              <a :href="'/?trailer=' + movie.id" class="link2">
-                <span><span>See Trailer</span></span>
-              </a>
-            </div>
-          </li>
-          <li class="clear">&nbsp;</li>
-        </template>
-      `
-    });
-
-    return app;
+    // Вече не създаваме компонента тук, а използваме функцията от view файла
+    return createMovieListApp();
   }
 }
 

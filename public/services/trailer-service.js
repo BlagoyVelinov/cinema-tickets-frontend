@@ -1,4 +1,5 @@
 import { createApp, ref, onMounted } from 'vue';
+import { createTrailerApp } from '../js/trailer-view.js';
 
 class TrailerService {
   constructor() {
@@ -28,121 +29,8 @@ class TrailerService {
    * @returns {import('vue').App} Vue приложение
    */
   initTrailerVue() {
-    const trailerServiceInstance = this;
-    
-    const TrailerApp = {
-      template: `
-        <div class="trailer-container" :style="{ backgroundColor: overlayColor }">
-          <div v-if="isLoading" class="loading">
-            <p>Зареждане...</p>
-          </div>
-          
-          <div v-else-if="hasError" class="error">
-            <h3>Грешка при зареждане</h3>
-            <p>{{ errorMessage }}</p>
-          </div>
-          
-          <div v-else-if="movie" class="movie-trailer">
-          <header class="trailer-header">
-            <h3>{{ movie.name }}</h3>
-            </header>
-            <button @click="closeTrailer" class="trailer-action-button">X</button>
-            <li>
-              <iframe
-                width="780"
-                height="425"
-                :src="movie.trailerUrl || 'https://www.youtube.com/embed/dQw4w9WgXcQ'"
-                frameborder="0"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                referrerpolicy="strict-origin-when-cross-origin"
-                allowfullscreen>
-              </iframe>
-            </li>
-            <p>{{ movie.description || 'Няма описание' }}</p>
-            
-          </div>
-          
-          <div v-else class="no-movie">
-            <h3>The movie is not found</h3>
-            <p>Please try with another movie or return to the <a href="/">Home page</a>.</p>
-          </div>
-        </div>
-      `,
-      setup() {
-        const movie = ref(null);
-        const isLoading = ref(true);
-        const hasError = ref(false);
-        const errorMessage = ref('');
-        const overlayColor = ref('#000000');
-        
-        // Функция за затваряне на трейлъра
-        const closeTrailer = () => {
-          const trailerModal = document.querySelector('.trailer-modal');
-          if (trailerModal) {
-            // Използваме анимирано затваряне
-            trailerServiceInstance.closeTrailer();
-          }
-        };
-        
-        // При зареждане на страницата
-        onMounted(async () => {
-          try {
-            // Извличаме ID от URL параметъра
-            const params = new URLSearchParams(window.location.search);
-            const movieId = params.get('trailer');
-            console.log('Зареждане на данни за филм с ID:', movieId);
-            
-            if (!movieId) {
-              hasError.value = true;
-              errorMessage.value = 'Не е намерен ID на филм в URL';
-              isLoading.value = false;
-              return;
-            }
-            
-            // Извикване на услугата за данни
-            const movieData = await trailerServiceInstance.getMovieTrailer(movieId);
-            movie.value = movieData;
-            console.log('Данни за филм:', movie.value);
-            
-            // Задаваме цвят за фона с withAlpha вместо withOpacity
-            const alpha = Math.round(0.8 * 255);
-            overlayColor.value = `rgba(0,0,0,${alpha})`;
-            
-            // Добавяне на обработчик за клавиша Escape
-            const handleEscape = (e) => {
-              if (e.key === 'Escape') {
-                trailerServiceInstance.closeTrailer();
-              }
-            };
-            
-            document.addEventListener('keydown', handleEscape);
-            
-            // Премахваме събитието при размонтиране
-            return () => {
-              document.removeEventListener('keydown', handleEscape);
-            };
-          } catch (error) {
-            console.error('Грешка при зареждане на филма:', error);
-            hasError.value = true;
-            errorMessage.value = error.message || 'Възникна грешка при зареждане на информацията за филма';
-          } finally {
-            isLoading.value = false;
-          }
-        });
-        
-        return {
-          movie,
-          isLoading,
-          hasError,
-          errorMessage,
-          overlayColor,
-          closeTrailer
-        };
-      }
-    };
-    
-    const app = createApp(TrailerApp);
-    return app;
+    // Вече не създаваме компонента тук, а използваме функцията от view файла
+    return createTrailerApp();
   }
   
   initialize() {
@@ -178,6 +66,16 @@ class TrailerService {
     const trailerModal = document.querySelector('.trailer-modal');
     const trailerApp = document.getElementById('trailer-app');
     
+    // Спираме видеото като намираме iframe и нулираме неговия src
+    const iframe = document.querySelector('.movie-trailer iframe');
+    if (iframe) {
+      // Запазваме оригиналния URL, за да можем да го възстановим при нужда
+      const originalSrc = iframe.src;
+      iframe.src = '';
+      // Опционално: възстановяваме iframe src след кратко забавяне
+      // setTimeout(() => { iframe.src = originalSrc; }, 100);
+    }
+    
     if (trailerModal) {
       // Премахваме класовете, което стартира анимацията за затваряне
       trailerModal.classList.remove('show');
@@ -185,11 +83,12 @@ class TrailerService {
         trailerApp.classList.remove('show');
       }
       
+      // Първо се връщаме към предишния URL
+      window.history.back();
+      
       // Изчакваме анимацията да приключи преди да скрием елемента
       setTimeout(() => {
         trailerModal.style.display = 'none';
-        // Връщаме се назад в историята на браузъра
-        window.history.back();
       }, 300); // 300ms съответства на продължителността на transition в CSS
     }
   }
@@ -235,7 +134,7 @@ class TrailerService {
       modalContainer = trailerContainer.closest('.trailer-modal') || document.querySelector('.trailer-modal');
     }
     
-    // Монтираме Vue приложението
+    // Монтираме Vue приложението, използвайки метода initTrailerVue()
     const trailerApp = this.initTrailerVue();
     trailerApp.mount('#trailer-app');
     

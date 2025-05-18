@@ -5,6 +5,14 @@ const userService = {
     // Базовият URL на фронтенд приложението
     frontendBaseUrl: window.location.origin, // Например: http://localhost:5173
     
+    // Current auth state kept in memory
+    _authState: {
+        isAuthenticated: false,
+        currentUser: null,
+        isAdmin: false,
+        initialized: false
+    },
+    
     // Check if user is logged in by querying the session endpoint
     async isLoggedIn() {
         try {
@@ -18,12 +26,30 @@ const userService = {
             
             if (response.ok) {
                 const data = await response.json();
-                console.log('Session data:', data); // Добавяме лог
+                console.log('Session data:', data);
+                
+                // Update auth state
+                this._authState.isAuthenticated = data.isAuthenticated;
                 return data.isAuthenticated;
             }
+            
+            // If response not ok, clear auth state
+            this._authState.isAuthenticated = false;
+            this._authState.currentUser = null;
+            this._authState.isAdmin = false;
+            
             return false;
         } catch (error) {
             console.error('Error checking authentication status:', error);
+            
+            // Clear auth state on error
+            this._authState.isAuthenticated = false;
+            this._authState.currentUser = null;
+            this._authState.isAdmin = false;
+            
+            // Update UI to reflect logged out state
+            this.updateUIAuthState();
+            
             return false;
         }
     },
@@ -31,6 +57,20 @@ const userService = {
     // Get current user data
     async getCurrentUser() {
         try {
+            // If we already have user data in memory and they're authenticated, use that
+            if (this._authState.initialized && this._authState.currentUser && this._authState.isAuthenticated) {
+                return this._authState.currentUser;
+            }
+            
+            // Check authentication status first
+            const isAuth = await this.isLoggedIn();
+            if (!isAuth) {
+                this._authState.currentUser = null;
+                this._authState.isAdmin = false;
+                this._authState.initialized = true;
+                return null;
+            }
+            
             // Първо взимаме сесията за да получим username на потребителя
             const sessionResponse = await fetch('/api/users/session', {
                 method: 'GET',
@@ -42,6 +82,10 @@ const userService = {
             
             if (!sessionResponse.ok) {
                 console.log('Session response not ok:', sessionResponse.status);
+                this._authState.currentUser = null;
+                this._authState.isAdmin = false;
+                this._authState.initialized = true;
+                this.updateUIAuthState(); // Update UI to reflect state
                 return null;
             }
             
@@ -51,6 +95,10 @@ const userService = {
             // Проверяваме дали имаме username
             if (!sessionData.username) {
                 console.log('No username in session data');
+                this._authState.currentUser = null;
+                this._authState.isAdmin = false;
+                this._authState.initialized = true;
+                this.updateUIAuthState(); // Update UI to reflect state
                 return null;
             }
             
@@ -68,21 +116,58 @@ const userService = {
             if (response.ok) {
                 const data = await response.json();
                 console.log('User data from API:', data); // Добавяме лог
-                return UserDto.fromJSON(data);
+                const user = UserDto.fromJSON(data);
+                
+                // Update auth state with user data
+                this._authState.currentUser = user;
+                this._authState.isAdmin = user.isAdmin();
+                this._authState.initialized = true;
+                
+                return user;
             }
+            
             console.log('User API response not ok:', response.status);
+            this._authState.currentUser = null;
+            this._authState.isAdmin = false;
+            this._authState.initialized = true;
+            this.updateUIAuthState(); // Update UI to reflect state
             return null;
         } catch (error) {
             console.error('Error getting current user:', error);
+            
+            // Clear auth state on error
+            this._authState.currentUser = null;
+            this._authState.isAdmin = false;
+            this._authState.initialized = true;
+            
+            // Update UI to reflect logged out state
+            this.updateUIAuthState();
+            
             return null;
         }
     },
     
     // Check if user has admin role
     async isAdmin() {
-        const userData = await this.getCurrentUser();
-        console.log('User data for admin check:', userData); // Добавяме лог
-        return userData?.isAdmin() || false;
+        try {
+            // If we've already initialized the auth state, use that
+            if (this._authState.initialized) {
+                return this._authState.isAdmin;
+            }
+            
+            const userData = await this.getCurrentUser();
+            console.log('User data for admin check:', userData);
+            
+            const isAdmin = userData?.isAdmin() || false;
+            this._authState.isAdmin = isAdmin;
+            
+            return isAdmin;
+        } catch (error) {
+            console.error('Error checking admin status:', error);
+            this._authState.isAdmin = false;
+            this.updateUIAuthState();
+            return false;
+        }
     },
     
     // Log out the user through Spring Security
@@ -96,11 +181,28 @@ const userService = {
                 }
             });
             
+            // Clear auth state on logout
+            this._authState.isAuthenticated = false;
+            this._authState.currentUser = null;
+            this._authState.isAdmin = false;
+            
+            // Update UI to reflect logged out state
+            this.updateUIAuthState();
+            
             // Независимо от резултата, пренасочваме към началната страница на фронтенда
             window.location.href = this.frontendBaseUrl;
         } catch (error) {
             console.error('Error during logout:', error);
-            // При грешка, също пренасочваме към началната страница на фронтенда
+            
+            // Clear auth state on error
+            this._authState.isAuthenticated = false;
+            this._authState.currentUser = null;
+            this._authState.isAdmin = false;
+            
+            // Update UI to reflect logged out state
+            this.updateUIAuthState();
+            
+            // При грешка,也应该 пренасочваме към началната страница на фронтенда
             window.location.href = this.frontendBaseUrl;
         }
     },
@@ -116,16 +218,13 @@ const userService = {
         document.addEventListener('DOMContentLoaded', this.setupNavigation.bind(this));
     },
     
-    // Set up navigation based on authentication status
-    async setupNavigation() {
-        const isLoggedIn = await this.isLoggedIn();
-        console.log('Is logged in:', isLoggedIn); // Добавяме лог
+    // Update UI elements based on current auth state without querying server
+    updateUIAuthState() {
+        const isLoggedIn = this._authState.isAuthenticated;
+        const userData = this._authState.currentUser;
+        const isAdmin = this._authState.isAdmin;
         
-        const userData = await this.getCurrentUser();
-        console.log('User data for navigation:', userData); // Добавяме лог
-        
-        const isAdmin = userData?.isAdmin() || false;
-        console.log('Is admin:', isAdmin); // Добавяме лог
+        console.log('Updating UI with auth state:', { isLoggedIn, userData, isAdmin });
         
         // Get navigation element
         const navElement = document.getElementById('header');
@@ -139,7 +238,7 @@ const userService = {
         // Обработка на логаут формата
         const logoutForm = navElement.querySelector('form[action="/api/users/logout"]');
         
-        if (isLoggedIn && userData) { // Добавяме проверка за userData
+        if (isLoggedIn && userData) {
             // Show logged-in elements, hide guest elements
             if (loginItem) loginItem.style.display = 'none';
             if (registerItem) registerItem.style.display = 'none';
@@ -181,7 +280,69 @@ const userService = {
                 element.classList.remove('visible');
             });
         }
+    },
+    
+    // Set up navigation based on authentication status
+    async setupNavigation() {
+        try {
+            const isLoggedIn = await this.isLoggedIn();
+            console.log('Is logged in:', isLoggedIn);
+            
+            const userData = await this.getCurrentUser();
+            console.log('User data for navigation:', userData);
+            
+            const isAdmin = await this.isAdmin();
+            console.log('Is admin:', isAdmin);
+            
+            // Update UI based on auth state
+            this.updateUIAuthState();
+        } catch (error) {
+            console.error('Error setting up navigation:', error);
+            
+            // Clear auth state on error
+            this._authState.isAuthenticated = false;
+            this._authState.currentUser = null;
+            this._authState.isAdmin = false;
+            
+            // Update UI to reflect logged out state
+            this.updateUIAuthState();
+        }
+    },
+    
+    // Force refresh the authentication state (call this on network errors or auth issues)
+    async refreshAuthState() {
+        try {
+            // Clear current state
+            this._authState.initialized = false;
+            
+            // Re-fetch authentication data
+            await this.isLoggedIn();
+            await this.getCurrentUser();
+            await this.isAdmin();
+            
+            // Update UI based on new state
+            this.updateUIAuthState();
+        } catch (error) {
+            console.error('Error refreshing auth state:', error);
+            
+            // Clear auth state on error
+            this._authState.isAuthenticated = false;
+            this._authState.currentUser = null;
+            this._authState.isAdmin = false;
+            this._authState.initialized = true;
+            
+            // Update UI to reflect logged out state
+            this.updateUIAuthState();
+        }
     }
 };
+
+// Setup event handler for network errors that could affect authentication
+window.addEventListener('error', (e) => {
+    if (e.message && (e.message.includes('network') || e.message.includes('fetch'))) {
+        console.warn('Network error detected, refreshing auth state');
+        userService.refreshAuthState();
+    }
+});
 
 export default userService;

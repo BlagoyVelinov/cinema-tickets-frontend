@@ -1,66 +1,140 @@
 import '../services/init-auth.js'
-import { movieService } from '../services/MovieService.js'
+import { movieService } from '../services/movie-service.js'
 import { programService } from '../services/program-service.js'
 import { trailerService } from '../services/trailer-service.js'
 import { createApp } from 'vue'
+import userService from '../services/user-service.js'
 
-// Създаваме Vue инстанция за филмите
-const movieApp = movieService.initMovieListVue()
+console.log("main.js се зарежда");
+console.log("movieService:", movieService);
 
-// Монтираме приложението
-movieApp.mount('#movie-app')
+// Глобален обработчик за fetch грешки, които могат да повлияят на автентикацията
+async function handleFetchWithAuthRetry(fetchPromise, retryCount = 1) {
+  try {
+    return await fetchPromise;
+  } catch (error) {
+    console.error("Fetch error:", error);
+    
+    if (retryCount > 0 && (error.message.includes('network') || error.message.includes('fetch'))) {
+      console.warn("Network error detected, refreshing auth state and retrying...");
+      await userService.refreshAuthState();
+      
+      // Wait a moment before retrying
+      await new Promise(resolve => setTimeout(resolve, 1000));
+      
+      // Retry with one less retry attempt
+      return handleFetchWithAuthRetry(fetchPromise, retryCount - 1);
+    }
+    
+    throw error;
+  }
+}
 
-// Initialize program page Vue app
-const programApp = programService.initProgramVue()
-programApp.mount('#program-app')
-
-// Забележка: Логиката за трейлъри е изнесена в trailer-service.js
-// и се инициализира автоматично при зареждане на страницата
-
-document.addEventListener("DOMContentLoaded", function() {
-  // Load navigation and footer
-  fetch('/partials/nav.html')
-    .then(response => {
-      if (!response.ok) {
-        throw new Error(`HTTP error! Status: ${response.status}`);
+// Задаваме всичко да се инициализира след DOM зареждането
+document.addEventListener('DOMContentLoaded', async function() {
+  console.log("DOM fully loaded");
+  
+  try {
+    console.log("Тестваме дали API за филмите работи:");
+    const testMovies = await handleFetchWithAuthRetry(movieService.getUpcomingMovies());
+    console.log("Тест резултат:", testMovies);
+    console.log("Брой филми:", testMovies ? testMovies.length : 0);
+    
+    if (testMovies && testMovies.length > 0) {
+      console.log("Филми са заредени успешно от API");
+      
+      // Инициализираме Vue компонентите
+      // Създаваме Vue инстанция за филмите
+      try {
+        console.log("Инициализация на Vue за филми");
+        const movieElement = document.getElementById('movie-app');
+        if (movieElement) {
+          console.log("movie-app елемент намерен, създаваме приложението");
+          const movieApp = movieService.initMovieListVue();
+          console.log("Vue инстанция за филми създадена:", movieApp);
+          movieApp.mount('#movie-app');
+          console.log("Монтирането на #movie-app приключи");
+        } else {
+          console.error("movie-app елемент НЕ Е намерен в DOM!");
+        }
+        
+        // Initialize program page Vue app
+        console.log("Инициализация на Vue за програма");
+        const programElement = document.getElementById('program-app');
+        if (programElement) {
+          const programApp = programService.initProgramVue();
+          console.log("Vue инстанция за програма създадена");
+          programApp.mount('#program-app');
+          console.log("Монтирането на #program-app приключи");
+        }
+      } catch (e) {
+        console.error("Грешка при инициализиране на Vue:", e);
+        // Ensure auth state is refreshed if there's an error
+        userService.refreshAuthState();
       }
-      return response.text();
-    })
-    .then(data => {
-      const navElement = document.getElementById('nav');
-      if (navElement) {
-        navElement.innerHTML = data;
-        // Setup tab navigation after nav is loaded
-        setupTabNavigation();
-      } else {
-        console.error('Element with id "nav" not found');
-      }
-    })
-    .catch(error => {
-      console.error('Error loading navigation:', error);
-    });
+      
+    } else {
+      console.log("Няма филми от API или има грешка при извикването");
+      // If we couldn't load movies, ensure auth state is refreshed
+      userService.refreshAuthState();
+    }
+  } catch (e) {
+    console.error("Грешка при тестването на API за филми:", e);
+    // Ensure auth state is refreshed if there's an error
+    userService.refreshAuthState();
+  }
 
-  fetch('/partials/footer.html')
-    .then(response => {
-      if (!response.ok) {
-        throw new Error(`HTTP error! Status: ${response.status}`);
-      }
-      return response.text();
-    })
-    .then(data => {
-      const footerElement = document.getElementById('footer');
-      if (footerElement) {
-        footerElement.innerHTML = data;
-      } else {
-        console.error('Element with id "footer" not found');
-      }
-    })
-    .catch(error => {
-      console.error('Error loading footer:', error);
-    });
+  // Load navigation and footer with error handling
+  try {
+    const navResponse = await handleFetchWithAuthRetry(fetch('/partials/nav.html'));
+    
+    if (!navResponse.ok) {
+      throw new Error(`HTTP error! Status: ${navResponse.status}`);
+    }
+    
+    const navData = await navResponse.text();
+    const navElement = document.getElementById('nav');
+    
+    if (navElement) {
+      navElement.innerHTML = navData;
+      // Setup tab navigation after nav is loaded
+      setupTabNavigation();
+      
+      // Make sure auth state is applied to the newly loaded nav
+      userService.updateUIAuthState();
+    } else {
+      console.error('Element with id "nav" not found');
+    }
+  } catch (error) {
+    console.error('Error loading navigation:', error);
+  }
+
+  try {
+    const footerResponse = await handleFetchWithAuthRetry(fetch('/partials/footer.html'));
+    
+    if (!footerResponse.ok) {
+      throw new Error(`HTTP error! Status: ${footerResponse.status}`);
+    }
+    
+    const footerData = await footerResponse.text();
+    const footerElement = document.getElementById('footer');
+    
+    if (footerElement) {
+      footerElement.innerHTML = footerData;
+    } else {
+      console.error('Element with id "footer" not found');
+    }
+  } catch (error) {
+    console.error('Error loading footer:', error);
+  }
     
   // Add direct event listener for any links already in the page before nav loads
   setupInitialLinkListeners();
+  
+  // Setup event listeners for navigation changes to ensure auth state is maintained
+  window.addEventListener('popstate', () => {
+    setTimeout(() => userService.updateUIAuthState(), 100);
+  });
 });
 
 // Дефиниране на attachLinkHandler като глобална функция, преди да се използва
@@ -249,25 +323,24 @@ function updateActiveNavItem(path) {
   // Add active class to matching items
   navItems.forEach(item => {
     const href = item.getAttribute('href');
-    if (href === path || 
-        (path === '/' && href === '/index.html') ||
-        (path === '/index.html' && href === '/')) {
+    if (href === path) {
       item.classList.add('active');
     }
   });
 }
 
-// Update body ID to match the active tab for styling
+// Update body ID based on active tab
 function updateBodyId(tabId) {
-  const bodyIdMap = {
+  const idMap = {
     'content-home': 'page1',
     'content-program': 'page2',
-    'content-offers': 'page3',
-    'content-4dx': 'page5',
-    'content-imax': 'page6',
-    'content-about-us': 'page4',
-    'content-contact-us': 'page10'
+    'content-4dx': 'page3',
+    'content-imax': 'page4',
+    'content-offers': 'page5',
+    'content-about-us': 'page6',
+    'content-contact-us': 'page7'
   };
   
-  document.body.id = bodyIdMap[tabId] || 'page1';
+  const bodyId = idMap[tabId] || 'page1';
+  document.body.id = bodyId;
 }
