@@ -239,9 +239,23 @@ function setupTabNavigation() {
   // Set the initial active tab based on URL
   const currentPath = window.location.pathname;
   const initialTabId = pathToTabMap[currentPath] || 'content-home';
+  
+  // If we're on the root path but have a hash, use that to determine the tab
+  if (currentPath === '/' && window.location.hash) {
+    const hashPath = window.location.hash.substring(1); // Remove the # symbol
+    const tabId = pathToTabMap[hashPath];
+    if (tabId) {
+      showTab(tabId);
+      updateActiveNavItem(hashPath);
+      updateBodyId(tabId);
+      // Update URL without page reload
+      history.replaceState({}, '', hashPath);
+      return;
+    }
+  }
+  
   showTab(initialTabId);
-
-  // Set the body ID based on the active tab
+  updateActiveNavItem(currentPath);
   updateBodyId(initialTabId);
 
   // Get all navigation links - use document.body to ensure we catch all links

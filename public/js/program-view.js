@@ -364,6 +364,7 @@ const ProgramMovieList = {
       this.editingMovieId = null;
     },
     validateAndSubmit(event, movieId) {
+      event.preventDefault();
       this.submissionAttempted[movieId] = true;
       
       // Get the select element
@@ -371,11 +372,46 @@ const ProgramMovieList = {
       
       // Check if at least one option is selected
       if (selectElement.selectedOptions.length === 0) {
-        // Set the error message from backend validation message
         this.errorMessages[movieId] = "You must select at least one booking time!";
-        event.preventDefault(); // Prevent form submission
-      } else {
-        this.errorMessages[movieId] = "";
+        return;
+      }
+
+      // Convert selected options to array of values
+      const selectedTimes = Array.from(selectElement.selectedOptions).map(option => option.value);
+      
+      // Call the service to update projection time
+      programService.updateProjectionTime(movieId, selectedTimes)
+        .then(async response => {
+          // Refresh all movies data
+          const updatedMovies = await programService.getAllMoviesForProgram();
+          this.$parent.movies = updatedMovies;
+          
+          // Reset edit mode and error state
+          this.editingMovieId = null;
+          this.submissionAttempted[movieId] = false;
+          this.errorMessages[movieId] = "";
+        })
+        .catch(error => {
+          console.error('Error updating projection time:', error);
+          this.errorMessages[movieId] = error.message || "Failed to update projection time";
+        });
+    },
+    // Function for deleting a movie
+    async deleteMovie(event, movieId) {
+      event.preventDefault();
+      
+      if (!confirm('Are you sure you want to delete this movie?')) {
+        return;
+      }
+
+      try {
+        await movieService.deleteMovie(movieId);
+        // Refresh all movies data after successful deletion
+        const updatedMovies = await programService.getAllMoviesForProgram();
+        this.$parent.movies = updatedMovies;
+      } catch (error) {
+        console.error('Error deleting movie:', error);
+        alert('Failed to delete movie: ' + error.message);
       }
     }
   },
@@ -405,7 +441,7 @@ const ProgramMovieList = {
           <template v-if="editingMovieId === movie.id">
             <section class="update-projection-time-section">
               <!--Choose new projection time -->
-              <form :action="'/program/update-projection-time/' + movie.id" method="post" class="form-group">
+              <form @submit.prevent="validateAndSubmit" class="form-group">
                 <div class="text-white label-holder d-flex justify-content-center">
                   <label for="startMovie" class="h4 mb-2">Choose new projection time</label>
                 </div>
@@ -460,11 +496,9 @@ const ProgramMovieList = {
               class="btn-lg">
               Update projection time
             </a>
-            <form :action="'/movies/delete-movie/' + movie.id" method="delete">
-              <div class="button-holder d-flex justify-content-center">
-                <button type="submit" class="btn btn-info mb-3">Delete Movie</button>
-              </div>
-            </form>
+            <div class="button-holder d-flex justify-content-center">
+              <button type="button" class="btn btn-info mb-3" @click="deleteMovie($event, movie.id)">Delete Movie</button>
+            </div>
           </div>
         </div>
         </section>

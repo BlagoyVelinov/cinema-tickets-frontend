@@ -115,11 +115,12 @@ class ProgramService {
           'Accept': 'application/json',
           'Content-Type': 'application/json'
         },
-        body: JSON.stringify(bookingTimes)
+        body: JSON.stringify({ startMovieTimes: bookingTimes })
       })
       
       if (!response.ok) {
-        throw new Error(`Error updating projection time: ${response.status}`)
+        const errorData = await response.json();
+        throw new Error(errorData.message || `Error updating projection time: ${response.status}`);
       }
       
       return await response.json()
