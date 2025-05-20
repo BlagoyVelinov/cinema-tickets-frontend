@@ -282,24 +282,10 @@ class MovieService {
    * @param {string} location - Optional location filter
    * @returns {Promise<Array<MovieClass>>} Array of MovieClass instances with non-empty bookingTimes
    */
-  async getMoviesWithProjections(date = null, location = null) {
+  async getMoviesWithProjections() {
     const allMovies = await this.getAllMovies();
     // Filter movies that have booking times
     let filteredMovies = allMovies.filter(movie => movie.bookingTimes.length > 0);
-    
-    // Apply date filter if provided
-    if (date) {
-      filteredMovies = filteredMovies.filter(movie => {
-        return movie.bookingTimes.some(time => time.date === date);
-      });
-    }
-    
-    // Apply location filter if provided
-    if (location) {
-      filteredMovies = filteredMovies.filter(movie => {
-        return movie.bookingTimes.some(time => time.location === location);
-      });
-    }
     
     return filteredMovies;
   }

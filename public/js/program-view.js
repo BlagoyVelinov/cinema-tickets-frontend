@@ -52,7 +52,7 @@ const ProgramApp = {
     })
     
     // Form validation function
-    const validateForm = () => {
+    const validateForm = async () => {
       let isValid = true
       
       // Reset errors
@@ -71,9 +71,26 @@ const ProgramApp = {
         isValid = false
       }
       
-      // If form is valid, submit
+      // If form is valid, fetch and filter movies
       if (isValid) {
-        document.querySelector('form[action="/program"]').submit()
+        try {
+          isLoading.value = true
+          // Get movies with projections for selected date and city
+          const filteredMovies = await movieService.getMoviesWithProjections()
+          movies.value = filteredMovies
+          
+          if (filteredMovies.length === 0) {
+            debugInfo.value = 'No movies found for the selected date and city.'
+          } else {
+            debugInfo.value = `Found ${filteredMovies.length} movies for ${selectedDate.value} in ${formatCityName(selectedCity.value)}`
+          }
+        } catch (error) {
+          console.error('Error fetching movies:', error)
+          hasError.value = true
+          debugInfo.value = `Error: ${error.message}`
+        } finally {
+          isLoading.value = false
+        }
       }
     }
     
@@ -134,7 +151,7 @@ const ProgramApp = {
     <div class="program-container">
       
       <div class="form-row m-5">
-        <form method="post" action="/program">
+        <form @submit.prevent>
           <div class="col">
             <label for="dateInput">Date</label>
             <input 
@@ -442,9 +459,6 @@ const ProgramMovieList = {
             <section class="update-projection-time-section">
               <!--Choose new projection time -->
               <form @submit.prevent="validateAndSubmit" class="form-group">
-                <div class="text-white label-holder d-flex justify-content-center">
-                  <label for="startMovie" class="h4 mb-2">Choose new projection time</label>
-                </div>
                 <select class="browser-default custom-select" name="startMovie[]" id="startMovie" multiple>
                   <option value="">Select booking time</option>
                   <option value="_10_20">10:20</option>
