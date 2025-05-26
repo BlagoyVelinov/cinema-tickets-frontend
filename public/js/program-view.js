@@ -1,4 +1,4 @@
-import { createApp, ref, onMounted } from 'vue'
+import { createApp, ref, onMounted, watch } from 'vue'
 import userService from '../services/user-service.js'
 import { programService } from '../services/program-service.js'
 import { movieService } from '../services/movie-service.js'
@@ -18,6 +18,12 @@ const ProgramApp = {
     
     onMounted(async () => {
       try {
+        // Load saved city and date from localStorage
+        const savedCity = localStorage.getItem('selectedCity');
+        if (savedCity) selectedCity.value = savedCity;
+        const savedDate = localStorage.getItem('selectedDate');
+        if (savedDate) selectedDate.value = savedDate;
+
         console.log('Loading program movies...')
         isLoading.value = true
         debugInfo.value = 'Fetching movies from API...'
@@ -50,6 +56,14 @@ const ProgramApp = {
         isLoading.value = false
       }
     })
+    
+    // Watchers to save city and date to localStorage
+    watch(selectedCity, (newCity) => {
+      if (newCity) localStorage.setItem('selectedCity', newCity);
+    });
+    watch(selectedDate, (newDate) => {
+      if (newDate) localStorage.setItem('selectedDate', newDate);
+    });
     
     // Form validation function
     const validateForm = async () => {
@@ -365,7 +379,18 @@ const ProgramMovieList = {
     return {
       editingMovieId: null,
       submissionAttempted: {}, // Track submission attempts per movie
-      errorMessages: {} // Store error messages per movie
+      errorMessages: {}, // Store error messages per movie
+      isAuthenticated: false // Track authentication status
+    }
+  },
+  async created() {
+    // Check authentication status when component is created
+    try {
+      const user = await userService.getCurrentUser();
+      this.isAuthenticated = !!user;
+    } catch (error) {
+      console.error('Error checking authentication:', error);
+      this.isAuthenticated = false;
     }
   },
   methods: {
@@ -430,6 +455,41 @@ const ProgramMovieList = {
         console.error('Error deleting movie:', error);
         alert('Failed to delete movie: ' + error.message);
       }
+    },
+    async handleBookingTimeClick(movieId, bookingTime) {
+      // Clear all previous error messages
+      this.errorMessages = {};
+      this.submissionAttempted = {};
+      
+      // Check if date and city are selected
+      const selectedDate = this.$parent.selectedDate;
+      const selectedCity = this.$parent.selectedCity;
+      
+      if (!selectedDate || !selectedCity) {
+        this.errorMessages[movieId] = "Please select a date and city before reserving a ticket!";
+        this.submissionAttempted[movieId] = true;
+        return;
+      }
+      
+      // Check if user is authenticated
+      if (!this.isAuthenticated) {
+        this.errorMessages[movieId] = "Please log in to reserve a ticket!";
+        this.submissionAttempted[movieId] = true;
+        return;
+      }
+      
+      // If all validations pass, proceed with booking
+      const movie = this.movies.find(m => m.id === movieId);
+      if (movie) {
+        const params = new URLSearchParams({
+          movieId: movieId,
+          time: bookingTime,
+          movieName: movie.name,
+          date: selectedDate,
+          location: selectedCity
+        });
+        window.location.href = `/order/order-tickets?${params.toString()}`;
+      }
     }
   },
   template: `
@@ -492,7 +552,7 @@ const ProgramMovieList = {
             <template v-else>
               <a v-for="time in movie.bookingTimes" 
                   :key="time.id" 
-                  :href="'/program'" 
+                  @click.prevent="handleBookingTimeClick(movie.id, time.bookingTime)"
                   class="btn btn-primary btn-lg">
                   {{ time.bookingTime.replace('_', ' ').replace('_', ':') }}
               </a>
@@ -515,6 +575,8 @@ const ProgramMovieList = {
             </div>
           </div>
         </div>
+        <!-- Error message for authentication -->
+        <small class="text-danger" v-show="submissionAttempted[movie.id] && errorMessages[movie.id]">{{ errorMessages[movie.id] }}</small>
         </section>
       </li>
       <li class="clear">&nbsp;</li>

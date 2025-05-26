@@ -5,7 +5,7 @@ import { trailerService } from '../services/trailer-service.js'
 import { createApp } from 'vue'
 import userService from '../services/user-service.js'
 
-console.log("main.js се зарежда");
+console.log("main.js loaded");
 console.log("movieService:", movieService);
 
 // Глобален обработчик за fetch грешки, които могат да повлияят на автентикацията
@@ -97,8 +97,24 @@ document.addEventListener('DOMContentLoaded', async function() {
     
     if (navElement) {
       navElement.innerHTML = navData;
+      
+      // Check if we're on the order tickets page
+      const isOrderPage = window.location.pathname.includes('/order/order-tickets');
+      
+      // Check if we should show tabs
+      const row2Element = navElement.querySelector('.row-2');
+      if (row2Element) {
+        const showTabs = !isOrderPage && row2Element.getAttribute('data-show-tabs') === 'true';
+        if (!showTabs) {
+          row2Element.style.display = 'none';
+          navElement.style.height = '8em';
+        }
+      }
+      
       // Setup tab navigation after nav is loaded
-      setupTabNavigation();
+      if (!isOrderPage) {
+        setupTabNavigation();
+      }
       
       // Make sure auth state is applied to the newly loaded nav
       userService.updateUIAuthState();

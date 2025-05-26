@@ -13,7 +13,7 @@ class TrailerService {
    */
   async getMovieTrailer(id) {
     try {
-      const response = await fetch(`/movies/trailer/${id}`);
+      const response = await fetch(`/movies/${id}`);
       if (!response.ok) {
         throw new Error(`Error ${response.status}: ${response.statusText}`);
       }

@@ -1,15 +1,9 @@
-import { MovieClassEnum } from "./enums/MovieClassEnum.js";
-
 class MovieClass {
   constructor(name = null) {
-    this.id;
-    this.name = null;
+    this.id = null;
+    this.name = name;
     this.icon = '';
     this.description = '';
-
-    if (name) {
-      this.setName(name);
-    }
   }
 
   setId(id) {
@@ -22,12 +16,7 @@ class MovieClass {
   }
 
   setName(name) {
-    if (!MovieClassEnum[name]) {
-      throw new Error(`Invalid MovieClassEnum: ${name}`);
-    }
-
     this.name = name;
-    this.setDescriptionFromEnum(name);
     return this;
   }
 
@@ -53,17 +42,16 @@ class MovieClass {
     return this.description;
   }
 
-  setDescriptionFromEnum(enumKey) {
-    const entry = MovieClassEnum[enumKey];
-    if (entry) {
-      this.description = entry.description;
-      this.icon = entry.value;
-    }
-  }
-
-  static generateId() {
-    if (!this._counter) this._counter = 1;
-    return this._counter++;
+  static fromJSON(json) {
+    if (!json) return null;
+    
+    const movieClass = new MovieClass();
+    movieClass.setId(json.id || null)
+              .setName(json.name || null)
+              .setIcon(json.icon || '')
+              .setDescription(json.description || '');
+    
+    return movieClass;
   }
 }
 

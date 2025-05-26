@@ -297,7 +297,7 @@ class MovieService {
    */
   async getMovieById(id) {
     try {
-      const url = `${this.moviesEndpoint}/trailer/${id}`;
+      const url = `${this.moviesEndpoint}/${id}`;
       console.log(`Fetching movie with ID ${id} from URL:`, url);
       
       const response = await fetch(url, {
@@ -327,7 +327,9 @@ class MovieService {
           name: dto.name,
           imageUrl: dto.imageUrl,
           description: dto.description,
-          duration: dto.movieLength,
+          movieLength: dto.movieLength,
+          audio: dto.audio,
+          subtitles: dto.subtitles,
           genre: Array.isArray(dto.genreCategories) 
             ? dto.genreCategories.join(', ') 
             : (typeof dto.genreCategories === 'string' ? dto.genreCategories : ''),

@@ -1,5 +1,4 @@
 import BookingTime from './BookingTime.js';
-import ProjectionFormat from './enums/ProjectionFormat.js';
 
 class MovieDto {
   constructor() {
@@ -12,7 +11,6 @@ class MovieDto {
     this.description = '';
     this.imageUrl = '';
     this.trailerUrl = '';
-    this.projectionFormatKey = null;
     this.projectionFormat = null;
     this.movieClass = null;
     this.genreCategories = [];
@@ -63,20 +61,11 @@ class MovieDto {
     this.trailerUrl = url;
     return this;
   }
-  setProjectionFormatKey(key) {
-    this.projectionFormatKey = key;
-    return this;
-  }
-  
-  setProjectionFormat(value) {
-    this.projectionFormat = value;
-    return this;
-  }
 
-  // setProjectionFormat(format) {
-  //   this.projectionFormat = format;
-  //   return this;
-  // }
+  setProjectionFormat(format) {
+    this.projectionFormat = format;
+    return this;
+  }
 
   setMovieClass(movieClass) {
     this.movieClass = movieClass;
@@ -122,7 +111,6 @@ class MovieDto {
     try {
       const dto = new MovieDto();
       
-      // Проверяваме за null или undefined стойности и ги заместваме с default стойности
       dto.setId(json.id || 0)
         .setName(json.name || 'Неизвестен филм')
         .setMovieLength(json.movieLength || json.duration || 0)
@@ -132,21 +120,17 @@ class MovieDto {
         .setDescription(json.description || 'Няма описание')
         .setImageUrl(json.imageUrl || '/images/default-movie.jpg')
         .setTrailerUrl(json.trailerUrl || '')
-        .setProjectionFormatKey(json.projectionFormat || null)
-        .setProjectionFormat(ProjectionFormat.getValue(json.projectionFormat));
+        .setProjectionFormat(json.projectionFormat || null);
   
-      // Задаваме movieClass - това е директен обект, който запазваме както си е
       if (json.movieClass) {
         console.log('Setting movieClass:', json.movieClass);
         dto.setMovieClass(json.movieClass);
       }
   
-      // Задаваме genreCategories
       if (json.genreCategories && Array.isArray(json.genreCategories)) {
         console.log('Setting genreCategories:', json.genreCategories);
         dto.setGenreCategories(json.genreCategories);
       } else if (json.genre) {
-        // Поддръжка на алтернативно име на полето
         console.log('Setting genre as categories:', json.genre);
         if (typeof json.genre === 'string') {
           dto.setGenreCategories([json.genre]);
@@ -158,8 +142,7 @@ class MovieDto {
       } else {
         dto.setGenreCategories([]);
       }
-  
-      // Обработваме bookingTimes
+
       if (json.bookingTimes && Array.isArray(json.bookingTimes)) {
         console.log('Converting booking times:', json.bookingTimes);
         try {
@@ -180,7 +163,6 @@ class MovieDto {
       return dto;
     } catch (err) {
       console.error('Error in MovieDto.fromJSON:', err);
-      // Връщаме минимално валиден DTO обект вместо null
       const fallbackDto = new MovieDto();
       fallbackDto.setId(json.id || 0)
                  .setName(json.name || 'Филм с грешка')
