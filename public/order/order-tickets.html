@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="bg">
+<html lang="en">
 <head>
   <meta charset="UTF-8">
   <link rel="icon" type="image/x-icon" href="/images/favicon.ico" />
@@ -8,52 +8,17 @@
   <title>Cinema Tickets</title>
   <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
   <link rel="stylesheet" href="../css/style.css">
-  
 </head>
 <body>
 <header id="nav"></header>
-<div class="order-tickets-wrapper">
-  <div class="order-tickets-content">
-    <div class="breadcrumbs">
-      SEATS &gt; TICKETS &gt; ORDER
-    </div>
-    <div class="movie-info">
-      <img id="moviePoster" class="movie-poster" src="../images/default-movie.jpg" alt="Plakat">
-      <div class="movie-details">
-        <h2 id="movieName">Loading...</h2>
-        <div class="info-row" id="movieCinema"></div>
-        <div class="info-row">
-          <i class='bx bx-calendar'></i>
-          <span id="movieDateTime"></span>
-        </div>
-        <div class="info-row">
-          <span id="movieDuration"></span>
-          <span id="movieLanguage"></span>
-          <span id="moviePremiere"></span>
-        </div>
-      </div>
-    </div>
-    <div class="max-seats-msg">You can choose a maximum of 10 seats.</div>
-    <div class="screen-label">IMAX</div>
-    <div class="hall-scheme">
-      <div class="seats" id="seatsContainer"></div>
-      <div class="legend">
-        <span class="legend-item legend-free"></span> free seats
-        <span class="legend-item legend-selected"></span> your choice
-        <span class="legend-item legend-occupied"></span> occupied seats
-        <span class="legend-item legend-wheelchair"></span> wheelchair spaces
-      </div>
-      <div class="seat-counter">
-        <i class='bx bx-ticket'></i> <span id="selectedCount">0</span>
-      </div>
-      <div class="actions">
-        <button class="btn-cancel" onclick="window.history.back()">Cancel</button>
-        <button class="btn-confirm" id="confirmBtn" disabled>Confirm</button>
-      </div>
-    </div>
-  </div>
-</div>
+<div id="app"></div>
+
+<script type="module">
+  import { createOrderVue } from '../js/order-view.js'
+  
+  const app = createOrderVue()
+  app.mount('#app')
+</script>
 <script type="module" src="/js/main.js"></script>
-<script type="module" src="/services/order-service.js"></script>
 </body>
 </html>

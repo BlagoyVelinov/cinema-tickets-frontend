@@ -2,6 +2,7 @@ import { createApp, ref, onMounted, watch } from 'vue'
 import userService from '../services/user-service.js'
 import { programService } from '../services/program-service.js'
 import { movieService } from '../services/movie-service.js'
+import BookingTime from '../models/BookingTime.js'
 
 const ProgramApp = {
   setup() {
@@ -188,12 +189,12 @@ const ProgramApp = {
               v-model="selectedCity"
             >
               <option value="">Select City</option>
-              <option value="SOFIA">Sofia</option>
-              <option value="PLOVDIV">Plovdiv</option>
-              <option value="STARA_ZAGORA">Stara Zagora</option>
-              <option value="RUSE">Ruse</option>
-              <option value="BURGAS">Burgas</option>
-              <option value="VARNA">Varna</option>
+              <option value="Sofia">Sofia</option>
+              <option value="Plovdiv">Plovdiv</option>
+              <option value="Stara_Zagora">Stara Zagora</option>
+              <option value="Ruse">Ruse</option>
+              <option value="Burgas">Burgas</option>
+              <option value="Varna">Varna</option>
             </select>
             <small class="text-danger" v-show="errors.cityError">City Name is required</small>
           </div>
@@ -378,9 +379,9 @@ const ProgramMovieList = {
   data() {
     return {
       editingMovieId: null,
-      submissionAttempted: {}, // Track submission attempts per movie
-      errorMessages: {}, // Store error messages per movie
-      isAuthenticated: false // Track authentication status
+      submissionAttempted: {},
+      errorMessages: {},
+      isAuthenticated: false
     }
   },
   async created() {
@@ -394,6 +395,13 @@ const ProgramMovieList = {
     }
   },
   methods: {
+    // Add formatBookingTime method
+    formatBookingTime(time) {
+      if (!time) return '';
+      const bookingTimeObj = new BookingTime(null, time);
+      return bookingTimeObj.getFormattedTime();
+    },
+    
     toggleEditMode(movieId) {
       this.editingMovieId = this.editingMovieId === movieId ? null : movieId;
       // Reset validation state when toggling edit mode
@@ -461,6 +469,8 @@ const ProgramMovieList = {
       this.errorMessages = {};
       this.submissionAttempted = {};
       
+      console.log('handleBookingTimeClick called with:', { movieId, bookingTime });
+      
       // Check if date and city are selected
       const selectedDate = this.$parent.selectedDate;
       const selectedCity = this.$parent.selectedCity;
@@ -480,15 +490,43 @@ const ProgramMovieList = {
       
       // If all validations pass, proceed with booking
       const movie = this.movies.find(m => m.id === movieId);
+      console.log('Found movie:', movie);
+      
       if (movie) {
-        const params = new URLSearchParams({
-          movieId: movieId,
-          time: bookingTime,
-          movieName: movie.name,
-          date: selectedDate,
-          location: selectedCity
-        });
-        window.location.href = `/order/order-tickets?${params.toString()}`;
+        console.log('Movie booking times:', movie.bookingTimes);
+        
+        // Find the booking time object from movie.bookingTimes
+        const selectedBookingTime = movie.bookingTimes.find(bt => bt.bookingTime === bookingTime);
+        console.log('Selected booking time:', selectedBookingTime);
+        
+        if (!selectedBookingTime) {
+          console.error('Booking time not found:', bookingTime);
+          return;
+        }
+
+        try {
+          // Store the selected booking time object in sessionStorage
+          console.log('Storing selected booking time:', selectedBookingTime);
+          sessionStorage.setItem('bookingTimeData', JSON.stringify(selectedBookingTime));
+          
+          // Verify the data was stored
+          const storedData = sessionStorage.getItem('bookingTimeData');
+          console.log('Verified stored data:', storedData);
+          
+          const params = new URLSearchParams({
+            movieId: movieId,
+            bookingTimeValue: selectedBookingTime.bookingTime,
+            movieName: movie.name,
+            date: selectedDate,
+            location: selectedCity
+          });
+          
+          console.log('Redirecting with params:', params.toString());
+          window.location.href = `/order/order-tickets?${params.toString()}`;
+        } catch (error) {
+          console.error('Error storing booking time data:', error);
+          alert('Error preparing booking data. Please try again.');
+        }
       }
     }
   },
@@ -554,7 +592,7 @@ const ProgramMovieList = {
                   :key="time.id" 
                   @click.prevent="handleBookingTimeClick(movie.id, time.bookingTime)"
                   class="btn btn-primary btn-lg">
-                  {{ time.bookingTime.replace('_', ' ').replace('_', ':') }}
+                  {{ formatBookingTime(time.bookingTime) }}
               </a>
             </template>
           </template>

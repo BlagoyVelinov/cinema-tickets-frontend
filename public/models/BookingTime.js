@@ -29,7 +29,8 @@ export default class BookingTime {
    */
   getFormattedTime() {
     if (!this.bookingTime) return '';
-    return this.bookingTime.replace('_', ' ').replace('_', ':');
+    let bookingTime = this.bookingTime.replace('_', ' ');
+    return bookingTime.replace('_', ':');
   }
 
   /**

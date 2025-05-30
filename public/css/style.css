@@ -1,3 +1,6 @@
+@import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css');
+
+
 * {
     margin: 0;
     padding: 0;
@@ -1691,10 +1694,18 @@ element.style {
   }
 
   .breadcrumbs {
+    color: #666;
+    font-size: 1,4ем;
+    margin-bottom: 20px;
+  }
+
+  .breadcrumbs span {
+    color: #666;
+    transition: color 0.3s ease;
+  }
+
+  .breadcrumbs span.active {
     color: #fff;
-    font-size: 1.1rem;
-    margin-bottom: 1.5rem;
-    letter-spacing: 1px;
   }
 
   .movie-info {
@@ -1715,6 +1726,7 @@ element.style {
   .movie-details h2 {
     margin: 0 0 0.5rem 0;
     font-size: 1.5rem;
+    text-transform: none;
   }
 
   .movie-details {color: #fff;}
@@ -1848,6 +1860,93 @@ element.style {
     margin-bottom: 0.5rem;
     font-size: 1rem;
   }
+
+  /* Order - second tab */
+  .section {
+    display: flex;
+    padding: 1em 1.5em;
+  }
+
+  .ticket-section {
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .button-and-price {
+    display: flex;
+    align-items: baseline;
+    gap: 0.8em;
+  }
+
+  button.change-type-ticket {
+    border: #ff9800 0.2em solid;
+    border-radius: 0.5em;
+    padding: 0.7em 2em;
+    margin-right: 2em;
+    color: #ff9800;
+    /* background-color: rgb(246, 249, 255); */
+    background-color: transparent;
+    letter-spacing: 0.1em;
+  }
+  .delete-ticket {
+    border-radius: 50%;
+    font-size: 1.2em;
+    padding: 0.1em 0.4em;
+    text-align: center;
+    align-items: center;
+    background-color: #757575;
+    color: #fff;
+    border: none;
+  }
+  .delete-ticket:hover {
+    cursor: pointer;
+  }
+  button.change-type-ticket:hover {
+    cursor: pointer;
+    color: #ff5722;
+    border-color: #ff5722;
+  }
+
+.price-section {
+    display: flex;
+    justify-content: end;
+    gap: 2em;
+}
+
+.price-text {
+    display: flex;
+    flex-direction: column;
+    line-height: 0em;
+    text-align: end;
+}
+
+.price-fee {
+    font-size: 0.8em;
+    line-height: 0em;
+}
+.total-price {
+    font-size: 1.28em;
+}
+.icon-and-title > span {
+    font-size: 1.2em;
+}
+
+.fa-solid.fa-ticket {
+    font-size: 1.29em;
+    margin-right: 0.4em;
+    margin-bottom: 0.4em;
+}
+
+.row-and-coll > .row {
+    margin-left: 0.1em;
+}
+
+.row-and-coll > .row::after {
+    content: "";
+    border: 0.1em solid #fff;
+    margin: 0 1.4em 0 0.5em;
+    font-size: 0.8em;
+}
 
 /* Common Header Styles */
 header.navigation {
