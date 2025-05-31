@@ -549,7 +549,7 @@ const ProgramMovieList = {
           </div>
         </span>
         <section class="movie-info-program">
-        <div class="screening-type">{{ movie.projectionFormat || '2D' }}</div>
+        <div class="screening-type">{{ movie.projectionFormat ? movie.projectionFormat.slice(2) : '2D' }}</div>
 
         <div class="info-booking-times">
           <!-- Show form when editing this movie, otherwise show times -->

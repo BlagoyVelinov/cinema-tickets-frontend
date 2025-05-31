@@ -104,7 +104,6 @@ class OrderService {
     }
 }
 
-// Export a singleton instance
 const orderService = new OrderService()
 export { orderService }
 export default orderService

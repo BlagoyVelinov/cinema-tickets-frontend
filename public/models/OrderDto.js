@@ -1,5 +1,5 @@
 import { Ticket } from './TicketDto.js';
-import { UserDto } from './UserDto.js';
+import UserDto from './UserDto.js';
 
 export class OrderDto {
   constructor({
@@ -20,6 +20,7 @@ export class OrderDto {
     user = null,
     startDate = null,
     endDate = null,
+    isFinished = false
   } = {}) {
     this.id = id;
     this.movieId = movieId;
@@ -32,15 +33,23 @@ export class OrderDto {
     this.studentQuantity = studentQuantity;
     this.totalPrice = totalPrice;
     this.bookingTime = bookingTime;
-    this.tickets = tickets.map(t => Ticket.fromJSON(t));
+    this.tickets = tickets;
     this.projectionDate = projectionDate ? new Date(projectionDate) : null;
     this.location = location;
-    this.user = user ? UserDto.fromJSON(user) : null;
+    this.user = user;
     this.startDate = startDate ? new Date(startDate) : null;
     this.endDate = endDate ? new Date(endDate) : null;
+    this.isFinished = isFinished;
   }
 
   toJSON() {
+    // Format date to YYYY-MM-DD
+    const formatDate = (date) => {
+      if (!date) return null;
+      const d = new Date(date);
+      return d.toISOString().split('T')[0]; // Returns YYYY-MM-DD
+    };
+
     return {
       id: this.id,
       movieId: this.movieId,
@@ -53,12 +62,31 @@ export class OrderDto {
       studentQuantity: this.studentQuantity,
       totalPrice: this.totalPrice,
       bookingTime: this.bookingTime,
-      tickets: this.tickets.map(t => t.toJSON()),
-      projectionDate: this.projectionDate ? this.projectionDate.toISOString().split('T')[0] : null,
+      tickets: this.tickets.map(ticket => ({
+        movieName: this.movieViewName,
+        hallNumber: null,
+        numberOfSeat: ticket.col,
+        numberOfRow: ticket.row,
+        price: ticket.price || 0,
+        projectionDate: formatDate(this.projectionDate),
+        movieClassDescription: null,
+        bookingTime: this.bookingTime,
+        ticketType: ticket.type,
+        city: { location: this.location },
+        isFinished: false
+      })),
+      projectionDate: formatDate(this.projectionDate),
       location: this.location,
-      user: this.user,
-      startDate: this.startDate ? this.startDate.toISOString().split('T')[0] : null,
-      endDate: this.endDate ? this.endDate.toISOString().split('T')[0] : null,
+      user: this.user ? {
+        id: this.user.id,
+        username: this.user.username,
+        name: this.user.name,
+        email: this.user.email,
+        admin: this.user.admin
+      } : null,
+      startDate: formatDate(this.startDate),
+      endDate: formatDate(this.endDate),
+      isFinished: this.isFinished
     };
   }
 
@@ -69,7 +97,7 @@ export class OrderDto {
 
   get projectionDateView() {
     if (!this.projectionDate) return '';
-    return this.projectionDate.toLocaleDateString('bg-BG'); // или използвай formatter ако искаш "dd-MM-yyyy"
+    return this.projectionDate.toLocaleDateString('bg-BG');
   }
 }
 

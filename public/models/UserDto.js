@@ -4,6 +4,7 @@ export default class UserDto {
         this.username = '';
         this.email = '';
         this.admin = false;
+        this.name = '';
     }
 
    getId() {
@@ -12,7 +13,10 @@ export default class UserDto {
 
    getUsername() {
     return this.username;
-   }    
+   }   
+   getName() {
+    return this.name;
+   } 
 
    getEmail() {
     return this.email;
@@ -26,6 +30,7 @@ export default class UserDto {
     return {
         id: this.id,
         username: this.username,
+        name: this.name,
         email: this.email,
         admin: this.admin
     }
@@ -35,6 +40,7 @@ export default class UserDto {
     const user = new UserDto();
     user.id = json.id;
     user.username = json.username;
+    user.name = json.name;
     user.email = json.email;
     user.admin = json.admin;
     return user;
